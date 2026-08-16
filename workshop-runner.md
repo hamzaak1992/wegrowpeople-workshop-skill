@@ -421,7 +421,7 @@ LESSON 6 OF 7 · YOUR DASHBOARD
 ─────────────────────────────────
 TIME: 50 min
 GOAL: Today's work, pulled onto one screen
-WIN:  Your dashboard, live in your browser
+WIN:  Your own business tool, live in your browser
 ```
 
 This is one of the two non-negotiable modules. Never skip or compress it below 35 minutes even if behind schedule.
@@ -432,6 +432,33 @@ Note the framing difference from a "hero dashboard" workshop: this is presented 
 
 **Explain it:** "This dashboard isn't a brand new thing — it's everything you've already built today, pulled onto one screen so you can see it at a glance instead of digging through separate files. A handful of the right numbers, always visible, beats a big report nobody opens."
 
+**Choose what you're actually building — this is not always a generic dashboard.** Based on their Module 1 role/pain point, suggest the 1-2 best fits first, but lay out all the options so they can pick freely:
+
+1. **Cash Flow Tracker** — revenue, expenses, runway, a live price/cost slider. Best for founders/finance-minded roles.
+2. **Sales & Marketing Analytics** — leads, conversion, channel breakdown, campaign trend. Best for sales/marketing roles.
+3. **Competitor Analysis** — a structured comparison of 2-3 real competitors across the dimensions that actually matter to them.
+4. **Lead Opportunity Generator** — a researched shortlist of real companies/contacts worth approaching, with fit scores and an outreach angle for each.
+5. **Something else / a general dashboard of your own numbers** — the default path if none of the above fit.
+
+Each of the first four is a genuinely different build, not a reskin — different interview questions, different data shape, different charts. Follow the matching branch below for whichever they pick.
+
+### Branch 1 — Cash Flow Tracker
+Ask: their current revenue and expenses (rough monthly numbers, or "I don't track this precisely" — estimates are fine), and their current cash position if they know it.
+Build: a trend chart of cash/revenue over recent months, a runway or burn-rate tile, and a **real working slider** — not just a visual, actual `oninput` JS that recalculates a displayed profit/runway number live as they drag price or cost. This is the module's most impressive live-interaction moment when it fits their answers — don't skip the live recalculation for a static mockup.
+
+### Branch 2 — Sales & Marketing Analytics
+Ask: where their leads come from (channels), roughly how many per month, and their rough conversion rate if they know it.
+Build: a trend chart (leads over time) + a donut breakdown (leads by channel) — this is the one branch where the standard trend+donut toolkit fits perfectly out of the box.
+
+### Branch 3 — Competitor Analysis
+Ask: name 2-3 real competitors, and what dimensions actually matter for comparing them (price, speed, quality, reputation — whatever's real for their business).
+Build via parallel agents doing **real web research** on each competitor (same technique already proven in Module 4's delegation research) — this is a comparison table/matrix, not a live-metrics dashboard, so the "always include a trend chart" rule doesn't apply here; use a horizontal bar comparison across their most important dimension instead, plus the comparison table with click-to-expand rows for each competitor's detail (same interaction pattern as the rest of the dashboard).
+
+### Branch 4 — Lead Opportunity Generator
+Ask: their target criteria — industry, company size, region, whatever actually defines a good-fit prospect for them.
+Build via parallel agents doing **real web research** to generate an actual shortlist of companies/contacts matching their criteria (same technique as Branch 3 and Module 4) — each with a fit score and a one-line outreach angle. Chart: horizontal bar ranking the shortlist by fit score, plus the full list as a click-to-expand table (same pattern as the Prospect Pipeline table already proven in testing).
+
+### Branch 5 — Something else / general dashboard (default)
 Ask:
 1. What's the one decision this dashboard should help you make faster?
 2. What are your 3-5 numbers? (can reuse Module 5's answers if identical)
@@ -442,6 +469,8 @@ Propose 3 simple layout options (not overwrought — a beginner should recognize
 3. KPI tiles + a single interactive element (a slider/toggle that recalculates one number)
 
 Pull real numbers from Module 3's connected tools where possible; accept manual numbers otherwise — always be honest with them about which is which.
+
+**Every branch still follows every rule below** (style templates, parallel-agent build, chart-type fit, minimum visual richness, click-to-expand interactivity, no native dialogs, big SVG hit targets) — the branch only changes what's being tracked, never how well it's built.
 
 **Dashboard style templates — pick one at random per participant, don't default to the same look every time.** Five templates exist so the room doesn't end up with 15 identical-looking dashboards for the selfie challenge. Roll a random pick (1-5) before you start building, then use that template's exact tokens throughout — don't mix templates within one build.
 
