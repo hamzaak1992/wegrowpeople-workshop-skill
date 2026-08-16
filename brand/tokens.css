@@ -1,0 +1,39 @@
+/* WeGrowPeople brand tokens — extracted from github.com/itsadelehq/wegrowpeople-v2 (src/index.css, live components) */
+:root{
+  --cream:#f8f4ea; --cream-deep:#f1ead9;
+  --sage:#a3b899; --sage-soft:#c8d5c0; --sage-deep:#5f7355;
+  --butter:#f4d77d; --butter-soft:#f9e7ae;
+  --ink:#17170f;
+  --lilac:#d9c9f5; --periwinkle:#bfd0f5; --peach:#f5cfa8; --blush:#f3c9dd;
+  --font-sans:"Aeonik Pro",system-ui,sans-serif;
+  --font-serif:"Instrument Serif",Georgia,serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--cream);color:var(--ink);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;line-height:1.55;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important;}}
+
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--sage-deep);margin:0 0 12px;}
+.accent{font-family:var(--font-serif);font-style:italic;font-weight:400;}
+
+h1,h2,h3{font-family:var(--font-sans);font-weight:600;letter-spacing:-.01em;margin:0;text-wrap:balance;}
+
+.card{border-radius:24px;border:1px solid rgba(23,23,15,.08);padding:22px 24px;background:var(--cream-deep);}
+/* tone-X is standalone so it applies regardless of which card-like class it's paired with */
+.tone-sage{background:rgba(168,190,153,.35);border-radius:24px;border:1px solid rgba(23,23,15,.08);}
+.tone-butter{background:rgba(249,231,174,.55);border-radius:24px;border:1px solid rgba(23,23,15,.08);}
+.tone-lilac{background:rgba(217,201,245,.4);border-radius:24px;border:1px solid rgba(23,23,15,.08);}
+.tone-periwinkle{background:rgba(191,208,245,.4);border-radius:24px;border:1px solid rgba(23,23,15,.08);}
+.tone-peach{background:rgba(245,207,168,.4);border-radius:24px;border:1px solid rgba(23,23,15,.08);}
+.tone-blush{background:rgba(243,201,221,.4);border-radius:24px;border:1px solid rgba(23,23,15,.08);}
+.card-dark{border-radius:24px;background:var(--ink);color:var(--cream);padding:22px 24px;}
+.card-dark .dim{color:rgba(248,244,234,.6);}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;
+  background:var(--ink);color:var(--cream);font-weight:600;font-size:14px;padding:12px 22px;
+  text-decoration:none;border:none;cursor:pointer;transition:opacity .15s;}
+.btn:hover{opacity:.82;}
+.btn.secondary{background:#fff;color:var(--ink);border:1px solid rgba(23,23,15,.1);}
+
+code,.mono{font-family:ui-monospace,"SF Mono",Consolas,monospace;}
+a{color:var(--sage-deep);}
