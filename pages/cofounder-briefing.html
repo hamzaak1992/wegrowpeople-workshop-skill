@@ -90,7 +90,7 @@ h1{font-size:clamp(28px,4vw,38px);line-height:1.15;margin:0 0 10px;}
 .cap-card .t{font-size:13.5px;font-weight:650;margin-bottom:4px;}
 .cap-card .d{font-size:12px;color:rgba(23,23,15,.6);line-height:1.5;}
 
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
 @media(max-width:640px){.cols{grid-template-columns:1fr;}}
 
 .roles{display:flex;flex-direction:column;gap:10px;}
@@ -264,6 +264,11 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid rgba(23,23,15,.1);f
       <div class="card tone-sage box">
         <p style="margin-bottom:6px;"><b>Facilitator ops playbook</b></p>
         <p class="dim">Room roles, troubleshooting table, energizer scripts, pre-event checklist.</p>
+      </div>
+      <div class="card tone-butter box">
+        <p style="margin-bottom:6px;"><b>Our internal trainer dashboard</b></p>
+        <p class="dim" style="margin-bottom:8px;">Who's ready, survey insights, live submission count as people fill it in.</p>
+        <a href="https://claude.ai/code/artifact/943d78ee-c9a0-4144-b1f1-4c684732c8df" target="_blank" rel="noopener"><b>Open trainer dashboard →</b></a>
       </div>
     </div>
   </div>
