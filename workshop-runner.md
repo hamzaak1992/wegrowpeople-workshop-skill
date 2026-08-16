@@ -27,7 +27,8 @@ This document is your complete run-of-show. Follow it in order. Do not skip Modu
 - **Hard gate.** After each module, stop and require the participant to type the next module's name (`module2`, `module3`, etc., or `finale`) before moving on — never a vague "reply GO." This doubles as an orientation tool: they always know exactly where they are in the day. Never assume and continue without it.
 - **Never use a leading slash in a gate command.** Claude Desktop/Code intercepts anything starting with `/` as an app-level slash-command lookup before it ever reaches you — confirmed live in testing ("Unknown command: /module6"). A gate phrase like `/module2` would silently fail for every participant. Plain text with no leading slash (`module2`) reaches you normally and can't collide with the app's own command system.
 - **Never say the internal strategy out loud.** Words like "small win," "your first real win," "we're keeping this achievable" are internal design language for facilitators — not something Claude says to the participant. Describe what's about to happen in plain, concrete terms instead (what it does, not why it's scoped that way).
-- **Explain before you build.** Right after the header card, before asking any questions or building anything, teach the concept in 2-4 plain sentences — what this module's idea actually is and why it matters, in language a non-technical person gets immediately. This is real teaching content for the trainee, not throat-clearing — the quiz at the end of the module tests THIS explanation, so it has to actually say something, not just gesture at the topic.
+- **State the objective in one plain sentence, right after the header card, before anything else.** The header card's GOAL/WIN lines are fragments meant to be scanned, not heard — say the objective out loud as an actual sentence so the attendee knows exactly what they're about to build before you ask them a single question. Keep it concrete and short: "In this module, we're building X" — not the why, not the concept, just the deliverable.
+- **Explain before you build.** Right after that objective sentence, before asking any questions or building anything, teach the concept in 2-4 plain sentences — what this module's idea actually is and why it matters, in language a non-technical person gets immediately. This is real teaching content for the trainee, not throat-clearing — the quiz at the end of the module tests THIS explanation, so it has to actually say something, not just gesture at the topic.
 - **Quiz before every gate.** Right before the gate line, ask ONE short check-understanding question about that module's concept (multiple choice is easiest to answer fast) — it should be answerable directly from the "explain before you build" content above, not from trivia they'd have to guess. Wait for their answer. Tell them if they got it right or wrong, and explain *why* in one sentence either way — don't just move on silently. This is what makes the learning stick, not just the building.
 - **One visual per module, no more.** Right after building the module's real output (before the quiz), show one small, simple diagram of that module's concept. One picture per module is the rule: it's there to anchor the concept, not to entertain. Never stack more than one per module or it stops feeling like a system and starts feeling like a slideshow.
 - **Everything is a real file.** Every module ends with something written to disk in `~/Desktop/my-ai/`, named after the participant's real business, not a placeholder.
@@ -120,6 +121,8 @@ WIN:  A file that means you never repeat
 
 Goal: participant has a personal context file so every future session already "knows" them.
 
+**What we're building:** "In this module, we're building a file that means you never have to repeat yourself to Claude again."
+
 **Explain it:** "Right now, every time you open Claude, it's meeting you for the first time — it has no idea who you are, what your business does, or what you care about. We're going to fix that, once, by writing it all down in a file Claude reads automatically at the start of every future chat. Think of it like the briefing you'd give a new hire on day one — except you only ever have to write it once, and it never forgets."
 
 Ask, one at a time, waiting for each answer:
@@ -179,6 +182,8 @@ WIN:  A skill that works on YOUR real input
 ```
 
 Goal: one real recurring task, automated, working, tested live on their real input. This is the emotional peak of the morning — do not rush it.
+
+**What we're building:** "In this module, we're building your first real skill — one that works on your actual work, not a demo."
 
 **Explain it:** "A Skill is instructions you write once, and Claude follows exactly the same way every single time — no drifting, no skipping a step, no forgetting how you like it done. It's the difference between re-explaining a task to someone from scratch every time, versus handing them a checklist they already know how to run. Today we're building one for something real and recurring in your actual week."
 
@@ -245,6 +250,8 @@ WIN:  A real tool connected, proven on you
 
 Goal: at least one real tool connected live, proof that Claude can read something real from their business.
 
+**What we're building:** "In this module, we're connecting one of your real tools so I can see your actual data live, no pasting."
+
 **Explain it:** "Right now, Claude only knows what you type or paste in — it can't see your actual calendar, inbox, or spreadsheets on its own. Two words are going to come up today: Connector and MCP. Think of it like a phone charger. MCP is the plug shape itself — like USB-C — a standard so any device can plug into any charger that shares that same port, no matter who made either one. A Connector is a specific cable that's already sitting in the drawer, built and ready — for Gmail, for Calendar, whatever tool you need — because someone already made that exact cable for you. You just plug it in. If a tool doesn't have a ready-made cable yet, you can still build one — that's Module 7 territory, a bit more work, like assembling your own cable instead of grabbing one off the shelf. Today, we're just plugging in the cable that already exists."
 
 Rule: **official connector if one exists (point-and-click, no code). Build a custom MCP only if nothing off-the-shelf exists — and that happens overnight, not in the room** (see Module 7).
@@ -306,6 +313,8 @@ WIN:  3 finished drafts, done together
 
 Goal: participant learns they can hand off more than one thing at a time — this is the "I have a team now" moment for managers.
 
+**What we're building:** "In this module, we're getting me to do 3 things at once instead of one at a time."
+
 **Explain it:** "So far, Claude has done one thing, then waited for your next instruction. It doesn't have to work that way — you can ask for several things at once, and it'll work on all of them at the same time and bring you the finished results together. That's the real shift here: not 'I have an assistant,' but 'I have a small team I can direct.'"
 
 Propose 3 mission options built from their role (pick one, or combine):
@@ -359,6 +368,8 @@ WIN:  A standing skill that runs every day
 ```
 
 Goal: a standing skill that greets them each morning with their numbers/priorities — no login required.
+
+**What we're building:** "In this module, we're building a standing skill that hands you your numbers every morning, automatically."
 
 **Explain it:** "This is about turning today's win into something that runs on its own, every single day, without you having to ask again. Instead of you remembering to go check your numbers, your numbers come find you — the same way a good ops manager would walk into your office each morning with the one update that matters."
 
@@ -416,6 +427,8 @@ WIN:  Your dashboard, live in your browser
 This is one of the two non-negotiable modules. Never skip or compress it below 35 minutes even if behind schedule.
 
 Note the framing difference from a "hero dashboard" workshop: this is presented as **a nice, real bonus that pulls together what they already built** — not the entire point of the day. Keep it achievable: 3-5 tiles, not 10.
+
+**What we're building:** "In this module, we're pulling everything you've built today onto one live, interactive screen."
 
 **Explain it:** "This dashboard isn't a brand new thing — it's everything you've already built today, pulled onto one screen so you can see it at a glance instead of digging through separate files. A handful of the right numbers, always visible, beats a big report nobody opens."
 
@@ -525,6 +538,8 @@ This module is intermediate-only by design. Only run it for participants who are
 
 Goal: NOT to build a working MCP in the room (too fragile, too slow, kills momentum for a beginner room). Goal is a concrete overnight plan.
 
+**What we're building:** "In this module, we're writing tonight's exact plan to connect the one tool that doesn't have a ready-made Connector."
+
 **Explain it:** "Not every tool has a ready-made Connector yet. For the ones that don't, you can still connect them — it just takes a bigger, slightly more careful build instead of one click, which is exactly why we plan it now and build it tonight rather than live in the room."
 
 Take one tool from `mcp-plan.md` that has no ready-made connector. Write a step-by-step, ready-to-paste prompt they can run at home tonight to have Claude scaffold the MCP connection for that tool. Walk through what it will do in plain language so it's not scary homework.
@@ -564,6 +579,8 @@ TIME: 25 min
 GOAL: See the full system, pick next move
 WIN:  You know exactly what to do next
 ```
+
+**What we're building:** "In this module, we're not building anything new — we're reviewing everything you built today and locking in what happens next."
 
 - Open `~/Desktop/my-ai/` and tour the whole folder out loud, naming what THEY personally built in each module — check off each item as you name it (list format below, adapt filenames to what this participant actually built).
 - Write `~/Desktop/my-ai/NEXT-STEPS.md`: 3 concrete overnight/this-week tasks (e.g. "run your MCP plan prompt," "connect your second tool," "set your morning brief reminder").
