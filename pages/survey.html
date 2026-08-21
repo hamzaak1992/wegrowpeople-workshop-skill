@@ -267,27 +267,71 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,rg
   window.back = ()=>{ err(step,false); if(step>0) show(step-1); };
   window.pickOpt = (b)=>{ b.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); b.classList.add('sel'); err(3,false); };
 
-  // Lightweight keyword-matched recommendation — no AI call available client-side,
-  // so this reads their actual challenge/industry text and picks the closest-fit tip.
-  // Swap for a real API call if you wire this survey to a backend later.
+  // Response-driven recommendation. There's no live AI on a static page, so this
+  // SCORES their actual answers across several themes (strongest signal wins, not
+  // first-match) and then personalises the result by their industry AND team size,
+  // so two different people genuinely get different advice. To make it truly
+  // generative later, POST the answers to a small backend that calls the Claude API
+  // and drop the returned text into recBody instead (see google-sheets-setup.md).
   function buildRecommendation(d){
-    const c = (d.challenge + ' ' + d.goal).toLowerCase();
-    const rules = [
-      { test:/lead|prospect|follow.?up|outreach|cold|pipeline/,
-        text:`Use Claude to build a lead follow-up workflow: paste in your prospect list, have it draft a personalised outreach message for each one, then track replies so nothing goes cold. This is exactly what Module 4 (Delegation) covers — cuts your outreach time in half.` },
-      { test:/report|sheet|excel|data|number|p&l|p and l|xero|accounting/,
-        text:`Use Claude to build a reporting skill: connect your spreadsheet, and have it pull the numbers, spot what's off-track, and draft your update automatically. This is your Module 5 (Morning Brief) and Module 6 (Dashboard) — no more manual month-end pulls.` },
-      { test:/meeting|notes|minutes|action item/,
-        text:`Use Claude to turn your messy meeting notes into a clean action list with owners and deadlines, every time, automatically. That's a Module 2 skill build — 5 minutes to set up, saves you an hour a week.` },
-      { test:/staff|team|manage|hiring|hr|hod|department/,
-        text:`Use Claude to build a weekly team-update skill: your staff's rough updates go in, a clean summary for you comes out — wins, blockers, what needs your attention. Straight out of Module 2.` },
-      { test:/whatsapp|reply|email|customer|inbox/,
-        text:`Use Claude to draft replies to common customer/prospect messages in your voice, so you're reviewing and sending instead of writing from scratch every time. That's your Module 2 build, connected live to your inbox in Module 3.` },
+    const text = (d.challenge + ' ' + d.goal).toLowerCase();
+    const industry = d.industry && d.industry !== 'Other' ? d.industry : '';
+    const team = (d.team || '').toLowerCase();
+    const solo = /just me|solo/.test(team);
+    const nums = (team.match(/\d+/g) || []).map(Number);
+    const maxTeam = nums.length ? Math.max(...nums) : (solo ? 1 : 0);
+    const bigTeam = !solo && maxTeam >= 11;
+
+    const themes = [
+      { kw:/lead|prospect|follow.?up|outreach|cold|pipeline|sale|closing|convert|quote|enquir|inquir/g,
+        build:`a lead follow-up system — drop in your prospect list and Claude drafts a personalised message for each, then flags who's gone quiet`,
+        module:`Module 4 (Delegation) and the Lead Opportunity Generator in Module 6`,
+        step:`jot down your 5 most common lead questions and pull up your last 10 enquiries` },
+      { kw:/report|sheet|excel|spreadsheet|data|number|p&l|p and l|xero|account|invoic|finance|cash|revenue|expense|track/g,
+        build:`a reporting skill — connect your spreadsheet and Claude pulls the numbers, spots what's off-track, and drafts the update for you`,
+        module:`Module 5 (Morning Brief) and your live dashboard in Module 6`,
+        step:`have your main spreadsheet or numbers ready to connect` },
+      { kw:/meeting|notes|minutes|action item|call|recording|transcri/g,
+        build:`a notes-to-actions skill — messy meeting notes go in, a clean task list with owners and deadlines comes out, every time`,
+        module:`Module 2 (your first skill)`,
+        step:`bring a real set of messy notes from a recent meeting` },
+      { kw:/staff|team|manage|hiring|\bhr\b|hod|department|delegat|supervis|employee|report to me/g,
+        build:`a weekly team-update skill — your staff's rough updates go in, a clean summary of wins, blockers and what needs you comes out`,
+        module:`Module 2 (your first skill) and Module 4 (delegation)`,
+        step:`grab a couple of the last updates your team actually sent you` },
+      { kw:/whatsapp|reply|email|customer|inbox|message|respond|complaint|support|chat/g,
+        build:`a reply-drafting skill — common customer or prospect messages get answered in your voice, so you just review and send`,
+        module:`Module 2 (build the skill), then Module 3 (connect it live to your inbox)`,
+        step:`copy in 3 messages you find yourself answering again and again` },
+      { kw:/marketing|content|social|post|caption|brand|campaign|\bad\b|ads|seo|website|newsletter/g,
+        build:`a content engine — one idea in, and Claude drafts a week of posts and captions in your brand voice`,
+        module:`Module 2 (skill) and Module 4 (several drafts at once)`,
+        step:`pick the one offer or topic you want to promote next` },
+      { kw:/admin|repetit|manual|copy|paste|organis|organize|\btime\b|busy|overwhelm|schedul|calendar|book/g,
+        build:`an admin automation — that repetitive copy-paste job you do every week, handed off so it just happens`,
+        module:`Module 2 (skill) and Module 5 (set it to run on its own)`,
+        step:`write down the one task you repeat most that you'd love to never do by hand again` },
     ];
-    const hit = rules.find(r=>r.test.test(c));
-    const industryBit = d.industry ? ` — especially relevant for ${d.industry}.` : '.';
-    if(hit) return hit.text;
-    return `Based on what you shared, we'll build you a Claude skill for your actual day-to-day${industryBit} You'll leave Saturday with something real, not a generic demo.`;
+
+    let best = null, bestScore = 0;
+    for(const t of themes){ const m = text.match(t.kw); const s = m ? m.length : 0; if(s > bestScore){ bestScore = s; best = t; } }
+
+    const art = /^[aeiou]/i.test(industry) || /^f&b/i.test(industry) ? 'an' : 'a';
+    const openers = industry
+      ? [`For ${art} ${industry} business like yours, `, `In ${industry}, this one comes up a lot — `, `Here's the highest-leverage first move for ${art} ${industry} operator: `]
+      : [`Here's your highest-leverage first move — `, `Based on what you shared, `, `Start here: `];
+    const opener = openers[Math.floor(Math.random() * openers.length)];
+
+    const leverage = solo
+      ? ` Since it's just you, this is about buying back hours — Claude covers work you'd otherwise have to hire for.`
+      : bigTeam
+        ? ` With a team your size, the real win is consistency — everyone's output comes out in the same clean, on-brand shape.`
+        : ` With a small team, this frees you from the admin so you're spending time only on what needs you.`;
+
+    if(!best){
+      return `${opener}we'll build you a Claude skill for your actual day-to-day${industry ? ` in ${industry}` : ''}, live on your real work on the day — not a generic demo.${leverage}`;
+    }
+    return `${opener}use Claude to build ${best.build}. On the day, that's ${best.module}.${leverage} To hit the ground running, ${best.step} before Saturday.`;
   }
 
   function genMemberId(){

@@ -439,6 +439,10 @@ Note the framing difference from a "hero dashboard" workshop: this is presented 
 4. **Lead Opportunity Generator** — a researched shortlist of real companies/contacts worth approaching, with fit scores and an outreach angle for each.
 5. **Something else / a general dashboard of your own numbers** — the default path if none of the above fit.
 
+**These five are starting points, not a fixed menu — build whatever they actually want.** If they describe something that isn't on this list, or a mix of two ("a cash-flow tracker but also show my leads"), build exactly that — combine elements freely. The options exist to help someone who doesn't know what to ask for; they never cap what you'll build. Whatever they choose, follow the closest branch below for structure and apply every quality rule.
+
+**Whatever they pick, proactively enrich it so it's full and genuinely useful — don't build only the literal minimum they named.** People under-ask because they don't know what's possible. Based on their business and objective, add 2-3 extra tiles/sections they didn't request but will clearly want (e.g. a cash-flow build → also add "biggest upcoming expense" and a "months of runway" tile; a leads build → also add "where leads come from" and "slowest-moving deal"). Briefly say what you're adding and why ("I'll also drop in X since it pairs naturally with what you asked"), then build it. The goal is a dashboard that feels complete and thought-through, not a bare answer to a single question.
+
 Each of the first four is a genuinely different build, not a reskin — different interview questions, different data shape, different charts. Follow the matching branch below for whichever they pick.
 
 ### Branch 1 — Cash Flow Tracker
