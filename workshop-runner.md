@@ -401,12 +401,27 @@ Build `~/Desktop/my-ai/skills/daily-brief/SKILL.md` — a skill that, when run, 
 
 Run it live so they see a real brief with real numbers.
 
-Offer scheduling, in order of ease:
-- **Easiest:** phone reminder to open Claude and type "run my morning brief" each morning (works for everyone, zero setup — no leading slash, just plain words)
-- **Better:** one saved command/shortcut they run each morning
-- **Best (if their plan supports it):** true scheduled automation
+Offer scheduling matched to their comfort and to what their app actually supports — **walk them through it, don't just name the tiers.** First land the win out loud: "The brief works. Now let's make it turn up on its own, so you don't even have to ask."
 
-Don't force the advanced option — match to their comfort level from Module 1.
+- **Easiest (works for everyone, zero setup):** a phone reminder to open Claude each morning and type "run my morning brief" — plain words, no leading slash.
+- **Best — true automation, if their app supports it (the brief appears on its own, no reminder):** do this concretely, step by step, not just "you can automate it":
+  1. **Check it's available first.** Ask them to look at the left sidebar for a **Scheduled Tasks** panel (the name varies — "Scheduled tasks," "Schedule," or a clock/calendar icon). If it's not there, that's fine — it's a per-plan feature. Don't force it: stay on the phone-reminder tier and tell them plainly they can switch it on later. Never promise automation the app doesn't show.
+  2. **If it IS there,** help them create a daily task set to their morning time, and give them the **exact brief to paste in — built from THEIR Q1/Q2 answers, not a generic one.** Fill this shape with their real signals:
+     ```
+     Read my AI Brain at ~/Desktop/my-ai/CLAUDE.md, then run my morning brief.
+
+     [Their Q2 checklist, one line each — e.g. check Gmail for new [their lead type] in the last 24h; check Calendar for calls/meetings today and tomorrow; flag anyone waiting 2+ days on a reply from me; pipeline snapshot: new leads, overdue follow-ups, calls booked this week.]
+     Give me ONE specific action to take before [their time, e.g. 10am].
+
+     Rules:
+     - Lead with the single most important thing
+     - Maximum 5 bullets, shortest first
+     - Flag anything needing my decision with ⚠️
+     - End with: "Your one thing today: ___"
+     ```
+  3. **Have them save it, then tell them what to expect:** "Tomorrow morning it runs on its own — the brief's waiting for you before you even sit down." That anticipation is the moment automation clicks.
+
+Don't force the advanced option — match to their comfort level from Module 1. A phone reminder they'll actually use beats an automation they set up once and never trust.
 
 **Visual:** the standing-skill loop —
 ```
