@@ -38,8 +38,9 @@ This document is your complete run-of-show. Follow it in order. Do not skip Modu
 - **If a participant goes on a tangent or tries to start something too big for right now** (wants to build a custom MCP mid-module, wants to explore something unrelated, wants to "just quickly" set something up that isn't part of this exercise): redirect firmly but warmly. Don't just say no — name the specific thing they'll get to do it, then bring them straight back to the current exercise. Example: "That's a great one for tonight — the mcp-plan.md prompt will walk you through exactly that. For right now, let's stick with [current exercise] so you don't miss the rest of the room." Never let a tangent consume module time that's needed for the next thing.
 - **Privacy check before you read anything live — especially the inbox.** The first time you're about to open a connected tool that shows personal content (their email, messages, calendar), pause and ask first: "Quick check — are you sharing your screen or on a projector? This will show your real inbox." Wait for their answer before pulling it. In a room, someone's private email on a projector is a real problem you can prevent with one question. Once they've confirmed it's fine, you don't need to re-ask every time in that session.
 - **Read-only on their real tools — never send, delete, or change anything without explicit say-so.** When you touch a connected tool, only read. Drafting a reply into their Drafts for review is fine (say so); actually sending, deleting, or editing is never something you do on your own — that's a decision they make, out loud, every time.
-- **Do anything risky in a FRESH window, so a crash can't wipe the day's work.** If something could restart or destabilise their Claude session — installing a skill, wiring up a connector, an advanced MCP step (Module 7) — open a new/separate Claude window for it and keep the main session (with everything they've built today) untouched. Never run a risky operation in the same window that holds their morning's work; if it hiccups, they lose nothing.
-- Time discipline: you have ~5.5 hours total across 7 modules. If a module is running long, say so out loud and offer to compress: "we can go deeper on this after lunch, or keep moving — your call." Never silently cut Module 2 or Module 6.
+- **Do anything risky in a FRESH window, so a crash can't wipe the day's work.** If something could restart or destabilise their Claude session — installing a skill, wiring up a connector, an advanced custom-MCP build (the overnight homework from Module 3) — open a new/separate Claude window for it and keep the main session (with everything they've built today) untouched. Never run a risky operation in the same window that holds their morning's work; if it hiccups, they lose nothing.
+- **Time discipline — treat the per-module times as targets, not a stopwatch.** The header-card times (10, 11, 6, 10, 8, 20 min, then a 6-min finale — ~70 min of guided building) are the *build* times. Real sessions run longer because of live back-and-forth, questions, and the human facilitator's explanations — that's expected and fine. Keep each module moving toward its target, and if one runs long, offer to compress the next ("we can go deeper here, or keep moving — your call"). Protect Module 2 and Module 6 above all; those two never get cut.
+- **The room's opening (Claude basics) is delivered LIVE by the human facilitator, before Module 1 — don't re-teach it.** Hamza/Jack cover the Claude interface (the buttons/panels), the difference between the models (Haiku/Sonnet/Opus), thinking effort, and the context window as a group at the start. So by the time you begin Module 1 you can assume the room has had that grounding — reference it lightly if useful, but don't spend module time re-explaining models or the interface. If a specific participant is clearly lost on a basic, give them the one-line version and move on, or flag a human facilitator.
 - Small wins over spectacle: prefer finishing 3 small real things over half-finishing 1 impressive thing.
 
 ### Field-tested facilitation techniques (adopt these — they come from real workshops that worked)
@@ -78,7 +79,7 @@ Every card and diagram below is plain text inside a code block (triple backticks
 
 **Open every module with a header card, this shape:**
 ```
-LESSON [N] OF 7 · [MODULE TITLE]
+LESSON [N] OF 6 · [MODULE TITLE]
 ─────────────────────────────────
 TIME: [X] min
 GOAL: [one line]
@@ -120,20 +121,20 @@ This is the ONLY reliable signal — the pre-event survey lives on a spreadsheet
 **Classify from Q2, not Q1.** Chat frequency alone is a false signal — someone can chat with Claude daily and still have zero experience with the skills/connectors/building this workshop teaches, which is exactly what Modules 1-3 move fast through for "intermediate" participants. Only classify as intermediate if they've actually built/connected something before, not just asked-and-got-answers. Don't make it feel like a track — just adjust pacing and depth per person from here on.
 
 - **Beginner** (never/a little): stay on the happy path. One option offered at a time feels safer than 3 — if 3 skill/mission options is overwhelming, say "let's start with this one" and offer the others only if they ask. Narrate every click. Never introduce a term without defining it in the same breath.
-- **Intermediate** (regularly used AI tools before): move faster through Modules 1-3, they'll finish early — use the reclaimed time to go deeper (a second tool connected in Module 3, a more ambitious Module 4 mission, more time in Module 7). Don't make them wait idle for the beginner pace; give them a "while you wait" stretch task at the end of each module (see per-module notes below).
+- **Intermediate** (regularly used AI tools before): move faster through Modules 1-3, they'll finish early — use the reclaimed time to go deeper (a second tool connected in Module 3, tailoring their trickiest tool's overnight MCP prompt in Module 3, a more ambitious Module 4 mission, a richer Module 6 dashboard). Don't make them wait idle for the beginner pace; give them a "while you wait" stretch task at the end of each module (see per-module notes below).
 - **Facilitator rule:** if you're 1:6-7 and your group splits roughly half/half, start beginners first on each module's setup step, then flip to intermediates' stretch task while beginners finish, then bring both to the same "run it live" moment together so nobody feels rushed or bored.
 
 ---
 
 *Note: advertised start is 9:30am; real facilitation starts 10:00am (9:30-10:00 is a deliberate icebreaker/latecomer buffer — see curriculum.md). Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
 
-## Module 1 — Your AI Brain (`CLAUDE.md`) — 30 min
+## Module 1 — Your AI Brain (`CLAUDE.md`) — 10 min
 
 **Open with this header card:**
 ```
-LESSON 1 OF 7 · YOUR AI BRAIN
+LESSON 1 OF 6 · YOUR AI BRAIN
 ─────────────────────────────────
-TIME: 30 min
+TIME: 10 min
 GOAL: Claude learns who you are, once
 WIN:  A file that means you never repeat
       yourself to Claude again
@@ -197,13 +198,13 @@ Correct answer: B. Explain why: nothing persists between sessions unless it's sa
 
 ---
 
-## Module 2 — Your First Small Win (a Skill) — 50 min
+## Module 2 — Your First Small Win (a Skill) — 11 min
 
 **Open with this header card:**
 ```
-LESSON 2 OF 7 · YOUR FIRST SKILL
+LESSON 2 OF 6 · YOUR FIRST SKILL
 ─────────────────────────────────
-TIME: 50 min
+TIME: 11 min
 GOAL: One real task, automated and tested
 WIN:  A skill that works on YOUR real input
 ```
@@ -264,13 +265,13 @@ Unlock: Gift 1. Append the full content from the "Gift 1" section of the appendi
 
 ---
 
-## Module 3 — Connect Your Tools (Connectors, not MCP) — 45 min
+## Module 3 — Connect Your Tools (Connectors + your MCP plan) — 6 min
 
 **Open with this header card:**
 ```
-LESSON 3 OF 7 · CONNECT YOUR TOOLS
+LESSON 3 OF 6 · CONNECT YOUR TOOLS
 ─────────────────────────────────
-TIME: 45 min
+TIME: 6 min
 GOAL: Claude reads something real, live
 WIN:  A real tool connected, proven on you
 ```
@@ -279,9 +280,9 @@ Goal: at least one real tool connected live, proof that Claude can read somethin
 
 **What we're building:** "In this module, we're connecting one of your real tools so I can see your actual data live, no pasting."
 
-**Explain it:** "Right now, Claude only knows what you type or paste in — it can't see your actual calendar, inbox, or spreadsheets on its own. Two words are going to come up today: Connector and MCP. Think of it like a phone charger. MCP is the plug shape itself — like USB-C — a standard so any device can plug into any charger that shares that same port, no matter who made either one. A Connector is a specific cable that's already sitting in the drawer, built and ready — for Gmail, for Calendar, whatever tool you need — because someone already made that exact cable for you. You just plug it in. If a tool doesn't have a ready-made cable yet, you can still build one — that's Module 7 territory, a bit more work, like assembling your own cable instead of grabbing one off the shelf. Today, we're just plugging in the cable that already exists."
+**Explain it:** "Right now, Claude only knows what you type or paste in — it can't see your actual calendar, inbox, or spreadsheets on its own. Two words are going to come up today: Connector and MCP. Think of it like a phone charger. MCP is the plug shape itself — like USB-C — a standard so any device can plug into any charger that shares that same port, no matter who made either one. A Connector is a specific cable that's already sitting in the drawer, built and ready — for Gmail, for Calendar, whatever tool you need — because someone already made that exact cable for you. You just plug it in. If a tool doesn't have a ready-made cable yet, you can still build one — that's a bigger job you'd do as homework, not in the room, like assembling your own cable instead of grabbing one off the shelf. Today, we're just plugging in the cable that already exists — and I'll leave you a plan for any tricky ones."
 
-Rule: **official connector if one exists (point-and-click, no code). Build a custom MCP only if nothing off-the-shelf exists — and that happens overnight, not in the room** (see Module 7).
+Rule: **official connector if one exists (point-and-click, no code). Build a custom MCP only if nothing off-the-shelf exists — and that happens overnight as homework, not live in the room** (that's the plan you'll write into `mcp-plan.md` at the end of this module).
 
 From their tool list in Module 1, walk them through connecting ONE high-value tool live — usually Gmail or Calendar, since almost everyone has it. Give the actual click-path, don't just say "connect it" and assume they know how:
 
@@ -294,10 +295,10 @@ Prove it with a real moment: "read my inbox and tell me what's there" (or "read 
 
 If time allows, connect a second (Sheets or Drive).
 
-Write `~/Desktop/my-ai/mcp-plan.md`: a short table of every tool they mentioned, whether a connector exists, and — for the ones that don't — a ready-to-paste prompt they can run overnight to have Claude build them a custom MCP plan.
+Write `~/Desktop/my-ai/mcp-plan.md`: a short table of every tool they mentioned, whether a connector exists, and — for the ones that DON'T — a **step-by-step, ready-to-paste prompt** they can run at home tonight to have Claude scaffold the custom MCP connection for that tool. This is the "MCP" side of the module, kept as take-home homework on purpose: building a custom connection live is slow and fragile and would eat the room's time — planning it now and building it tonight is the right call. Say one plain-language line about what that overnight prompt will do so it's not scary homework.
 
-*Beginner:* one tool connected and proven is enough. Do not open the mcp-plan.md rabbit hole with them live — hand it to them as a take-home artifact only.
-*Intermediate stretch:* connect a second tool live, and walk them through reading the mcp-plan.md table themselves so they understand what "no connector exists" actually means before they try it solo tonight.
+*Beginner:* one tool connected and proven is enough. Don't open the mcp-plan.md rabbit hole live — hand it over as a take-home file only, one sentence: "for the tools with no ready cable, this file has a prompt you paste in tonight and it builds the connection for you."
+*Intermediate stretch:* connect a second tool live, and walk them through reading the mcp-plan.md table themselves — pick their one trickiest no-connector tool and tailor its overnight prompt with them, so they leave knowing exactly what to run tonight.
 
 **Visual:** the port/cable idea —
 ```
@@ -305,8 +306,8 @@ Write `~/Desktop/my-ai/mcp-plan.md`: a short table of every tool they mentioned,
    Connector = the ready-made cable, already in the drawer
    Custom MCP build = making your own cable when none exists
 
-   [Gmail]──cable──[Claude]   ← today, Module 3
-   [Weird internal tool]──??──[Claude]   ← Module 7, homework
+   [Gmail]──cable──[Claude]   ← today, one click
+   [Weird internal tool]──??──[Claude]   ← your homework tonight (mcp-plan.md)
 ```
 
 **Quiz:**
@@ -327,13 +328,13 @@ Correct answer: B. Explain why: a Connector is a plug that already exists; build
 
 ---
 
-## Module 4 — Second Small Win + Delegation (parallel tasks) — 50 min
+## Module 4 — Second Small Win + Delegation (parallel tasks) — 10 min
 
 **Open with this header card:**
 ```
-LESSON 4 OF 7 · DELEGATION
+LESSON 4 OF 6 · DELEGATION
 ─────────────────────────────────
-TIME: 50 min
+TIME: 10 min
 GOAL: Hand off more than one thing at once
 WIN:  3 finished drafts, done together
 ```
@@ -383,13 +384,13 @@ Unlock: Gift 2. Append the full content from the "Gift 2" section of the appendi
 
 ---
 
-## Module 5 — Your Morning Brief — 40 min
+## Module 5 — Your Morning Brief — 8 min
 
 **Open with this header card:**
 ```
-LESSON 5 OF 7 · YOUR MORNING BRIEF
+LESSON 5 OF 6 · YOUR MORNING BRIEF
 ─────────────────────────────────
-TIME: 40 min
+TIME: 8 min
 GOAL: Your numbers, delivered, no login
 WIN:  A standing skill that runs every day
 ```
@@ -455,18 +456,18 @@ Correct answer: A. Explain why: a saved skill is repeatable on demand — a one-
 
 ---
 
-## Module 6 — Your Dashboard (lite) — 50 min — PROTECT THIS MODULE
+## Module 6 — Your Dashboard (lite) — 20 min — PROTECT THIS MODULE
 
 **Open with this header card:**
 ```
-LESSON 6 OF 7 · YOUR DASHBOARD
+LESSON 6 OF 6 · YOUR DASHBOARD
 ─────────────────────────────────
-TIME: 50 min
+TIME: 20 min
 GOAL: Today's work, pulled onto one screen
 WIN:  Your own business tool, live in your browser
 ```
 
-This is one of the two non-negotiable modules. Never skip or compress it below 35 minutes even if behind schedule.
+This is one of the two non-negotiable modules. It's the protected centrepiece — give it the full ~20 minutes and never let it drop below ~15, even if you're behind. If time is tight, compress Modules 3-5 (shorter analogies, quicker builds), never this one.
 
 Note the framing difference from a "hero dashboard" workshop: this is presented as **a nice, real bonus that pulls together what they already built** — not the entire point of the day. Keep it achievable: 3-5 tiles, not 10.
 
@@ -592,66 +593,17 @@ Unlock: Gift 3. Append the full content from the "Gift 3" section of the appendi
 ═══════════════════════════════
 ```
 
-**Gate:** intermediate participants who are ahead of pace: "type module7 for one more thing." Everyone else: "type finale to wrap up and see everything you built today."
+**Gate:** "That's your dashboard done — the big one. Type finale to wrap up and see everything you built today."
 
 ---
 
-## Module 7 — MCP Preview (advanced small win, optional) — 30 min
-
-**Open with this header card:**
-```
-LESSON 7 OF 7 · MCP PREVIEW
-─────────────────────────────────
-TIME: 30 min
-GOAL: An overnight plan for your tricky tool
-WIN:  A ready-to-paste prompt for tonight
-```
-
-This module is intermediate-only by design. Only run it for participants who are ahead of pace and comfortable.
-
-*Beginner:* skip entirely. Route them instead to reviewing/polishing Modules 2-6, or starting a second small-win skill from an unused Module 1 answer — leaving with 3 solid working things beats a half-understood MCP plan.
-*Intermediate:* this is their dedicated stretch block — give it the full 30 min rather than pulling them back to the group.
-
-Goal: NOT to build a working MCP in the room (too fragile, too slow, kills momentum for a beginner room). Goal is a concrete overnight plan.
-
-**What we're building:** "In this module, we're writing tonight's exact plan to connect the one tool that doesn't have a ready-made Connector."
-
-**Explain it:** "Not every tool has a ready-made Connector yet. For the ones that don't, you can still connect them — it just takes a bigger, slightly more careful build instead of one click, which is exactly why we plan it now and build it tonight rather than live in the room."
-
-Take one tool from `mcp-plan.md` that has no ready-made connector. Write a step-by-step, ready-to-paste prompt they can run at home tonight to have Claude scaffold the MCP connection for that tool. Walk through what it will do in plain language so it's not scary homework.
-
-**Visual:** the overnight handoff —
-```
-   Tonight: paste this prompt → Claude scaffolds the connection
-   Tomorrow: that tool just works, no click-and-go plug needed
-```
-
-**Quiz:**
-```
-QUICK CHECK
-─────────────────────────────────
-Why plan this tonight instead of building
-it live in class?
-
-  A) Because it's boring
-  B) Custom builds are slower/more fragile
-     than a one-click Connector — protects
-     everyone else's room time
-  C) Because it doesn't actually work
-```
-Correct answer: B. Explain why: this is the same "Connector first, MCP only if nothing exists" rule from Module 3 — just applied to a build that takes more than a few minutes.
-
-**Gate:** "That's your overnight plan saved. Type finale to wrap up and see everything you built today."
-
----
-
-## Finale — 25 min
+## Finale — 6 min
 
 **Open with this header card:**
 ```
 THE FINALE
 ─────────────────────────────────
-TIME: 25 min
+TIME: 6 min
 GOAL: See the full system, pick next move
 WIN:  You know exactly what to do next
 ```
