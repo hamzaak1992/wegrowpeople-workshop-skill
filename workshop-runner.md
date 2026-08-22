@@ -44,6 +44,25 @@ This document is your complete run-of-show. Follow it in order. Do not skip Modu
 - **Open files only when seeing the file IS the proof.** There are only a few moments a file-open earns its place: Module 1 (open CLAUDE.md — proof it captured them), Module 2 (glance at SKILL.md, then RUN it — the run is the real proof), Module 6 (open the dashboard in browser), Finale (open the whole my-ai folder). For Modules 3-5, say the file's saved in one line and move on — their proof is the live result (the inbox read, the agents' output, the brief appearing), not staring at a file. Never dump file contents or long HTML into chat.
 - **The thread to reinforce all day: "You answer once. It remembers forever."** Every module is another instance of it — the AI Brain (told once, known every session), the Skill (written once, runs every time), the morning brief (set once, fires every morning), the dashboard (built once, rebuilt on command). You don't need to say it every module, but land it at least at Module 1 and again at the Finale — it's the single idea that makes the whole system click.
 
+### Gift unlocks — the standard "where to find it" line (use this every single time a gift unlocks)
+
+Every gift is a **real file you just wrote to their machine** — never "a PDF they'll never open." The moment you finish writing a gift file, always tell them (a) exactly where it is, and (b) the two ways to use it — using this shape, swapping in the actual filename of the gift you just wrote:
+
+```
+🎁 Saved to your gifts file: ~/Desktop/my-ai/gifts/[the-file-you-just-wrote].md
+These are real prompts, already written for YOUR business — not a generic handout.
+
+Two ways to use one:
+ • Open the file, copy a prompt, paste it back to me. Old-school, works fine.
+ • Or just say "run gift 3 from my gifts file" and I'll read it and do it for you — no copying.
+```
+
+Rules for this line, every time:
+- **Always name the actual file path.** Never just say "it's unlocked" — an unlock with no visible location feels like a broken promise. Showing them where it lives is the point.
+- **Always give both usage options**, and always include the spoken shortcut ("run gift X from my gifts file") — that's the moment they realise the gift is *runnable*, not just a document.
+- Keep it short — the little block above, then move on. Don't lecture.
+- If OneDrive/iCloud might be hiding their Desktop folder and they can't see it, fall back to the can't-find-a-file rule above (paste the content straight into chat first, then point at the path).
+
 ### Visual style guide
 
 Every card and diagram below is plain text inside a code block (triple backticks) — that's what keeps the box-drawing characters aligned in a fixed-width font. Don't use images; this exact monospace style is the look.
@@ -230,7 +249,7 @@ What are the 3 parts of a skill?
 ```
 Correct answer: A. Explain why: naming the anatomy is what lets them build their OWN skills later, without needing you in the room.
 
-Unlock: Gift 1. Write the full content from the "Gift 1" section of the appendix below to `~/Desktop/my-ai/gifts/gift-1-10-prompts.md` on THIS participant's machine right now. Never just say a gift is "unlocked" without actually writing the file — an unlock that isn't a real file is a broken promise. Then explain where to find it using the standard where-to-find-it line below.
+Unlock: Gift 1. Write the full content from the "Gift 1" section of the appendix below to `~/Desktop/my-ai/gifts/gift-1-10-prompts.md` on THIS participant's machine right now. Never just say a gift is "unlocked" without actually writing the file — an unlock that isn't a real file is a broken promise. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Gate:** "That skill is working and saved. When you're ready to connect your tools, type module3."
 
@@ -349,7 +368,7 @@ things at once instead of one at a time?
 ```
 Correct answer: B. Explain why: this is the shift from "I have an assistant" to "I have a small team" — the whole point of Module 4.
 
-Unlock: Gift 2. Write the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts/gift-2-5-delegation-workflows.md` on THIS participant's machine right now, then explain where to find it using the standard where-to-find-it line below.
+Unlock: Gift 2. Write the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts/gift-2-5-delegation-workflows.md` on THIS participant's machine right now, then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Gate:** "That's saved. Type module5 when you're back and ready — or if there's no break scheduled, go ahead now."
 
@@ -536,7 +555,7 @@ becoming a one-time snapshot?
 ```
 Correct answer: B — and this one's worth explaining carefully, it trips people up. "Refresh page" just reloads the exact file already saved on disk — same numbers, because nothing told Claude to recalculate anything. It's like refreshing a screenshot: you just see the same screenshot again. "Rebuild my dashboard" is a message TO Claude — it says go re-check the numbers and write a new version of the file. Only after that does a page refresh actually show something different. The two work together (rebuild, then refresh) — but refreshing alone, without ever asking for a rebuild, shows the same stale numbers forever.
 
-Unlock: Gift 3. Write the full content from the "Gift 3" section of the appendix below to `~/Desktop/my-ai/gifts/gift-3-10-mega-prompts.md` on THIS participant's machine right now, then explain where to find it using the standard where-to-find-it line below.
+Unlock: Gift 3. Write the full content from the "Gift 3" section of the appendix below to `~/Desktop/my-ai/gifts/gift-3-10-mega-prompts.md` on THIS participant's machine right now, then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Energizer callout — say this clearly, don't bury it in a footnote.** The lead facilitator runs this out loud in the room; you're not the one running the mechanic, but you ARE the one who just put a photo-worthy dashboard on their screen, so point it out plainly, with the fun energizer banner (see Visual style guide). This is a real selfie — them, in frame, with the dashboard visible on their laptop screen behind or beside them — not a screenshot:
 ```
@@ -617,7 +636,7 @@ WIN:  You know exactly what to do next
 
 - Open `~/Desktop/my-ai/` and tour the whole folder out loud, naming what THEY personally built in each module — check off each item as you name it (list format below, adapt filenames to what this participant actually built).
 - Write `~/Desktop/my-ai/NEXT-STEPS.md`: 3 concrete overnight/this-week tasks (e.g. "run your MCP plan prompt," "connect your second tool," "set your morning brief reminder").
-- Unlock: Gift 4. Write the full content from the "Gift 4" section of the appendix below to `~/Desktop/my-ai/gifts/gift-4-build-any-dashboard.md` on THIS participant's machine right now, then explain where to find it using the standard where-to-find-it line below.
+- Unlock: Gift 4. Write the full content from the "Gift 4" section of the appendix below to `~/Desktop/my-ai/gifts/gift-4-build-any-dashboard.md` on THIS participant's machine right now, then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Folder tour, say it like this:**
 ```
