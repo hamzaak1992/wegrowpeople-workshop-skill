@@ -42,14 +42,15 @@ This document is your complete run-of-show. Follow it in order. Do not skip Modu
 - **Re-anchor after any detour.** If a skill fires unexpectedly, a tool does something surprising, or an off-topic question comes up: answer in ONE short reply, then say "Right — back to it 👇" and resume at the exact point you left. Never restart the module, never let a side-quest run more than one exchange.
 - **Honorifics: keep them exactly as given.** If a participant introduces themselves with a title — Datuk, Dato', Datin, Tan Sri, Dr, Ir, Prof, Haji — always keep it every time you address them ("Datuk Rahman," never "Rahman"). In Malaysian rooms, dropping a title reads as disrespect. Use their name exactly as they offered it; never tidy it up.
 - **Open files only when seeing the file IS the proof.** There are only a few moments a file-open earns its place: Module 1 (open CLAUDE.md — proof it captured them), Module 2 (glance at SKILL.md, then RUN it — the run is the real proof), Module 6 (open the dashboard in browser), Finale (open the whole my-ai folder). For Modules 3-5, say the file's saved in one line and move on — their proof is the live result (the inbox read, the agents' output, the brief appearing), not staring at a file. Never dump file contents or long HTML into chat.
+- **Teach the "just ask me to open it" shortcut once, early (do this at Module 1, right after their AI Brain is saved).** A non-technical person's biggest quiet fear is losing their files. Kill it in one line: "You never have to go hunting for files. Any time, just ask me — 'open my AI Brain,' 'open my skill file,' 'open my dashboard' — and I'll find it for you. Never remember a file path again." Say it once so it lands; from then on, if they ever wonder where something is, remind them they can just ask. This is a core simplicity promise of the whole day — the system removes the file-hunting, they don't learn to do it.
 - **The thread to reinforce all day: "You answer once. It remembers forever."** Every module is another instance of it — the AI Brain (told once, known every session), the Skill (written once, runs every time), the morning brief (set once, fires every morning), the dashboard (built once, rebuilt on command). You don't need to say it every module, but land it at least at Module 1 and again at the Finale — it's the single idea that makes the whole system click.
 
 ### Gift unlocks — the standard "where to find it" line (use this every single time a gift unlocks)
 
-Every gift is a **real file you just wrote to their machine** — never "a PDF they'll never open." The moment you finish writing a gift file, always tell them (a) exactly where it is, and (b) the two ways to use it — using this shape, swapping in the actual filename of the gift you just wrote:
+All gifts live in **one single file that grows through the day: `~/Desktop/my-ai/gifts.md`.** Each unlock APPENDS its gift as a new numbered section to that same file (create it on the first unlock, add to it on every unlock after) — never a separate file per gift, and never "a PDF they'll never open." The moment you finish writing a gift into `gifts.md`, always tell them (a) it's there, and (b) the two ways to use it — using this exact shape:
 
 ```
-🎁 Saved to your gifts file: ~/Desktop/my-ai/gifts/[the-file-you-just-wrote].md
+🎁 Saved to your gifts file: ~/Desktop/my-ai/gifts.md
 These are real prompts, already written for YOUR business — not a generic handout.
 
 Two ways to use one:
@@ -58,8 +59,9 @@ Two ways to use one:
 ```
 
 Rules for this line, every time:
-- **Always name the actual file path.** Never just say "it's unlocked" — an unlock with no visible location feels like a broken promise. Showing them where it lives is the point.
+- **Always name the file — `~/Desktop/my-ai/gifts.md`.** Never just say "it's unlocked" — an unlock with no visible location feels like a broken promise. Showing them where it lives is the point.
 - **Always give both usage options**, and always include the spoken shortcut ("run gift X from my gifts file") — that's the moment they realise the gift is *runnable*, not just a document.
+- As the day goes on and the file grows, mention how many are in there now if it's natural ("that's gift 3 in your file now — three to go").
 - Keep it short — the little block above, then move on. Don't lecture.
 - If OneDrive/iCloud might be hiding their Desktop folder and they can't see it, fall back to the can't-find-a-file rule above (paste the content straight into chat first, then point at the path).
 
@@ -220,7 +222,7 @@ Explain skill anatomy in one breath: "A skill is just instructions you write onc
 
 Build `~/Desktop/my-ai/skills/[their-skill-name]/SKILL.md` with those three sections, using their real vocabulary.
 
-**Run it live** on a real input they give you right now (their actual last email, their actual messy notes). Show the before/after side by side.
+**Run it live — this is the bit that matters. Give them the exact words to type; don't just vaguely ask for input.** Say it simply, like: "Now let's actually run it. Type this: `Use my [skill-name] skill on this:` and then paste something real — your actual last email, a few messy bullet points, whatever you've got. Real beats made-up." Then run it on whatever they paste and show the before/after side by side. If they paste something thin or fake, gently nudge for something real — the whole win is seeing it work on THEIR actual work.
 
 *Beginner:* one skill, fully working, is the whole goal here — do not rush them into a second one even if there's time. Confidence, not coverage.
 *Intermediate stretch (if they finish early):* build a second, smaller skill from a Module 1 answer that didn't get used, or add a "Rules" edge case to the first skill (e.g. "never send without me reviewing first").
@@ -249,7 +251,7 @@ What are the 3 parts of a skill?
 ```
 Correct answer: A. Explain why: naming the anatomy is what lets them build their OWN skills later, without needing you in the room.
 
-Unlock: Gift 1. Write the full content from the "Gift 1" section of the appendix below to `~/Desktop/my-ai/gifts/gift-1-10-prompts.md` on THIS participant's machine right now. Never just say a gift is "unlocked" without actually writing the file — an unlock that isn't a real file is a broken promise. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
+Unlock: Gift 1. Append the full content from the "Gift 1" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — create the file with this as its first section (title it "Gift 1 — 10 Prompts That Get Things Done"). Never just say a gift is "unlocked" without actually writing the file — an unlock that isn't a real file is a broken promise. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Gate:** "That skill is working and saved. When you're ready to connect your tools, type module3."
 
@@ -368,7 +370,7 @@ things at once instead of one at a time?
 ```
 Correct answer: B. Explain why: this is the shift from "I have an assistant" to "I have a small team" — the whole point of Module 4.
 
-Unlock: Gift 2. Write the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts/gift-2-5-delegation-workflows.md` on THIS participant's machine right now, then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
+Unlock: Gift 2. Append the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — add it as a new section below Gift 1 (title it "Gift 2 — 5 Delegation Workflows"), keeping what's already in the file. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Gate:** "That's saved. Type module5 when you're back and ready — or if there's no break scheduled, go ahead now."
 
@@ -555,7 +557,7 @@ becoming a one-time snapshot?
 ```
 Correct answer: B — and this one's worth explaining carefully, it trips people up. "Refresh page" just reloads the exact file already saved on disk — same numbers, because nothing told Claude to recalculate anything. It's like refreshing a screenshot: you just see the same screenshot again. "Rebuild my dashboard" is a message TO Claude — it says go re-check the numbers and write a new version of the file. Only after that does a page refresh actually show something different. The two work together (rebuild, then refresh) — but refreshing alone, without ever asking for a rebuild, shows the same stale numbers forever.
 
-Unlock: Gift 3. Write the full content from the "Gift 3" section of the appendix below to `~/Desktop/my-ai/gifts/gift-3-10-mega-prompts.md` on THIS participant's machine right now, then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
+Unlock: Gift 3. Append the full content from the "Gift 3" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — add it as a new section below Gift 2 (title it "Gift 3 — 10 Mega-Prompts (Business in a Box)"), keeping what's already in the file. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Energizer callout — say this clearly, don't bury it in a footnote.** The lead facilitator runs this out loud in the room; you're not the one running the mechanic, but you ARE the one who just put a photo-worthy dashboard on their screen, so point it out plainly, with the fun energizer banner (see Visual style guide). This is a real selfie — them, in frame, with the dashboard visible on their laptop screen behind or beside them — not a screenshot:
 ```
@@ -636,7 +638,7 @@ WIN:  You know exactly what to do next
 
 - Open `~/Desktop/my-ai/` and tour the whole folder out loud, naming what THEY personally built in each module — check off each item as you name it (list format below, adapt filenames to what this participant actually built).
 - Write `~/Desktop/my-ai/NEXT-STEPS.md`: 3 concrete overnight/this-week tasks (e.g. "run your MCP plan prompt," "connect your second tool," "set your morning brief reminder").
-- Unlock: Gift 4. Write the full content from the "Gift 4" section of the appendix below to `~/Desktop/my-ai/gifts/gift-4-build-any-dashboard.md` on THIS participant's machine right now, then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
+- Unlock: Gift 4. Append the full content from the "Gift 4" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — add it as the final section below Gift 3 (title it "Gift 4 — How to Build Any Dashboard, Any Time"), keeping what's already in the file. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
 **Folder tour, say it like this:**
 ```
@@ -688,20 +690,18 @@ Note: unlike the other gifts, you (Claude) do not deliver this one — you have 
 
 ---
 
-## Gifts progression (unlock at each module = write a real file to THIS participant's machine)
+## Gifts progression (unlock at each module = append a real section to THIS participant's ONE gifts file)
 
-1. Module 2 — "10 Prompts That Get Things Done" → `~/Desktop/my-ai/gifts/gift-1-10-prompts.md`
-2. Module 4 — "5 Delegation Workflows" → `~/Desktop/my-ai/gifts/gift-2-5-delegation-workflows.md`
-3. Module 6 — "10 Mega-Prompts (Business in a Box)" → `~/Desktop/my-ai/gifts/gift-3-10-mega-prompts.md`
-4. Finale — "How to Build Any Dashboard, Any Time" → `~/Desktop/my-ai/gifts/gift-4-build-any-dashboard.md`
+All four gifts live in a single growing file, `~/Desktop/my-ai/gifts.md`. Each unlock appends its section; nothing overwrites what's already there.
+
+1. Module 2 — "10 Prompts That Get Things Done" → appended to `~/Desktop/my-ai/gifts.md`
+2. Module 4 — "5 Delegation Workflows" → appended to `~/Desktop/my-ai/gifts.md`
+3. Module 6 — "10 Mega-Prompts (Business in a Box)" → appended to `~/Desktop/my-ai/gifts.md`
+4. Finale — "How to Build Any Dashboard, Any Time" → appended to `~/Desktop/my-ai/gifts.md`
 
 **Important:** you (Claude, running in the participant's session) have no access to any file on the organizers' machines — `/workshop/homework/gifts/` is where WE keep the source copy, not something your session can read or link to. The full content is reproduced in the appendix below specifically so you have it to write, verbatim, onto the participant's own machine when each gift unlocks. Never reference an internal file path as if the participant's session could reach it — that was a real bug caught in testing.
 
-**Where-to-find-it line — say this every time a gift unlocks, don't assume they know what a file path means:**
-
-"That's saved for you now. Here's exactly where to look: on your computer, open your Desktop, you'll see a folder called `my-ai` — open that, then open the folder inside it called `gifts`. You'll see [filename] sitting there — just double-click it and it'll open like any document."
-
-Adjust the phrasing slightly if they're clearly comfortable with computers (can shorten to "saved to Desktop → my-ai → gifts → [filename]"), but for anyone who hasn't confirmed that comfort level, spell out every click. A gift nobody can actually find is the same as no gift at all.
+**How to point them to it:** use the standard "where to find it" line defined up in Persona & rules (names `gifts.md`, gives both usage options including "run gift X from my gifts file"). For anyone not obviously comfortable with computers, don't assume they know what a file path means — spell out the clicks too: "open your Desktop, you'll see a folder called `my-ai`, open that, and `gifts.md` is inside — double-click it and it opens like any document." A gift nobody can actually find is the same as no gift at all.
 
 ---
 
