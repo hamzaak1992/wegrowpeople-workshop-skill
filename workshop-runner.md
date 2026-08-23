@@ -475,7 +475,7 @@ Note the framing difference from a "hero dashboard" workshop: this is presented 
 
 **Explain it:** "This dashboard isn't a brand new thing — it's everything you've already built today, pulled onto one screen so you can see it at a glance instead of digging through separate files. A handful of the right numbers, always visible, beats a big report nobody opens."
 
-**Choose what you're actually building — this is not always a generic dashboard.** Based on their Module 1 role/pain point, suggest the 1-2 best fits first, but lay out all the options so they can pick freely:
+**Start from what THIS person actually needs, not from the menu.** First ask, in plain words, what would genuinely be useful for them to have on one screen, or the one job/decision they'd want it to help with. Their answer drives the build. The five options below are examples to spark ideas and to offer someone who isn't sure what to ask for, never a fixed set they must pick from. Based on their Module 1 role/pain point, suggest the 1-2 best-fit examples first, then lay the rest out so they can pick one or describe their own:
 
 1. **Cash Flow Tracker** — revenue, expenses, runway, a live price/cost slider. Best for founders/finance-minded roles.
 2. **Sales & Marketing Analytics** — leads, conversion, channel breakdown, campaign trend. Best for sales/marketing roles.
@@ -486,6 +486,14 @@ Note the framing difference from a "hero dashboard" workshop: this is presented 
 **These five are starting points, not a fixed menu — build whatever they actually want.** If they describe something that isn't on this list, or a mix of two ("a cash-flow tracker but also show my leads"), build exactly that — combine elements freely. The options exist to help someone who doesn't know what to ask for; they never cap what you'll build. Whatever they choose, follow the closest branch below for structure and apply every quality rule.
 
 **Whatever they pick, proactively enrich it so it's full and genuinely useful — don't build only the literal minimum they named.** People under-ask because they don't know what's possible. Based on their business and objective, add 2-3 extra tiles/sections they didn't request but will clearly want (e.g. a cash-flow build → also add "biggest upcoming expense" and a "months of runway" tile; a leads build → also add "where leads come from" and "slowest-moving deal"). Briefly say what you're adding and why ("I'll also drop in X since it pairs naturally with what you asked"), then build it. The goal is a dashboard that feels complete and thought-through, not a bare answer to a single question.
+
+**A "dashboard" does NOT have to be numbers or charts — it's ONE organised, interactive screen of whatever is most useful to THEM.** This is how you cater to people whose need isn't metrics at all (and to anyone who says "I don't want a sales/production numbers dashboard"). Never tell someone their need "isn't a dashboard" — map it onto this one-screen, clickable format and build it. Examples of non-numeric builds that are still real dashboards:
+- **Prompt library / playbook** — their best prompts and prompt plans as copy-on-click cards, grouped by task, each tagged for where it works (Claude · ChatGPT · Gemini). Great for someone who wants a reusable toolkit, not stats.
+- **Contact / lead / client board** — the people that matter, with status and next action, click a card for detail.
+- **Decision or priority log** — what needs their call this week, expandable.
+- **Resource / knowledge hub** — their key links, docs, SOPs, snippets, in one place.
+- **Checklist / process tracker** — a recurring workflow with progress they can tick through.
+Whatever the content, hold the SAME quality bar as any dashboard: organised cards/tiles, click-to-expand detail, and at least one real interactive control (a search/filter box, a copy button, a toggle) in place of or alongside charts. To find the right build, ask them what they'd actually open on a Monday morning, then shape that into the one-screen format.
 
 Each of the first four is a genuinely different build, not a reskin — different interview questions, different data shape, different charts. Follow the matching branch below for whichever they pick.
 
@@ -505,19 +513,16 @@ Build via parallel agents doing **real web research** on each competitor (same t
 Ask: their target criteria — industry, company size, region, whatever actually defines a good-fit prospect for them.
 Build via parallel agents doing **real web research** to generate an actual shortlist of companies/contacts matching their criteria (same technique as Branch 3 and Module 4) — each with a fit score and a one-line outreach angle. Chart: horizontal bar ranking the shortlist by fit score, plus the full list as a click-to-expand table (same pattern as the Prospect Pipeline table already proven in testing).
 
-### Branch 5 — Something else / general dashboard (default)
-Ask:
-1. What's the one decision this dashboard should help you make faster?
-2. What are your 3-5 numbers? (can reuse Module 5's answers if identical)
+### Branch 5 — Their own need (the true catch-all: numbers OR not)
+This is the branch for anything the first four don't cover — including non-numeric needs. Ask:
+1. What's the one thing you'd want this screen to help you with, or that you'd open every Monday?
+2. Then branch on the shape of their answer:
+   - **If it's numbers/metrics they track:** ask for their 3-5 numbers (reuse Module 5's answers if identical) and build KPI tiles + a trend line, or + a short table, or + one interactive element (a slider/toggle that recalculates a number). Pull real numbers from Module 3's connected tools where possible; accept manual numbers otherwise, and always be honest about which is which.
+   - **If it's NOT numbers** (a prompt library, a contacts/lead board, a decision log, a resource hub, a checklist/tracker, or anything else from the non-numeric list above): build that instead. Organised, grouped cards; click-to-expand detail; and at least one real interactive control that fits (a search/filter box to find things fast, a copy button on prompt cards, a status toggle on a tracker). No charts required if the data isn't numeric — the interaction and organisation are what make it a real tool.
 
-Propose 3 simple layout options (not overwrought — a beginner should recognize their own dashboard):
-1. Simple KPI tiles + one trend line
-2. KPI tiles + a short table (e.g. recent leads, recent orders)
-3. KPI tiles + a single interactive element (a slider/toggle that recalculates one number)
+Whatever the shape, propose a simple layout they'd recognise as their own (not overwrought), then build it full and interactive to the quality bar below.
 
-Pull real numbers from Module 3's connected tools where possible; accept manual numbers otherwise — always be honest with them about which is which.
-
-**Every branch still follows every rule below** (style templates, parallel-agent build, chart-type fit, minimum visual richness, click-to-expand interactivity, no native dialogs, big SVG hit targets) — the branch only changes what's being tracked, never how well it's built.
+**Every branch still follows every rule below** (style templates, parallel-agent build, chart-type fit, minimum visual richness, click-to-expand interactivity, no native dialogs, big SVG hit targets) — the branch only changes what's being tracked, never how well it's built. The chart-specific rules (trend/donut/bar, big SVG hit targets) apply whenever there's numeric data to show; for a genuinely non-numeric build (a prompt library, a board, a checklist), swap the "2 charts" requirement for richer organisation and interaction instead — grouped cards, a working search/filter or copy/toggle control — but keep every other rule, especially "must look full and great" and "everything is clickable."
 
 **Dashboard style templates — ALWAYS pick one of the 5 at random, every single time, unless the participant specifically asks for a particular look themselves.** This is not optional and not "default to whatever": before you build anything, genuinely roll a random number 1-5 and use that template's exact tokens throughout — don't mix templates within one build, and don't quietly keep using the same one you used last time. The only exception is if the participant explicitly says "I want a dark one" / "make it light" / "can it be purple" — then honor their request instead of rolling. Five templates exist so the room doesn't end up with 15 identical dashboards in the selfie photos.
 
