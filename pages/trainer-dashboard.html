@@ -369,7 +369,7 @@ select{max-width:360px;}
     try{
       const res = await fetch(SHEET_WEBHOOK_URL + '?t=' + Date.now(), { cache: 'no-store' });
       if(!res.ok) throw new Error('HTTP ' + res.status);
-      const rows = await res.json();
+      const raw = await res.json();
       // read a field regardless of header capitalisation/spacing
       const g = (r, name) => {
         const t = name.toLowerCase().replace(/\s/g,'');
@@ -377,8 +377,15 @@ select{max-width:360px;}
         return key != null ? r[key] : '';
       };
       const isReady = r => String(g(r,'type')).toLowerCase().includes('homework');
-      const surveys = rows.filter(r => !isReady(r));
-      const ready = rows.filter(isReady);
+      // New two-tab format returns {surveys:[...], homework:[...]}; old format was one flat array.
+      let surveys, ready;
+      if(Array.isArray(raw)){
+        surveys = raw.filter(r => !isReady(r));
+        ready = raw.filter(isReady);
+      } else {
+        surveys = raw.surveys || [];
+        ready = raw.homework || [];
+      }
       $('#liveCount').textContent = surveys.length;
       $('#readyCount').textContent = ready.length;
       const grp = t => `<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--sage-deep);margin:14px 0 6px;">${t}</div>`;
