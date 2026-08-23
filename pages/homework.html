@@ -125,6 +125,9 @@ h1{font-size:30px;margin:0 0 8px;}
 .quiz-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
 .quiz-lbl{font-size:11px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;color:#b5522f;}
 .quiz-unlock{font-size:10px;color:rgba(23,23,15,.45);border:1px solid rgba(23,23,15,.12);padding:2px 8px;border-radius:20px;}
+.vidlink,.guidelink{display:inline-flex;align-items:center;gap:8px;margin:12px 8px 2px 0;font-size:13px;font-weight:600;text-decoration:none;color:var(--sage-deep);border:1px solid rgba(95,115,85,.28);border-radius:999px;padding:9px 16px;}
+.vidlink:hover,.guidelink:hover{background:rgba(168,190,153,.18);}
+.guidelink{color:rgba(23,23,15,.6);border-color:rgba(23,23,15,.14);font-weight:500;}
 .quiz-q{font-size:13.5px;font-weight:600;margin-bottom:2px;}
 .quiz-hint2{font-size:11.5px;color:rgba(23,23,15,.5);margin-bottom:10px;}
 .qopt{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(23,23,15,.1);
@@ -189,15 +192,20 @@ h1{font-size:30px;margin:0 0 8px;}
 
 <script>
   // ===== EDIT HERE =====
-  const WORKSHOP_DATE = "2026-08-22T09:30:00"; // update to your real date
+  const WORKSHOP_DATE = "2026-09-05T09:30:00"; // Saturday 5 September 2026, 9:30am
 
-  // Paste real YouTube embed URLs here (https://www.youtube.com/embed/VIDEO_ID) — leave "" to show a placeholder.
+  // Paste a normal YouTube link for any step (e.g. https://youtu.be/XXXX or https://www.youtube.com/watch?v=XXXX)
+  // and a "Watch the video walkthrough" button appears. Leave "" to hide it.
+  // NOTE: published artifacts can't play embedded videos, so these open on YouTube in a new tab.
   const VIDEOS = {
+    step1: "",
+    step2: "",
     step3_mac: "",
     step3_win: "",
     step4: "",
     step8: ""
   };
+  const GUIDE_URL = "https://claudecode.sg/resources/setup-claude-code-git";
   const SURVEY_URL = "https://claude.ai/code/artifact/60911778-fffc-434c-842f-bf2c95643211";
   // ======================
 
@@ -205,7 +213,14 @@ h1{font-size:30px;margin:0 0 8px;}
     {
       tag: "Step 1", title: "Get Claude Pro", sub: "The Free plan can't run what we're building",
       required: true,
-      body: `<p>The Free plan runs out of usage fast and can't run Claude Code, which is what the whole workshop is built on. Pro gives you the headroom to build the entire day without hitting a wall.</p>
+      videoKey: "step1",
+      body: `<p>The Free plan runs out of usage fast and can't run Claude Code, which the whole workshop is built on. Pro gives you the headroom to build all day without hitting a wall.</p>
+             <ol class="steplist">
+               <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> and sign in. No account yet? Click <b>Sign up</b> and create one first (use the email you'll bring on Saturday).</li>
+               <li>Click your name / the menu at the <b>bottom-left</b>, then choose <b>Upgrade</b> — or go straight to <a href="https://claude.ai/upgrade" target="_blank" rel="noopener">claude.ai/upgrade</a>.</li>
+               <li>Choose the <b>Pro</b> plan and enter your payment details to confirm.</li>
+               <li>Done — you'll see <b>"Pro"</b> next to your name once it's active.</li>
+             </ol>
              <a class="actionbtn" href="https://claude.ai/upgrade" target="_blank" rel="noopener">⭐ Get Claude Pro</a>`,
       quiz: {
         q: "Why do you need Claude Pro (not the Free plan) for the workshop?",
@@ -217,7 +232,14 @@ h1{font-size:30px;margin:0 0 8px;}
     {
       tag: "Step 2", title: "Install Claude Desktop", sub: "This is what you'll actually build with all day",
       required: true,
-      body: `<p>Download it, open it, and log in with the same account you just upgraded to Pro.</p>
+      videoKey: "step2",
+      body: `<p>The desktop app is what runs Claude Code and builds real files on your computer — this is what you'll use all day.</p>
+             <ol class="steplist">
+               <li>Go to <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai/download</a>.</li>
+               <li>Click the download for your computer — <b>macOS</b> (Apple) or <b>Windows</b>. It usually picks the right one for you.</li>
+               <li>Open the downloaded file to install: on <b>Mac</b>, drag the Claude icon into your <b>Applications</b> folder; on <b>Windows</b>, run the installer and click through it.</li>
+               <li>Open Claude and <b>log in with the same account you upgraded to Pro</b> in Step 1.</li>
+             </ol>
              <a class="actionbtn" href="https://claude.ai/download" target="_blank" rel="noopener">⬇ Download Claude Desktop</a>`,
       quiz: {
         q: "What's the one thing to do right after installing Claude Desktop?",
@@ -227,17 +249,17 @@ h1{font-size:30px;margin:0 0 8px;}
       }
     },
     {
-      tag: "Step 3", title: "Install your dev tools", sub: "Homebrew (Mac) or Git (Windows) — pick your computer below",
+      tag: "Step 3", title: "Install Git (your dev tool)", sub: "Pick your computer below for the easy step-by-step",
       required: true,
       osPick: true,
-      body: `<p class="hint">🚨 Critical — the workshop can't start for you without this. If you get stuck, message the WhatsApp group before Saturday, not on the day.</p>`,
+      body: `<p class="hint">🚨 Critical — Claude Code asks for this the first time it builds anything. If you get stuck, message the WhatsApp group before Saturday, not on the day.</p>`,
       videoKey: null,
       // shown per-OS by renderOsBody() below
       quiz: {
-        q: "Which tool do you install, depending on your computer?",
-        opts: ["Homebrew on Mac, Git on Windows", "Git on Mac, Homebrew on Windows", "Neither — not needed", "Both, on both computers"],
-        correct: 0,
-        why: "Homebrew is the Mac package installer; Git for Windows is the equivalent there. Same purpose, different tool per OS."
+        q: "What is Git, and do you need a GitHub account to install it?",
+        opts: ["A chat app — and yes you need an account", "A tool that tracks your project's changes — and no account needed just to install it", "An antivirus — yes you need an account", "Nothing important — you can skip it"],
+        correct: 1,
+        why: "Git quietly tracks changes to your work (like autosave for a whole project), and Claude Code uses it under the hood. You do NOT need a GitHub account just to install it."
       }
     },
     {
@@ -319,8 +341,8 @@ h1{font-size:30px;margin:0 0 8px;}
   function videoBlock(key){
     if(!key) return '';
     const url = VIDEOS[key];
-    if(url) return `<div class="vidbox"><iframe src="${url}" allowfullscreen loading="lazy"></iframe></div>`;
-    return `<div class="vidbox"><div class="vidph"><div class="play">▶</div><span>Video coming soon</span></div></div>`;
+    if(url) return `<a class="vidlink" href="${url}" target="_blank" rel="noopener">▶ Watch the video walkthrough</a>`;
+    return '';
   }
 
   function osVideoBlock(idx){
@@ -402,27 +424,34 @@ h1{font-size:30px;margin:0 0 8px;}
   };
   const OS_STEPS = {
     mac: {
-      key: "step3_mac", label: "Install Homebrew on Mac",
-      html: `<ol class="steplist">
+      key: "step3_mac", label: "Install Git on Mac",
+      html: `<p class="hint">Easiest way on a Mac — Apple installs Git for you with one click. No Homebrew needed.</p>
+      <ol class="steplist">
         <li>Open <b>Terminal</b> — press <code>Cmd + Space</code>, type "Terminal", hit Enter.</li>
-        <li>Go to <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> and copy the install command shown on the page (starts with <code>/bin/bash -c</code>).</li>
-        <li>Paste it into Terminal and press Enter. It may ask for your Mac password — that's normal, type it and press Enter (nothing will show as you type, that's expected).</li>
-        <li>Wait for it to finish (a few minutes). When it's done, type <code>brew --version</code> and press Enter — if you see a version number, you're done.</li>
-      </ol>`
+        <li>Type <code>git --version</code> and press Enter.</li>
+        <li>A popup appears: <i>"The 'git' command requires the command line developer tools…"</i> — click <b>Install</b>, then <b>Agree</b> to the licence.</li>
+        <li>Wait 2–5 minutes while it downloads (grab a coffee), then click <b>Done</b>.</li>
+        <li>Back in Terminal, type <code>git --version</code> again. See a version number like <code>git version 2.39.3</code>? You're done. ✅</li>
+      </ol>
+      <p class="hint">Comfortable with the command line and want Homebrew instead? Optional: install it from <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>, then run <code>brew install git</code>. Not required — the steps above are enough.</p>`
     },
     win: {
       key: "step3_win", label: "Install Git on Windows",
       html: `<ol class="steplist">
-        <li>Go to <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a> — the download starts automatically.</li>
-        <li>Open the downloaded installer and click <b>Next</b> through every screen — the default options are all fine, you don't need to change anything.</li>
-        <li>Click <b>Install</b>, then <b>Finish</b> once it completes.</li>
-        <li>Open <b>Command Prompt</b> (search "cmd" in the Start menu), type <code>git --version</code> and press Enter — if you see a version number, you're done.</li>
-      </ol>`
+        <li>Go to <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a> — the download starts on its own. Look for a file like <code>Git-…-64-bit.exe</code> in your Downloads.</li>
+        <li>Double-click the installer. If Windows asks "allow this app to make changes?", click <b>Yes</b>.</li>
+        <li>Click <b>Next</b> through every screen — the defaults are all fine. Two you may want to set if you see them: <b>default editor → Notepad</b> (unless you know Vim), and <b>default branch name → main</b>.</li>
+        <li>Click <b>Install</b>, then <b>Finish</b> when it completes.</li>
+        <li>Open <b>PowerShell</b> (search "PowerShell" in the Start menu), type <code>git --version</code> and press Enter. A version number means you're done. ✅</li>
+      </ol>
+      <p class="hint">If it says "git is not recognized" right after installing, close PowerShell and open a fresh one — Windows only sees new tools in new windows.</p>`
     }
   };
   function renderOsBody(i, os){
     const cfg = OS_STEPS[os];
-    document.getElementById(`osbody-${i}`).innerHTML = cfg.html + videoBlock(cfg.key) + `<p style="font-size:12px;color:var(--dim);margin-top:-6px;">${cfg.label} — video walkthrough</p>`;
+    document.getElementById(`osbody-${i}`).innerHTML = cfg.html
+      + `<a class="guidelink" href="${GUIDE_URL}" target="_blank" rel="noopener">📖 Full illustrated guide (Mac &amp; Windows), if you get stuck</a>`
+      + videoBlock(cfg.key);
   }
 
   window.answer = (i, oi)=>{
