@@ -18,24 +18,24 @@ This makes every survey submission actually save to a Google Sheet, and makes th
 Surveys land on your first tab; homework "I'm ready" submissions land on a separate **Homework** tab (auto-created on the first submission).
 
 ```javascript
-var HEADERS = ['Timestamp','Type','Name','Phone','Industry','TeamSize','Challenge','Goal','MemberID','StepsDone'];
+var HW_HEADERS = ['Timestamp','Name','Phone','Steps Done'];
 
 function doPost(e) {
   var d = JSON.parse(e.postData.contents);
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var isHomework = String(d.type).toLowerCase().indexOf('homework') >= 0;
-  var sheet;
   if (isHomework) {
-    sheet = ss.getSheetByName('Homework');
-    if (!sheet) { sheet = ss.insertSheet('Homework'); sheet.appendRow(HEADERS); }
+    var hw = ss.getSheetByName('Homework');
+    if (!hw) { hw = ss.insertSheet('Homework'); hw.appendRow(HW_HEADERS); }
+    hw.appendRow([ new Date(), d.name || "", d.phone || "", d.stepsDone || "" ]);
   } else {
-    sheet = ss.getSheets()[0]; // your first tab = surveys
+    var sv = ss.getSheets()[0]; // your first tab = surveys
+    sv.appendRow([
+      new Date(), d.type || "survey", d.name || "", d.phone || "",
+      d.industry || "", d.team || "", d.challenge || "", d.goal || "",
+      d.memberId || "", d.stepsDone || ""
+    ]);
   }
-  sheet.appendRow([
-    new Date(), d.type || "survey", d.name || "", d.phone || "",
-    d.industry || "", d.team || "", d.challenge || "", d.goal || "",
-    d.memberId || "", d.stepsDone || ""
-  ]);
   return ContentService.createTextOutput(JSON.stringify({ status: "ok" }))
     .setMimeType(ContentService.MimeType.JSON);
 }
