@@ -252,10 +252,10 @@ select{max-width:360px;}
   <div class="card" id="liveCard" style="margin-top:16px;display:none;">
     <div class="card-head">
       <div>
-        <h2>Live Survey Submissions <span id="liveBadge" style="color:var(--sage-deep);font-weight:700;">● Live</span></h2>
+        <h2>Live Submissions <span id="liveBadge" style="color:var(--sage-deep);font-weight:700;">● Live</span></h2>
         <div class="h2sub">Pulled straight from the Google Sheet — refreshes on page load</div>
       </div>
-      <div class="r"><b id="liveCount">0</b> submitted</div>
+      <div class="r"><b id="liveCount">0</b> surveys · <b id="readyCount">0</b> set up</div>
     </div>
     <div id="liveList"></div>
   </div>
@@ -303,7 +303,7 @@ select{max-width:360px;}
   // ===== EDIT HERE ONCE YOU'VE DEPLOYED THE APPS SCRIPT (see google-sheets-setup.md) =====
   // Same Web app URL as survey.html's SHEET_WEBHOOK_URL. Leave "" to keep showing
   // the sample ATTENDEES data above untouched — nothing breaks either way.
-  const SHEET_WEBHOOK_URL = "";
+  const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwj9HLo6pclsm6H3eeQgwIVelvZW78vs-wKiegnDBGqulsW8AEfHhEj30PqLkdj8A2L/exec";
   // ==========================================================================================
 
   const $ = s => document.querySelector(s);
@@ -370,13 +370,34 @@ select{max-width:360px;}
       const res = await fetch(SHEET_WEBHOOK_URL);
       if(!res.ok) throw new Error('HTTP ' + res.status);
       const rows = await res.json();
-      $('#liveCount').textContent = rows.length;
-      $('#liveList').innerHTML = rows.length
-        ? rows.map(r => `<div class="liveRow">
-            <div class="lname">${r.Name || '(no name)'}</div>
-            <div class="lmeta">${r.Industry || '—'} · Team: ${r.TeamSize || '—'} · ${r.MemberID || ''}</div>
-          </div>`).join('')
-        : '<div class="empty">No submissions yet.</div>';
+      // read a field regardless of header capitalisation/spacing
+      const g = (r, name) => {
+        const t = name.toLowerCase().replace(/\s/g,'');
+        const key = Object.keys(r).find(k => k.toLowerCase().replace(/\s/g,'') === t);
+        return key != null ? r[key] : '';
+      };
+      const isReady = r => String(g(r,'type')).toLowerCase().includes('homework');
+      const surveys = rows.filter(r => !isReady(r));
+      const ready = rows.filter(isReady);
+      $('#liveCount').textContent = surveys.length;
+      $('#readyCount').textContent = ready.length;
+      const grp = t => `<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--sage-deep);margin:14px 0 6px;">${t}</div>`;
+      const out = [];
+      if(surveys.length){
+        out.push(grp('📋 Survey filled'));
+        surveys.forEach(r => out.push(`<div class="liveRow">
+          <div class="lname">${g(r,'name') || '(no name)'}</div>
+          <div class="lmeta">${g(r,'industry') || '—'} · Team: ${g(r,'teamsize') || '—'} · ${g(r,'memberid') || ''}</div>
+        </div>`));
+      }
+      if(ready.length){
+        out.push(grp('✅ Set up (homework done)'));
+        ready.forEach(r => out.push(`<div class="liveRow">
+          <div class="lname">${g(r,'name') || '(no name)'}</div>
+          <div class="lmeta">📱 ${g(r,'phone') || '—'} · ${g(r,'stepsdone') || '?'} steps done</div>
+        </div>`));
+      }
+      $('#liveList').innerHTML = out.length ? out.join('') : '<div class="empty">No submissions yet.</div>';
     }catch(err){
       $('#liveList').innerHTML = `<div class="liveErr">Couldn't load live data (${err.message}). Check the SHEET_WEBHOOK_URL is correct and the Apps Script is deployed with "Anyone" access.</div>`;
       $('#liveBadge').textContent = '● Error';

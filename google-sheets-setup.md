@@ -6,8 +6,9 @@ This makes every survey submission actually save to a Google Sheet, and makes th
 
 1. Go to [sheets.google.com](https://sheets.google.com), create a new blank sheet.
 2. Rename it something like `WGP Workshop Responses`.
-3. In row 1, add these exact headers (one per column, A through H):
-   `Timestamp | Name | Phone | Industry | TeamSize | Challenge | Goal | MemberID`
+3. In row 1, add these exact headers (one per column, A through J):
+   `Timestamp | Type | Name | Phone | Industry | TeamSize | Challenge | Goal | MemberID | StepsDone`
+   (The `Type` column separates survey responses from homework "I'm ready" submissions; `StepsDone` records how far someone got in the homework.)
 
 ## 2. Add the script that receives submissions
 
@@ -20,13 +21,15 @@ function doPost(e) {
   const d = JSON.parse(e.postData.contents);
   sheet.appendRow([
     new Date(),
+    d.type || "survey",
     d.name || "",
     d.phone || "",
     d.industry || "",
     d.team || "",
     d.challenge || "",
     d.goal || "",
-    d.memberId || ""
+    d.memberId || "",
+    d.stepsDone || ""
   ]);
   return ContentService.createTextOutput(JSON.stringify({ status: "ok" }))
     .setMimeType(ContentService.MimeType.JSON);
