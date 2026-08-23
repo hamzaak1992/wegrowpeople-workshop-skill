@@ -525,9 +525,11 @@ h1{font-size:30px;margin:0 0 8px;}
     const rf = document.getElementById('readyform');
     if(!rf) return;
     if(localStorage.getItem('wgp_ready_submitted')){
-      rf.innerHTML = '<p class="readylbl">✓ Nice — your trainer knows you\'re ready. See you Saturday!</p>';
+      rf.innerHTML = '<p class="readylbl">✓ Nice — your trainer knows you\'re ready. See you Saturday!</p>'
+        + '<button class="resetlink" onclick="resendReady()">Re-send my details</button>';
     }
   }
+  window.resendReady = ()=>{ localStorage.removeItem('wgp_ready_submitted'); location.reload(); };
   window.submitReady = ()=>{
     const name = document.getElementById('rd_name').value.trim();
     const phone = document.getElementById('rd_phone').value.trim();
