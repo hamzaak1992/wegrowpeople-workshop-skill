@@ -367,7 +367,7 @@ select{max-width:360px;}
     const card = $('#liveCard');
     card.style.display = 'block';
     try{
-      const res = await fetch(SHEET_WEBHOOK_URL);
+      const res = await fetch(SHEET_WEBHOOK_URL + '?t=' + Date.now(), { cache: 'no-store' });
       if(!res.ok) throw new Error('HTTP ' + res.status);
       const rows = await res.json();
       // read a field regardless of header capitalisation/spacing
