@@ -151,6 +151,13 @@ h1{font-size:30px;margin:0 0 8px;}
 @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;}}
 .donebanner .h{font-size:19px;font-weight:650;color:#7a5b1a;margin-bottom:6px;}
 .donebanner p{font-size:13px;color:rgba(23,23,15,.65);margin:0;}
+.resetlink{display:inline-block;margin:16px auto 0;background:none;border:none;color:rgba(23,23,15,.4);font-size:12px;cursor:pointer;text-decoration:underline;font-family:inherit;}
+.resetlink:hover{color:rgba(23,23,15,.65);}
+.readyform{margin-top:16px;text-align:left;border-top:1px solid rgba(23,23,15,.1);padding-top:14px;}
+.readylbl{font-size:13px;font-weight:600;color:#7a5b1a;margin:0 0 8px;}
+.readyform input{width:100%;box-sizing:border-box;padding:10px 12px;margin-bottom:8px;border:1px solid rgba(23,23,15,.15);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;}
+.readymsg{font-size:12px;margin-top:6px;color:rgba(23,23,15,.6);}
+.readymsg.bad{color:#b5522f;}
 
 </style>
 
@@ -184,9 +191,18 @@ h1{font-size:30px;margin:0 0 8px;}
 
   <div id="steps"></div>
 
+  <div style="text-align:center;"><button class="resetlink" onclick="resetHomework(this)">↺ Start over</button></div>
+
   <div class="donebanner" id="donebanner">
     <div class="h">🎉 You're ready — see you Saturday!</div>
     <p>Arrive 9:30am for coffee and doors, we start building at 10:00 sharp.</p>
+    <div class="readyform" id="readyform">
+      <p class="readylbl">Let your trainer know you're set up:</p>
+      <input id="rd_name" placeholder="Your name" autocomplete="name" />
+      <input id="rd_phone" placeholder="Phone number" autocomplete="tel" inputmode="tel" />
+      <button class="actionbtn" onclick="submitReady()">✅ I'm ready — tell my trainer</button>
+      <div class="readymsg" id="readymsg"></div>
+    </div>
   </div>
 </div>
 
@@ -207,6 +223,10 @@ h1{font-size:30px;margin:0 0 8px;}
   };
   const GUIDE_URL = "https://claudecode.sg/resources/setup-claude-code-git";
   const SURVEY_URL = "https://claude.ai/code/artifact/60911778-fffc-434c-842f-bf2c95643211";
+  // Paste your Google Apps Script Web app URL here (the same one from google-sheets-setup.md)
+  // so "I'm ready" submissions record who's set up before Saturday. Leave "" and the form still
+  // works for the attendee, it just won't save anywhere until you wire this up.
+  const READY_WEBHOOK_URL = "";
   // ======================
 
   const STEPS = [
@@ -486,6 +506,46 @@ h1{font-size:30px;margin:0 0 8px;}
     }, 300);
   };
 
+  // ---- Start over (two-tap so nobody resets by accident; no native dialog) ----
+  let resetArmed = false;
+  window.resetHomework = (el)=>{
+    if(!resetArmed){
+      resetArmed = true;
+      el.textContent = 'Tap again to clear your progress';
+      setTimeout(()=>{ resetArmed = false; el.textContent = '↺ Start over'; }, 3000);
+      return;
+    }
+    localStorage.removeItem(KEY);
+    localStorage.removeItem('wgp_ready_submitted');
+    location.reload();
+  };
+
+  // ---- "I'm ready" — lets the trainer know who's set up before Saturday ----
+  function renderReadyState(){
+    const rf = document.getElementById('readyform');
+    if(!rf) return;
+    if(localStorage.getItem('wgp_ready_submitted')){
+      rf.innerHTML = '<p class="readylbl">✓ Nice — your trainer knows you\'re ready. See you Saturday!</p>';
+    }
+  }
+  window.submitReady = ()=>{
+    const name = document.getElementById('rd_name').value.trim();
+    const phone = document.getElementById('rd_phone').value.trim();
+    const msg = document.getElementById('readymsg');
+    if(name.length < 1 || phone.replace(/\D/g,'').length < 7){
+      msg.textContent = 'Please add your name and a valid phone number.';
+      msg.className = 'readymsg bad';
+      return;
+    }
+    const data = { type:'homework_ready', name, phone, stepsDone: done.size, ts: new Date().toISOString() };
+    if(READY_WEBHOOK_URL){
+      fetch(READY_WEBHOOK_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(data) })
+        .catch(err => console.warn('Ready save failed (continuing anyway):', err));
+    }
+    localStorage.setItem('wgp_ready_submitted','1');
+    renderReadyState();
+  };
+
   function tickCountdown(){
     const diff = new Date(WORKSHOP_DATE) - new Date();
     if(diff <= 0){ document.getElementById('cdD').textContent='0'; document.getElementById('cdH').textContent='0'; document.getElementById('cdM').textContent='0'; return; }
@@ -497,4 +557,5 @@ h1{font-size:30px;margin:0 0 8px;}
   tickCountdown(); setInterval(tickCountdown, 60000);
 
   render();
+  renderReadyState();
 </script>
