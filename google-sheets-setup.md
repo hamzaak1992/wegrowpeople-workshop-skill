@@ -15,40 +15,52 @@ This makes every survey submission actually save to a Google Sheet, and makes th
 1. In the Sheet, go to **Extensions → Apps Script**.
 2. Delete whatever's in the editor, paste this in exactly:
 
+Surveys land on your first tab; homework "I'm ready" submissions land on a separate **Homework** tab (auto-created on the first submission).
+
 ```javascript
+var HEADERS = ['Timestamp','Type','Name','Phone','Industry','TeamSize','Challenge','Goal','MemberID','StepsDone'];
+
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const d = JSON.parse(e.postData.contents);
+  var d = JSON.parse(e.postData.contents);
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var isHomework = String(d.type).toLowerCase().indexOf('homework') >= 0;
+  var sheet;
+  if (isHomework) {
+    sheet = ss.getSheetByName('Homework');
+    if (!sheet) { sheet = ss.insertSheet('Homework'); sheet.appendRow(HEADERS); }
+  } else {
+    sheet = ss.getSheets()[0]; // your first tab = surveys
+  }
   sheet.appendRow([
-    new Date(),
-    d.type || "survey",
-    d.name || "",
-    d.phone || "",
-    d.industry || "",
-    d.team || "",
-    d.challenge || "",
-    d.goal || "",
-    d.memberId || "",
-    d.stepsDone || ""
+    new Date(), d.type || "survey", d.name || "", d.phone || "",
+    d.industry || "", d.team || "", d.challenge || "", d.goal || "",
+    d.memberId || "", d.stepsDone || ""
   ]);
   return ContentService.createTextOutput(JSON.stringify({ status: "ok" }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+function readSheet_(sheet) {
+  if (!sheet) return [];
+  var rows = sheet.getDataRange().getValues();
+  if (rows.length < 2) return [];
+  var headers = rows.shift();
+  return rows.map(function(r){ var o={}; headers.forEach(function(h,i){ o[h]=r[i]; }); return o; });
+}
+
 function doGet(e) {
-  // Lets the trainer dashboard read live counts back out, as JSON.
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const rows = sheet.getDataRange().getValues();
-  const headers = rows.shift();
-  const data = rows.map(r => {
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = r[i]);
-    return obj;
-  });
-  return ContentService.createTextOutput(JSON.stringify(data))
+  // Returns both tabs so the trainer dashboard can show surveys and set-up counts separately.
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var out = {
+    surveys: readSheet_(ss.getSheets()[0]),
+    homework: readSheet_(ss.getSheetByName('Homework'))
+  };
+  return ContentService.createTextOutput(JSON.stringify(out))
     .setMimeType(ContentService.MimeType.JSON);
 }
 ```
+
+**If you already deployed the earlier single-tab version:** just replace the code with the above, then re-deploy the SAME deployment (**Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy**) so the URL stays the same. The Homework tab appears automatically the first time someone submits.
 
 3. Click **Save** (disk icon), name the project `WGP Survey Handler`.
 
