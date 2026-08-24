@@ -187,7 +187,7 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
 
     <div class="idcard">
       <div class="k">Your WeGrowPeople Member ID</div>
-      <div class="id" id="memberId">WGP-0000</div>
+      <div class="id" id="memberId">WGPC-Name-000</div>
       <div class="note">📸 Screenshot this &amp; share your Member ID in the WhatsApp group!</div>
     </div>
 
@@ -269,7 +269,11 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
     return `${opener}use Claude to build ${best.build}. On the day, that's ${best.module}.${leverage} To hit the ground running, ${best.step} before Saturday.`;
   }
 
-  function genMemberId(){ return 'WGP-' + Math.floor(1000 + Math.random()*9000); }
+  function genMemberId(name){
+    let first = (name||'').trim().split(/\s+/)[0].replace(/[^A-Za-z]/g,'');
+    first = first ? first.charAt(0).toUpperCase() + first.slice(1).toLowerCase() : 'Guest';
+    return 'WGPC-' + first + '-' + Math.floor(Math.random()*1001);
+  }
 
   // ===== Google Sheets connection — UNCHANGED. Same webhook, same data payload. =====
   const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwj9HLo6pclsm6H3eeQgwIVelvZW78vs-wKiegnDBGqulsW8AEfHhEj30PqLkdj8A2L/exec";
@@ -292,7 +296,7 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
     mark('f_goal', goal.length < 1);
     if(firstBad){ firstBad.scrollIntoView({behavior:'smooth', block:'center'}); return; }
 
-    const memberId = genMemberId();
+    const memberId = genMemberId(name);
     const data = { name, phone, industry, team: teamBtn.textContent, challenge, goal, memberId };
     console.log('Survey response:', data);
 
