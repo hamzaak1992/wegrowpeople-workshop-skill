@@ -17,7 +17,12 @@ This makes every survey submission actually save to a Google Sheet, and makes th
 
 Surveys land on your first tab; homework "I'm ready" submissions land on a separate **Homework** tab (auto-created on the first submission).
 
+**Anyone can submit (that's the point), but only the team can read the data back.** Reading requires the password below. Without it, the sheet's web address returns nothing useful even to someone who finds it in the page source.
+
 ```javascript
+// Password required to READ the data. Change it here and in the dashboard together.
+var READ_KEY = 'wgP2026';
+
 var HW_HEADERS = ['Timestamp','Name','Phone','Steps Done'];
 
 function doPost(e) {
@@ -49,6 +54,13 @@ function readSheet_(sheet) {
 }
 
 function doGet(e) {
+  // Locked: without the right key this returns nothing, so attendee names,
+  // phone numbers and answers aren't readable by anyone who finds this URL.
+  var key = (e && e.parameter && e.parameter.key) || '';
+  if (key !== READ_KEY) {
+    return ContentService.createTextOutput(JSON.stringify({ error: 'unauthorized' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
   // Returns both tabs so the trainer dashboard can show surveys and set-up counts separately.
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var out = {
