@@ -1,0 +1,10 @@
+# Never publish internal provenance / anti-copying markers.
+# The markers only work as evidence while they are secret.
+PROVENANCE-private.md
+**/PROVENANCE-private.md
+*-private.md
+
+# Local scratch
+.DS_Store
+Thumbs.db
+node_modules/
