@@ -437,7 +437,20 @@ Offer scheduling matched to their comfort and to what their app actually support
 - **Easiest (works for everyone, zero setup):** a phone reminder to open Claude each morning and type "run my morning brief" — plain words, no leading slash.
 - **Best — true automation, if their app supports it (the brief appears on its own, no reminder):** you don't create the task for them — a scheduled task runs later as a brand-new Claude session with no memory of this conversation, so it needs to be self-contained and correct on its own. Instead, hand them the exact paste-in text and walk them through the form field by field, in your own words, matching this shape:
   1. **Check it's available first.** Ask them to look at the left sidebar for a **Scheduled Tasks** panel (the name varies — "Scheduled tasks," "Schedule," or a clock/calendar icon). If it's not there, that's fine — it's a per-plan feature. Don't force it: stay on the phone-reminder tier and tell them plainly they can switch it on later. Never promise automation the app doesn't show.
-  2. **If it IS there,** tell them to click New task, then give them each field to fill in, one at a time:
+  2. **Before you write a single line of the prompt, settle which email and calendar they actually use.** Look at their Module 1 tool list first, and confirm out loud rather than assuming: "You're on Outlook for email, right, not Gmail?" This one question decides the whole prompt — a brief that tells Claude to check Gmail is worthless to an Outlook user, and getting it wrong in a saved scheduled task means it quietly fails every morning instead of erroring in front of you.
+
+     **Gmail / Google Calendar** — the straightforward case. If they connected it in Module 3, name it directly in the prompt ("check Gmail for…", "check my Google Calendar for…").
+
+     **Outlook / Microsoft 365** — very common in this audience, so handle it properly and honestly. **Don't promise it and don't rule it out from memory — check live in their session.** Have them open the connector browser (Customize → Connectors → Browse) and look for an Outlook or Microsoft 365 entry. Then branch on what they actually see:
+      - **A connector exists and connects cleanly:** treat it exactly like Gmail. Same prompt shape, just name Outlook instead. Nothing else changes.
+      - **A connector exists but the sign-in is blocked or asks for admin approval:** this is normal on a company Microsoft 365 account, not a mistake they made, and you should say so plainly — many corporate IT policies block third-party apps from connecting until an administrator approves them. Don't let them sit there feeling like they broke something, and don't spend module time fighting it. Note it as something their IT can enable later, and move to the fallback below.
+      - **No Outlook connector available:** say so straight, then give the fallback. Their brief still works — it just uses the numbers and priorities they type in themselves rather than reading the inbox live, and everything else in the workshop is unaffected. If they want the live version, that's a genuinely good candidate for the overnight `mcp-plan.md` homework from Module 3: Microsoft's email API is well documented, so it's a realistic build at home rather than a dead end. Frame it as "tonight's project," not a limitation.
+
+     **Any other tool, or nothing connected:** write the prompt around manual input — "ask me for today's numbers, then…" — and make it clearly worth running anyway. A brief that asks them three quick questions and then thinks for them still beats no brief.
+
+     Whatever the answer, **never write a tool name into the saved prompt that they haven't actually connected.** A scheduled task can't ask for clarification at 8am — it just fails silently, and they'll conclude the whole thing doesn't work.
+
+  3. **Then** tell them to click New task, and give them each field to fill in, one at a time:
      - **Name** — something short like `Daily briefing`.
      - **Instructions** — the exact brief to paste in, **built from THEIR Q1/Q2 answers, not a generic one.** Fill this shape with their real signals:
        ```
@@ -459,7 +472,28 @@ Offer scheduling matched to their comfort and to what their app actually support
      - **Frequency** — the one that matters: change it from "Manual" to **Every day**, at their chosen time from Q1.
      - **Run on your computer** — turn this **ON**, since the brief reads a file off their actual Desktop — it needs their laptop to be on to see it.
      - **Save.**
-  3. **Once it's saved, tell them what to expect:** "Tomorrow morning it runs on its own — the brief's waiting for you before you even sit down." That anticipation is the moment automation clicks.
+  4. **Once it's saved, tell them what to expect:** "Tomorrow morning it runs on its own — the brief's waiting for you before you even sit down." That anticipation is the moment automation clicks.
+
+  **Worked example — what a good filled-in prompt actually looks like.** This is for an Outlook user running a 6-person renovation firm who said their morning question was "are we on track this week and is anyone stuck." Note that every line traces back to something they told you, and the tool names match what they actually connected:
+
+  ```
+  Read my AI Brain at C:\Users\Aisha\OneDrive\Desktop\my-ai\CLAUDE.md, then run my morning brief.
+
+  Check Outlook for emails from clients or suppliers in the last 24 hours that I haven't replied to.
+  Check my Outlook calendar for site visits and client meetings today and tomorrow.
+  Flag any job where the client has been waiting more than 2 days on an answer from me.
+  Remind me which of my 4 active jobs has a deadline inside the next 7 days.
+  Give me ONE specific thing to deal with before 10am.
+
+  Rules:
+  - Lead with the single most important thing
+  - Maximum 5 bullets, shortest first
+  - Flag anything needing my decision with ⚠️
+  - Keep it short enough to read standing up with a coffee
+  - End with: "Your one thing today: ___"
+  ```
+
+  Show them a filled-in version like this built from THEIR answers, not the shape with brackets in it — people can't picture the bracketed template, but they immediately recognise their own business in a finished one. Then let them edit a line before saving; making one small change of their own is what turns it from your prompt into theirs.
 
 Don't force the advanced option — match to their comfort level from Module 1. A phone reminder they'll actually use beats an automation they set up once and never trust.
 
