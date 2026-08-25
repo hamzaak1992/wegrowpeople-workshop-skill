@@ -706,28 +706,19 @@ TOTAL: ~RM[x] one-off + RM[x]/month
 You did it before today was out. No code.
 ```
 
-**Completion badge — say their name out loud in it.** A badge with their own name on it lands very differently from a generic "session complete," and this is the moment they'll screenshot:
-```
-═════════════════════════════════
-   ✦  LEVEL 1 — COMPLETE  ✦
-═════════════════════════════════
-   [Their name, with any honorific
-    exactly as they gave it]
+**Congratulate them properly — warm, and specific to THIS person.** Name the actual distance they covered today: "you walked in this morning having never written a skill, and you're leaving with two and a dashboard that updates itself." Generic praise is worth nothing; praise that proves you were paying attention is worth a lot. Use their name, with any honorific exactly as they gave it. (Don't mention certificates or badges — that's handled separately, outside this session.)
 
-   Everyday AI for Busy Owners
-   & Managers
-   WeGrowPeople · [today's date]
-═════════════════════════════════
-```
-Then say the congratulations properly, in your own words — warm and specific, naming one thing THIS person actually built ("you walked in this morning having never written a skill, and you're leaving with two and a live dashboard"). Generic praise is worth nothing; praise that proves you were paying attention is worth a lot.
+**Then the most important 60 seconds of the day — make sure they leave understanding this was the beginning, not the whole thing.** This is the difference between someone who uses this for a week and someone who builds on it for a year. People walk out of trainings assuming what they built IS what they got — that they've now "done the AI training." They haven't; they've just finished the setup that makes everything after it fast.
 
-**Then the most important 60 seconds of the day — make it clear this was the setup, not the finish.** People walk out of trainings assuming the thing they built is the thing they got. It isn't. Land these three doors, one or two sentences each, concrete, no hype:
+Say it with genuine energy, not as a wrap-up formality — you're handing them the interesting part, so sound like it. Land these three doors, one or two sentences each, concrete, no hype:
 
-1. **Their AI Brain is a living file, not a certificate.** "Everything you tell it from here, it keeps. Hire someone, change your pricing, take on a new supplier, drop a product line — just say 'add this to my AI Brain' and every future conversation already knows. It gets more useful every month you use it, and you never do that setup again."
+1. **Their AI Brain is a living file, not a finished one.** "Everything you tell it from here, it keeps. Hire someone, change your pricing, take on a new supplier, drop a product line — just say 'add this to my AI Brain' and every future conversation already knows. It gets more useful every month you use it, and you never do that setup again."
 2. **One connected tool today, but there's no limit.** "You plugged in one cable. There are ready-made ones for most tools you already use, and for anything without one, that's exactly what your `mcp-plan.md` is for. Every tool you add makes everything else sharper, because it can finally see the whole picture instead of one corner."
 3. **The dashboard was one example, not the ceiling.** Give three or four real alternatives drawn from THEIR world, not a vague big number — concrete beats impressive. "The same method that built your dashboard builds a quoting tool, a follow-up chaser, an onboarding pack for new staff, a weekly report you never write again. Nothing new to learn; you already know how. You describe what you want, and you ask for changes until it's right."
 
-Close on the thread you've been pulling all day: **"You explain it once — from then on, it already knows."** Today was you explaining it once.
+**Then land the last line on the thread you've been pulling all day:** "You explain it once — from then on, it already knows." Today was you explaining it once. Everything from here is just asking.
+
+The feeling to leave them with is *"wait, I can do this whenever I want"* — not *"that was a nice course."* If they walk out thinking the workshop was the achievement, the day only half worked. The achievement is that the setup is done and it never has to be done again.
 
 - CTA into your community (WhatsApp group / next cohort / upsell) — see funnel notes.
 - Testimonial/photo moment: ask them to screenshot their dashboard or read one line from their NEXT-STEPS.md on camera if they're comfortable.
