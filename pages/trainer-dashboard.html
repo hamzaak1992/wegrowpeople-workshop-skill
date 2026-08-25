@@ -96,12 +96,27 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
 </style>
 
 <div class="wrap">
+  <div id="lockscreen" style="display:none;max-width:380px;margin:14vh auto;text-align:center;">
+    <h1 style="font-size:26px;margin:0 0 6px;">Trainer Ops</h1>
+    <p class="sub" style="margin:0 0 20px;">Attendee data — team access only.</p>
+    <input id="dashpw" type="password" placeholder="Password" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')unlockDash()"
+      style="width:100%;box-sizing:border-box;padding:13px 15px;font-size:15px;font-family:inherit;border:1px solid rgba(23,23,15,.18);border-radius:12px;margin-bottom:10px;" />
+    <button onclick="unlockDash()"
+      style="width:100%;padding:13px;font-size:15px;font-weight:600;font-family:inherit;background:var(--ink);color:var(--cream);border:none;border-radius:12px;cursor:pointer;">Open dashboard</button>
+    <div id="pwmsg" style="font-size:12.5px;color:var(--coral);margin-top:10px;min-height:16px;"></div>
+  </div>
+
+  <div id="dashbody" style="display:none;">
   <div class="topbar">
     <div>
       <h1>Trainer Ops — <span class="accent">Live</span></h1>
       <p class="sub">Real submissions from your Google Sheet. <span id="livebadge" class="livebadge">● connecting…</span></p>
     </div>
-    <button class="refresh" onclick="location.reload()">↻ Refresh</button>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="refresh" onclick="location.reload()">↻ Refresh</button>
+      <button class="refresh" onclick="lockDash()">🔒 Lock</button>
+    </div>
   </div>
 
   <div class="note">Everything below is pulled live from your sheet and updates each time you refresh this page. No sample data.</div>
@@ -124,6 +139,7 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
   <div id="errslot"></div>
 
   <footer>We<span class="grow">Grow</span>People · Trainer Ops · live from Google Sheets</footer>
+  </div>
 </div>
 
 <script>
@@ -212,13 +228,36 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
       : '<div class="empty">Insights will build automatically once surveys come in.</div>';
   }
 
+  const KEYSTORE = 'wgp_dash_key';
+  const getKey = () => { try { return localStorage.getItem(KEYSTORE) || ''; } catch(e){ return ''; } };
+  const setKey = k => { try { localStorage.setItem(KEYSTORE, k); } catch(e){} };
+
+  window.unlockDash = function(){
+    const v = ($('#dashpw').value || '').trim();
+    if(!v) return;
+    setKey(v);
+    $('#lockscreen').style.display = 'none';
+    $('#dashbody').style.display = '';
+    load();
+  };
+  window.lockDash = function(){
+    try { localStorage.removeItem(KEYSTORE); } catch(e){}
+    location.reload();
+  };
+
   async function load(){
     const badge = $('#livebadge');
     if(!SHEET_WEBHOOK_URL){ badge.textContent='● not connected'; badge.className='livebadge err'; return; }
     try{
-      const res = await fetch(SHEET_WEBHOOK_URL + '?t=' + Date.now(), { cache:'no-store' });
+      const res = await fetch(SHEET_WEBHOOK_URL + '?key=' + encodeURIComponent(getKey()) + '&t=' + Date.now(), { cache:'no-store' });
       if(!res.ok) throw new Error('HTTP ' + res.status);
       const raw = await res.json();
+      if(raw && raw.error === 'unauthorized'){
+        $('#dashbody').style.display = 'none';
+        $('#lockscreen').style.display = '';
+        $('#pwmsg').textContent = 'That password didn’t work. Try again.';
+        return;
+      }
       let surveys, homework;
       if(Array.isArray(raw)){
         const isHw = r => g(r,'type').toLowerCase().includes('homework');
@@ -232,5 +271,6 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
       $('#errslot').innerHTML = `<div class="errbox">Couldn't load live data (${err.message}). Check the Apps Script is deployed with "Anyone" access, and that you're opening this on the github.io link (not a claude.ai link).</div>`;
     }
   }
-  load();
+  if(getKey()){ $('#lockscreen').style.display='none'; $('#dashbody').style.display=''; load(); }
+  else { $('#lockscreen').style.display=''; $('#dashbody').style.display='none'; }
 </script>
