@@ -176,8 +176,8 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
         <li>Install it (Mac: drag to Applications · Windows: run the installer).</li>
         <li>Open it and log in with the <b>same account you upgraded to Pro</b>.</li></ol>
         <a class="actionbtn" href="https://claude.ai/download" target="_blank" rel="noopener">⬇ Download Claude Desktop</a>` },
-    { key:'git', req:true, title:'Install Git (your dev tool)', os:true,
-      body:`<p>Claude Code asks for this the first time it builds. Pick your computer:</p>
+    { key:'git', req:true, title:'Install your dev tools', os:true,
+      body:`<p>Claude Code needs these the first time it builds. Pick your computer:</p>
         <div class="osrow"><button class="osbtn" onclick="pickOS('mac',this)">🍎 Mac</button><button class="osbtn" onclick="pickOS('win',this)">🪟 Windows</button></div>
         <div id="osbody"></div>` },
     { key:'survey', req:true, title:'Fill the pre-event survey',
@@ -191,14 +191,19 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
   ];
   const KEYS = STOPS.map(s=>s.key);
   const OS_STEPS = {
-    mac:`<p style="font-size:13px;color:rgba(23,23,15,.6);">Easiest on a Mac — Apple installs Git with one click.</p>
-      <ol class="steps"><li>Open <b>Terminal</b> (<code>Cmd + Space</code>, type "Terminal").</li>
-      <li>Type <code>git --version</code>, press Enter.</li>
-      <li>On the popup: <b>Install</b> → <b>Agree</b>, wait a few minutes, <b>Done</b>.</li>
-      <li>Run <code>git --version</code> again — a version number means you're set. ✅</li></ol>`,
-    win:`<ol class="steps"><li>Go to <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a> — it downloads automatically.</li>
+    mac:`<p style="font-size:13px;color:rgba(23,23,15,.6);">On a Mac you install <b>Homebrew</b>. It sets up the developer tools Claude Code needs, and Git comes along with it.</p>
+      <ol class="steps"><li>Open <b>Terminal</b> (<code>Cmd + Space</code>, type "Terminal", press Enter).</li>
+      <li>Go to <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a> and copy the install command from the homepage. It is the same one shown below.</li>
+      <li>Paste it into Terminal and press <b>Enter</b>.</li>
+      <li>When it asks for <b>Password:</b> type your <b>Mac login password</b>. <b>Nothing appears as you type</b>, no dots, no letters. That is normal, keep typing and press Enter.</li>
+      <li>Give it a few minutes. You are done when it says <b>Installation successful</b>. ✅</li></ol>
+      <p style="font-size:12.5px;color:rgba(23,23,15,.6);margin:0 0 5px;">The command to paste:</p>
+      <code style="display:block;word-break:break-all;line-height:1.5;padding:10px 12px;">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>`,
+    win:`<ol class="steps"><li>Go to <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a>, it downloads on its own. If you land on a page instead, click <b>Click here to download</b>.</li>
       <li>Run the installer, click <b>Next</b> through the defaults, then <b>Install</b> → <b>Finish</b>.</li>
-      <li>Open <b>PowerShell</b>, type <code>git --version</code> — a version number means you're set. ✅</li></ol>`
+      <li>Go to <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> and click <b>Get Node.js</b>. Run that installer, <b>Next</b> through it, and leave <b>Add to PATH</b> ticked (it already is).</li>
+      <li>Open <b>PowerShell</b>, type <code>git --version</code>, a version number means you're set. ✅</li>
+      <li><b>Restart your PC</b> once both are installed.</li></ol>`
   };
 
   let done = new Set();
