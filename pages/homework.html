@@ -129,16 +129,16 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
   <div class="brandmark">We<span class="grow">Grow</span>People</div>
   <p class="eyebrow">Before Saturday · about 15 minutes</p>
   <h1>Your road to <span class="accent">workshop-ready.</span></h1>
-  <p class="lede">Follow the stops below to get your laptop set up before the day. Tap a stop's circle to mark it done — your journey saves on this device.</p>
+  <p class="lede">Follow the stops below to get your laptop set up before the day. Tap a stop's circle to mark it done, your journey saves on this device.</p>
 
   <div class="factstrip">
-    <div><span class="k">Date</span><span class="v">Saturday, 5 September</span></div>
+    <div><span class="k">Date</span><span class="v">Saturday, 26 September</span></div>
     <div><span class="k">Time</span><span class="v">Doors 10:00 · Starts 10:30 AM – 5:00 PM</span></div>
     <div><span class="k">Where</span><span class="v">ACCEA, near KLCC</span></div>
-    <div><span class="k">Bring</span><span class="v">A laptop (Mac or Windows)</span></div>
+    <div><span class="k">Bring</span><span class="v">Laptop + charger (Mac or Windows, not an iPad)</span></div>
   </div>
 
-  <div class="progline"><span class="lbl"><span id="progn">0</span>/7</span><span class="bar"><span class="fill" id="progfill"></span></span><span class="lbl" id="progpct">0%</span></div>
+  <div class="progline"><span class="lbl"><span id="progn">0</span>/<span id="progtot">0</span></span><span class="bar"><span class="fill" id="progfill"></span></span><span class="lbl" id="progpct">0%</span></div>
 
   <div class="journey" id="journey"></div>
 
@@ -150,7 +150,7 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
       <p>Tell your trainer you're ready so we know who's good to go for Saturday.</p>
       <input id="rd_name" placeholder="Your name" autocomplete="name" />
       <input id="rd_phone" placeholder="Phone number" autocomplete="tel" inputmode="tel" />
-      <button class="btn" onclick="submitReady()">✅ I'm ready — tell my trainer</button>
+      <button class="btn" onclick="submitReady()">✅ I'm ready, tell my trainer</button>
       <div class="readymsg" id="readymsg"></div>
     </div>
   </div>
@@ -180,14 +180,27 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
       body:`<p>Claude Code needs these the first time it builds. Pick your computer:</p>
         <div class="osrow"><button class="osbtn" onclick="pickOS('mac',this)">🍎 Mac</button><button class="osbtn" onclick="pickOS('win',this)">🪟 Windows</button></div>
         <div id="osbody"></div>` },
+    { key:'test', req:true, title:'Prove it works (2 minutes)',
+      body:`<p><b>The most important stop.</b> Installing is not the same as working. This little test catches any problem now, instead of at 10:30 on Saturday.</p>
+        <ol class="steps"><li>Open <b>Claude Desktop</b>.</li>
+        <li>Start <b>Claude Code</b> in it (look for <b>Code</b> or <b>Claude Code</b> in the sidebar or menu).</li>
+        <li>Type exactly this and send it:<br><code style="display:block;word-break:break-word;line-height:1.5;padding:9px 12px;margin-top:6px;">Create a file called test.txt on my Desktop that says hello.</code></li>
+        <li>Look on your Desktop. If <b>test.txt</b> is there, you are fully set up. ✅ (You can delete it.)</li></ol>
+        <p style="font-size:13px;color:rgba(23,23,15,.62);">Can't find where to start Claude Code, or no file appears? <b>Don't burn more than five minutes on it.</b> Message us and we'll get you sorted before Saturday, that's exactly what this step is for.</p>` },
     { key:'survey', req:true, title:'Fill the pre-event survey',
       body:`<p>Two minutes, and it shapes what we build with you on the day.</p>
         <a class="actionbtn" href="${SURVEY_URL}" target="_blank" rel="noopener">📋 Open the survey</a>` },
+    { key:'accounts', req:false, rec:true, title:'Sign in to the tool you want to connect',
+      body:`<p>In the afternoon we plug Claude into a real tool of yours, usually <b>Gmail</b>, <b>Google Calendar</b> or <b>Google Drive</b>. It's one click if you're already signed in.</p>
+        <ol class="steps"><li>On the <b>same laptop you're bringing</b>, open your browser and sign in to that account.</li>
+        <li>Using a <b>work</b> account? Check you're allowed to approve new apps yourself. Some companies need IT to approve it first, and that's much easier to sort this week than on the day.</li></ol>` },
+    { key:'data', req:false, rec:true, title:'Bring some real numbers',
+      body:`<p>Your last build of the day is <b>your own dashboard</b>, and it's the part everyone remembers. It's far better when it runs on your real figures instead of made-up ones.</p>
+        <p>Anything honest works: a sales sheet, monthly revenue and costs, a pipeline list, jobs or bookings. Excel or Google Sheets, even a rough one.</p>
+        <p style="font-size:13px;color:rgba(23,23,15,.62);">Nothing you can share? Still come. We'll build yours with stand-in numbers and show you how to swap in your own later.</p>` },
     { key:'chrome', req:false, title:'Add Claude for Chrome',
-      body:`<p>Lets Claude work inside your browser tabs. Add it, pin it, log in. <b>(Optional)</b></p>
+      body:`<p>Lets Claude work inside your browser tabs. A nice extra, not needed for the day. Add it, pin it, log in. <b>(Optional)</b></p>
         <a class="actionbtn ghost" href="https://chromewebstore.google.com" target="_blank" rel="noopener">🧩 Add Claude to Chrome</a>` },
-    { key:'data', req:false, title:'Have some real numbers handy',
-      body:`<p>Bring a real spreadsheet (even a rough month-by-month one) so your first build runs on <b>your</b> data. Excel or Google Sheets. <b>(Optional)</b></p>` },
   ];
   const KEYS = STOPS.map(s=>s.key);
   const OS_STEPS = {
@@ -214,6 +227,7 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
   function updateProg(){
     const n = KEYS.filter(k=>done.has(k)).length;
     document.getElementById('progn').textContent = n;
+    document.getElementById('progtot').textContent = KEYS.length;
     document.getElementById('progpct').textContent = Math.round(n/KEYS.length*100)+'%';
     document.getElementById('progfill').style.width = (n/KEYS.length*100)+'%';
     const reqDone = STOPS.filter(s=>s.req).every(s=>done.has(s.key));
@@ -228,16 +242,16 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
           <button class="node" onclick="tick(event,'${s.key}')" title="Mark done">${done.has(s.key)?'✓':(i+1)}</button></div>
         <div class="scard" data-key="${s.key}">
           <div class="scard-head" onclick="toggleCard(this)">
-            <div class="scard-tt"><div class="st">Stop ${i+1}${s.req?'':' · optional'}</div><div class="sh">${s.title}${s.req?'<span class="tag">Required</span>':''}</div></div>
+            <div class="scard-tt"><div class="st">Stop ${i+1}${s.req?'':(s.rec?' · recommended':' · optional')}</div><div class="sh">${s.title}${s.req?'<span class="tag">Required</span>':(s.rec?'<span class="tag" style="background:rgba(168,190,153,.45);color:#47583a;">Recommended</span>':'')}</div></div>
             <span class="chev">›</span>
           </div>
-          <div class="scard-body">${s.body}<button class="tapdone" onclick="tick(event,'${s.key}')">${done.has(s.key)?'✓ Done — tap to undo':'Mark this stop done →'}</button></div>
+          <div class="scard-body">${s.body}<button class="tapdone" onclick="tick(event,'${s.key}')">${done.has(s.key)?'✓ Done, tap to undo':'Mark this stop done →'}</button></div>
         </div>
       </div>`).join('');
     document.getElementById('journey').innerHTML =
       `<div class="marker start"><div class="rail"><span class="dot">🚩</span></div><div class="txt">Start here</div></div>`
       + stopsHtml
-      + `<div class="marker finish"><div class="rail"><span class="dot">🎉</span></div><div class="txt">You're all set — see you at 10:30 AM!</div></div>`;
+      + `<div class="marker finish"><div class="rail"><span class="dot">🎉</span></div><div class="txt">You're all set. See you at 10:30 AM!</div></div>`;
     updateProg();
     if(osChoice) renderOs();
   }
@@ -250,7 +264,7 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
     const on = done.has(key);
     ms.classList.toggle('done', on);
     ms.querySelector('.node').textContent = on ? '✓' : (KEYS.indexOf(key)+1);
-    const td = ms.querySelector('.tapdone'); if(td) td.textContent = on ? '✓ Done — tap to undo' : 'Mark this stop done →';
+    const td = ms.querySelector('.tapdone'); if(td) td.textContent = on ? '✓ Done, tap to undo' : 'Mark this stop done →';
     updateProg();
   };
   window.pickOS = (os, btn)=>{ osChoice = os; renderOs(); };
@@ -272,7 +286,7 @@ code{font-family:ui-monospace,Consolas,monospace;background:rgba(23,23,15,.06);p
   function renderReady(){
     if(localStorage.getItem('wgp_ready_road')){
       document.getElementById('readyform').innerHTML =
-        '<div class="readydone">✓ Nice — your trainer knows you\'re ready. See you Saturday!</div>'
+        '<div class="readydone">✓ Nice, your trainer knows you\'re ready. See you Saturday!</div>'
         + '<button class="resetlink" style="color:rgba(248,244,234,.55);" onclick="resendReady()">Re-send my details</button>';
     }
   }
