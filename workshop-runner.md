@@ -532,10 +532,6 @@ Offer scheduling matched to their comfort and to what their app actually support
   ```
   Read my AI Brain at C:\Users\Aisha\OneDrive\Desktop\my-ai\CLAUDE.md, then run my morning brief.
 
-  (Windows example above. On a Mac the same line reads:
-   Read my AI Brain at /Users/aisha/Desktop/my-ai/CLAUDE.md, then run my morning brief.
-   Use THEIR machine's shape, never both, never the other one.)
-
   Check Outlook for emails from clients or suppliers in the last 24 hours that I haven't replied to.
   Check my Outlook calendar for site visits and client meetings today and tomorrow.
   Flag any job where the client has been waiting more than 2 days on an answer from me.
@@ -549,6 +545,8 @@ Offer scheduling matched to their comfort and to what their app actually support
   - Keep it short enough to read standing up with a coffee
   - End with: "Your one thing today: ___"
   ```
+
+  **That example is Windows.** On a Mac the first line instead reads `Read my AI Brain at /Users/aisha/Desktop/my-ai/CLAUDE.md, then run my morning brief.` Use only THEIR machine's shape in the text they actually paste — never show both forms in the prompt itself, and never leave a note like this inside what they copy.
 
   Show them a filled-in version like this built from THEIR answers, not the shape with brackets in it — people can't picture the bracketed template, but they immediately recognise their own business in a finished one. Then let them edit a line before saving; making one small change of their own is what turns it from your prompt into theirs.
 
