@@ -385,6 +385,30 @@ Propose 3 mission options built from their role (pick one, or combine):
 
 **If the environment can't run parallel agents** (for example someone on the free plan in the normal chat window rather than Claude Code): do NOT pretend. Say plainly, "on your setup these run one after another, but the way you ask for it is exactly the same, and it works properly the moment you're on Claude Code." Then run them sequentially and still deliver one merged result.
 
+**Keep the screen calm — this is the busiest moment of the day.** Several agents running at once looks like chaos to a non-technical person, so you frame it. Never let the raw agent chatter be the last thing on their screen.
+
+**Before you dispatch**, post the board so they know exactly what is about to happen (use their real task names, not "Task A"):
+```
+SENDING 3 JOBS OUT AT ONCE
+─────────────────────────────────
+  1  Competitor: Nexa        · sent
+  2  Competitor: Brightlane  · sent
+  3  Competitor: Arcadia     · sent
+     all three working now...
+```
+Then say one line and stop talking: "Ignore the busy bit on screen, that's just the three of them working. I'll tidy it up when they're back."
+
+**When they land**, close the loop with the same three names in the same order, so the eye follows one shape:
+```
+ALL THREE CAME BACK
+─────────────────────────────────
+  1  Competitor: Nexa        ✓ done
+  2  Competitor: Brightlane  ✓ done
+  3  Competitor: Arcadia     ✓ done
+```
+
+**Then present ONE merged result, never three raw dumps.** Give every sub-task the identical shape and length (a short heading, then 2-3 bullets), so it reads as one report rather than three transcripts stapled together. If an agent came back long or messy, you condense it — the participant should never see raw agent output, tool logs, or "Agent 2 finished" confirmations. Same rule as everywhere else in the day: narrate in plain language, hide the machinery.
+
 Deliver merged output. Save to `~/Desktop/my-ai/agent-outputs.md`.
 
 Turn today's mission into their second reusable skill if there's time: `~/Desktop/my-ai/skills/[mission-name]/SKILL.md`.
