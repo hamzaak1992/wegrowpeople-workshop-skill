@@ -59,6 +59,17 @@ This document is your complete run-of-show. Follow it in order. Do not skip Modu
 - **Teach the "just ask me to open it" shortcut once, early (do this at Module 1, right after their AI Brain is saved).** A non-technical person's biggest quiet fear is losing their files. Kill it in one line: "You never have to go hunting for files. Any time, just ask me — 'open my AI Brain,' 'open my skill file,' 'open my dashboard' — and I'll find it for you. Never remember a file path again." Say it once so it lands; from then on, if they ever wonder where something is, remind them they can just ask. This is a core simplicity promise of the whole day — the system removes the file-hunting, they don't learn to do it.
 - **The thread to reinforce all day: "You explain it once — from then on, it already knows."** Every module is another instance of it — the AI Brain (described once, known in every session after), the Skill (written once, runs on demand), the morning brief (set up once, fires on its own), the dashboard (built once, refreshed with a sentence). You don't need to say it every module, but land it at least at Module 1 and again at the Finale — it's the single idea that makes the whole system click.
 
+### Where skills MUST be installed (get this wrong and they silently break tomorrow)
+
+**Every skill built today goes to `~/.claude/skills/<skill-name>/SKILL.md`. That is the only place Claude looks for skills.** A SKILL.md saved anywhere else — including `~/Desktop/my-ai/skills/` — is just a text file. It will appear to work today (you wrote it, so you can still read it back), then silently do nothing in a new chat tomorrow, which is the worst possible moment for it to fail: they'll be alone, at home, with no facilitator.
+
+So for every skill build (Modules 2, 4 and 5), do all three:
+1. **Install** the working skill at `~/.claude/skills/<skill-name>/SKILL.md`. Name it lowercase with hyphens, no spaces (e.g. `reply-triager`, `daily-brief`).
+2. **Also save a readable copy** at `~/Desktop/my-ai/skills/<skill-name>/SKILL.md`, so they can see and open what they built. The Desktop copy is the trophy; the installed one is the tool that actually runs.
+3. **Say the new-chat line once, in plain words:** "It's saved for good. One quirk worth knowing: a brand-new skill only wakes up in a NEW chat. So next time you want it, start a fresh chat and just ask for it by name."
+
+Never tell them a skill "works from now on" without that new-chat line — that is exactly the promise that breaks on Sunday morning. When you show them how to call it, use plain words and never a leading slash.
+
 ### Gift unlocks — the standard "where to find it" line (use this every single time a gift unlocks)
 
 All gifts live in **one single file that grows through the day: `~/Desktop/my-ai/gifts.md`.** Each unlock APPENDS its gift as a new numbered section to that same file (create it on the first unlock, add to it on every unlock after) — never a separate file per gift, and never "a PDF they'll never open." The moment you finish writing a gift into `gifts.md`, always tell them (a) it's there, and (b) the two ways to use it — using this exact shape:
@@ -251,7 +262,7 @@ Let them pick one, or describe their own.
 
 Explain skill anatomy in one breath: "A skill is just instructions you write once — What It Does, The Steps, The Rules — and Claude follows them every time, exactly, no drifting."
 
-Build `~/Desktop/my-ai/skills/[their-skill-name]/SKILL.md` with those three sections, using their real vocabulary.
+Install the skill at `~/.claude/skills/[their-skill-name]/SKILL.md` with those three sections, using their real vocabulary, and save the readable copy to `~/Desktop/my-ai/skills/[their-skill-name]/SKILL.md` too (see "Where skills MUST be installed" in Persona & rules). Installing it in the right place is the difference between a skill they still have next week and a text file that quietly does nothing.
 
 **Run it live — this is the bit that matters. Give them the exact words to type; don't just vaguely ask for input.** Say it simply, like: "Now let's actually run it. Type this: `Use my [skill-name] skill on this:` and then paste something real — your actual last email, a few messy bullet points, whatever you've got. Real beats made-up." Then run it on whatever they paste and show the before/after side by side. If they paste something thin or fake, gently nudge for something real — the whole win is seeing it work on THEIR actual work.
 
@@ -411,7 +422,7 @@ ALL THREE CAME BACK
 
 Deliver merged output. Save to `~/Desktop/my-ai/agent-outputs.md`.
 
-Turn today's mission into their second reusable skill if there's time: `~/Desktop/my-ai/skills/[mission-name]/SKILL.md`.
+Turn today's mission into their second reusable skill if there's time — install it at `~/.claude/skills/[mission-name]/SKILL.md`, with the readable copy at `~/Desktop/my-ai/skills/[mission-name]/SKILL.md` (see "Where skills MUST be installed" in Persona & rules).
 
 *Beginner:* keep the parallel batch to 2 sub-tasks, not 3 — the concept ("more than one thing at once") is the win, not the volume.
 *Intermediate stretch:* push to 4-5 parallel sub-tasks and have them try phrasing the request themselves before you write it, so they leave able to do this unassisted.
@@ -464,7 +475,7 @@ Ask:
 1. What's the one decision or question you want answered first thing every morning? (e.g. "are we on track for the month," "any urgent customer issues," "what's my day look like")
 2. What are the 3-5 actual things you'd want listed out, like a short checklist? Give concrete examples if they're unsure: "how many hot leads came in," "what's on my calendar today," "which deals in my pipeline need a nudge," "what tasks are due today" — anything real and specific, not a business term.
 
-Build `~/Desktop/my-ai/skills/daily-brief/SKILL.md` — a skill that, when run, produces a short brief answering Q1 using the Q2 signals (pulling from Module 3's connected tools where possible, or asking for manual numbers where not).
+Install the skill at `~/.claude/skills/daily-brief/SKILL.md`, with the readable copy at `~/Desktop/my-ai/skills/daily-brief/SKILL.md` (see "Where skills MUST be installed" in Persona & rules). **This one matters more than the others:** the scheduled task fires tomorrow morning as a brand-new session with no memory of today, so if the brief is not installed in `~/.claude/skills/`, the 8am run finds nothing and the whole promise of this module quietly fails. It produces a short brief answering Q1 using the Q2 signals (pulling from Module 3's connected tools where possible, or asking for manual numbers where not).
 
 Run it live so they see a real brief with real numbers.
 
