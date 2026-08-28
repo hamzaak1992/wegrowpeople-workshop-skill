@@ -59,6 +59,23 @@ This document is your complete run-of-show. Follow it in order. Do not skip Modu
 - **Teach the "just ask me to open it" shortcut once, early (do this at Module 1, right after their AI Brain is saved).** A non-technical person's biggest quiet fear is losing their files. Kill it in one line: "You never have to go hunting for files. Any time, just ask me — 'open my AI Brain,' 'open my skill file,' 'open my dashboard' — and I'll find it for you. Never remember a file path again." Say it once so it lands; from then on, if they ever wonder where something is, remind them they can just ask. This is a core simplicity promise of the whole day — the system removes the file-hunting, they don't learn to do it.
 - **The thread to reinforce all day: "You explain it once — from then on, it already knows."** Every module is another instance of it — the AI Brain (described once, known in every session after), the Skill (written once, runs on demand), the morning brief (set up once, fires on its own), the dashboard (built once, refreshed with a sentence). You don't need to say it every module, but land it at least at Module 1 and again at the Finale — it's the single idea that makes the whole system click.
 
+### Mac or Windows — work out which one you're on BEFORE you write anything
+
+**Silently detect the operating system at the very start of Module 1, before creating a single file, and use that shape all day.** Never show a participant a path from the other OS. A Mac user shown `C:\Users\...` will either freeze or paste it straight into a scheduled task and break it, and you will not be there tomorrow morning to fix it.
+
+|  | Mac | Windows |
+|---|---|---|
+| Real Desktop | `/Users/<name>/Desktop` | `C:\Users\<name>\Desktop` **or** `C:\Users\<name>\OneDrive\Desktop` |
+| Their day's folder | `/Users/<name>/Desktop/my-ai` | e.g. `C:\Users\<name>\OneDrive\Desktop\my-ai` |
+| Skills install to | `/Users/<name>/.claude/skills` | `C:\Users\<name>\.claude\skills` |
+| They look in | Finder | File Explorer |
+
+**Windows is the risky one.** OneDrive very often redirects Desktop, so you must check both candidates and use whichever one File Explorer actually shows (see the Desktop-path rule above).
+
+**Mac is usually straightforward** — `~/Desktop` really is the Desktop they see in Finder, even with iCloud Desktop syncing turned on. Do not invent a problem that isn't there or send a Mac user hunting through iCloud folders; confirm it once and move on.
+
+Either way: resolve the real path ONCE, early, then reuse that exact resolved path for the rest of the day. The `.claude/skills` folder behaves the same on both machines and is never redirected by OneDrive or iCloud, which is precisely why skills live there.
+
 ### Where skills MUST be installed (get this wrong and they silently break tomorrow)
 
 **Every skill built today goes to `~/.claude/skills/<skill-name>/SKILL.md`. That is the only place Claude looks for skills.** A SKILL.md saved anywhere else — including `~/Desktop/my-ai/skills/` — is just a text file. It will appear to work today (you wrote it, so you can still read it back), then silently do nothing in a new chat tomorrow, which is the worst possible moment for it to fail: they'll be alone, at home, with no facilitator.
@@ -514,6 +531,10 @@ Offer scheduling matched to their comfort and to what their app actually support
 
   ```
   Read my AI Brain at C:\Users\Aisha\OneDrive\Desktop\my-ai\CLAUDE.md, then run my morning brief.
+
+  (Windows example above. On a Mac the same line reads:
+   Read my AI Brain at /Users/aisha/Desktop/my-ai/CLAUDE.md, then run my morning brief.
+   Use THEIR machine's shape, never both, never the other one.)
 
   Check Outlook for emails from clients or suppliers in the last 24 hours that I haven't replied to.
   Check my Outlook calendar for site visits and client meetings today and tomorrow.
