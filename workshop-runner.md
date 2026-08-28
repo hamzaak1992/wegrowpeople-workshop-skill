@@ -687,19 +687,22 @@ Teach the one command that matters: "update my dashboard" — so they know this 
 
 **Put a "Last updated" stamp on the dashboard itself** — small, top of the page, e.g. `Last updated: Sat 5 Sep, 4:12pm`. This is not decoration. Without it, a failed overnight run looks exactly like a successful one, and they will trust stale numbers for a week. With it, one glance tells them whether it ran.
 
-**If they ask about automating the refresh** (very common — it's the natural next question): this is Module 5's machinery again, so don't treat it as new territory. Two tiers, same as the brief:
+**Now set the automation up WITH them — this is a standard part of the day, not an optional extra and not something to mention only if asked.** The whole promise of this workshop is that they leave with things already running, so do not stop at "you can ask for an update whenever you like." Walk them through switching it on, in the room, while you are still sitting next to them.
 
-- **Easiest, works for everyone:** the phone reminder they may already have set for the brief — they type "update my dashboard", then refresh the page.
-- **True automation, if their plan shows Scheduled Tasks:** **fold it into the morning brief task they already made rather than creating a second one.** One automation that does both is far more likely to survive than two that can each break separately. Add a final line to that task's instructions:
-  ```
-  Then run my update-dashboard skill.
-  ```
-  Three things must be true or it will fail silently at 7am, so say them plainly:
-  1. **The `update-dashboard` skill must be installed** in `~/.claude/skills/` — a fresh 7am session has no memory of today.
-  2. **"Run on your computer" must be ON**, and the laptop awake — this rewrites a real file on their disk.
-  3. **Permissions must allow writing, not just reading.** The brief only reads, so "Manually approve" is fine for it; updating the dashboard *writes a file*, so on manual approval it will sit there waiting for a click that nobody gives at 7am. Tell them straight: "if you want this to happen while you're asleep, this task needs permission to write the file. If you'd rather approve things yourself, keep the reminder instead and it takes you five seconds in the morning." Let them choose knowingly — never quietly loosen permissions for them.
+**Fold it into the morning brief task they already built in Module 5 — do not create a second task.** One automation that does both is far more likely to survive than two that can each break separately. Open that task and add one final line to its instructions:
+```
+Then run my update-dashboard skill.
+```
+Now their 7am run delivers the brief AND refreshes the dashboard, and by tomorrow morning the numbers on screen will have moved on their own. Say that out loud, because that is the moment it lands: "Tomorrow morning this updates before you're awake. You just open it."
 
-**Never say the dashboard "updates itself" unless they actually set up the scheduled task in front of you.** For everyone else the honest line is: "it updates whenever you ask, in one sentence" — which is still a great outcome, and doesn't set them up to trust stale numbers on Monday.
+Three things must be true or it fails silently at 7am, so check each one with them now rather than trusting it:
+1. **The `update-dashboard` skill is installed** in `~/.claude/skills/` — a fresh 7am session has no memory of today.
+2. **"Run on your computer" is ON**, and their laptop is awake at that hour. If they shut the lid at night, tell them plainly it will run when they open it instead — still automatic, just not to the minute. Never let them expect 7am sharp and quietly get nothing.
+3. **Permissions allow writing, not just reading.** The brief only reads, so "Manually approve" was fine for it. Updating the dashboard *writes a file*, so on manual approval the task sits waiting at 7am for a click nobody gives. Explain the trade honestly and let them pick: "for this to happen while you're asleep, the task needs permission to write this one file. If you'd rather approve things yourself, keep it on manual and it's five seconds each morning." Never quietly loosen someone's permissions for them.
+
+**If their plan doesn't show a Scheduled Tasks panel at all**, don't fake it and don't leave them thinking it's running. Set the phone reminder tier instead ("update my dashboard", then refresh), tell them plainly it's a per-plan feature they can switch on later, and make sure the `update-dashboard` skill is still installed so it works the moment they do.
+
+**Say "it updates itself" only when the task is actually saved and switched on** — which for most people it now will be, because you just did it together. For anyone whose plan did not offer Scheduled Tasks, the honest line is: "it updates whenever you ask, in one sentence" — still a great outcome, and it does not leave them trusting stale numbers on Monday.
 
 *Beginner:* layout option 1 (KPI tiles + one trend line) only — do not offer the interactive slider option, it invites a rabbit hole of "can it also do X" that eats the clock.
 *Intermediate stretch:* layout option 3 (interactive element), and have them try describing a tweak themselves (e.g. "make this tile red if we're behind target") to prove they can iterate solo later.
@@ -785,7 +788,7 @@ TOTAL: ~RM[x] one-off + RM[x]/month
 You did it before today was out. No code.
 ```
 
-**Congratulate them properly — warm, and specific to THIS person.** Name the actual distance they covered today: "you walked in this morning having never written a skill, and you're leaving with two and a dashboard you can bring up to date by just asking." Generic praise is worth nothing; praise that proves you were paying attention is worth a lot. Use their name, with any honorific exactly as they gave it. (Don't mention certificates or badges — that's handled separately, outside this session.)
+**Congratulate them properly — warm, and specific to THIS person.** Name the actual distance they covered today: "you walked in this morning having never written a skill, and you’re leaving with two, and a dashboard that refreshes itself every morning." Say the automated version only if their scheduled task is actually running; if their plan did not offer Scheduled Tasks, say "a dashboard you can update by just asking" instead — never hand someone automation they do not have. " Generic praise is worth nothing; praise that proves you were paying attention is worth a lot. Use their name, with any honorific exactly as they gave it. (Don't mention certificates or badges — that's handled separately, outside this session.)
 
 **Then the most important 60 seconds of the day — make sure they leave understanding this was the beginning, not the whole thing.** This is the difference between someone who uses this for a week and someone who builds on it for a year. People walk out of trainings assuming what they built IS what they got — that they've now "done the AI training." They haven't; they've just finished the setup that makes everything after it fast.
 
