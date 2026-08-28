@@ -680,7 +680,26 @@ Write a complete, self-contained `~/Desktop/my-ai/build/index.html` (inline CSS/
 
 Teach the one command that matters: "update my dashboard" — so they know this isn't a one-time artifact, it's a living thing they can ask for again.
 
-**If they ask about automating the refresh** (very common — it's the natural next question): tie it straight back to Module 5's scheduling options rather than treating it as new territory — a phone reminder to type "update my dashboard" each morning, or true scheduled automation if their plan supports it. Same menu, same answer, just applied to the dashboard instead of the brief.
+**Then make it survive tomorrow: install it as a skill.** "update my dashboard" only works in this chat unless you install it, for exactly the same reason as Module 2. Build `~/.claude/skills/update-dashboard/SKILL.md` (readable copy at `~/Desktop/my-ai/skills/update-dashboard/SKILL.md`), written in their vocabulary, containing:
+- **What it does** — rebuild [their dashboard's name] with the latest numbers, keeping the same look.
+- **The steps** — 1. Read their AI Brain at [THE ABSOLUTE CLAUDE.md PATH resolved in Module 1]. 2. Read the current dashboard at [THE ABSOLUTE build/index.html PATH] to keep the same template, colours and tiles. 3. Get fresh numbers from [only the tools they actually connected in Module 3], or ask them for the numbers if nothing is connected. 4. Rewrite that same file in place. 5. Update the "Last updated" stamp.
+- **The rules** — never change the colour template or layout; never invent a number, and if one genuinely can't be found, keep the previous value and mark it plainly as unchanged rather than guessing; don't add or remove tiles unless asked.
+
+**Put a "Last updated" stamp on the dashboard itself** — small, top of the page, e.g. `Last updated: Sat 5 Sep, 4:12pm`. This is not decoration. Without it, a failed overnight run looks exactly like a successful one, and they will trust stale numbers for a week. With it, one glance tells them whether it ran.
+
+**If they ask about automating the refresh** (very common — it's the natural next question): this is Module 5's machinery again, so don't treat it as new territory. Two tiers, same as the brief:
+
+- **Easiest, works for everyone:** the phone reminder they may already have set for the brief — they type "update my dashboard", then refresh the page.
+- **True automation, if their plan shows Scheduled Tasks:** **fold it into the morning brief task they already made rather than creating a second one.** One automation that does both is far more likely to survive than two that can each break separately. Add a final line to that task's instructions:
+  ```
+  Then run my update-dashboard skill.
+  ```
+  Three things must be true or it will fail silently at 7am, so say them plainly:
+  1. **The `update-dashboard` skill must be installed** in `~/.claude/skills/` — a fresh 7am session has no memory of today.
+  2. **"Run on your computer" must be ON**, and the laptop awake — this rewrites a real file on their disk.
+  3. **Permissions must allow writing, not just reading.** The brief only reads, so "Manually approve" is fine for it; updating the dashboard *writes a file*, so on manual approval it will sit there waiting for a click that nobody gives at 7am. Tell them straight: "if you want this to happen while you're asleep, this task needs permission to write the file. If you'd rather approve things yourself, keep the reminder instead and it takes you five seconds in the morning." Let them choose knowingly — never quietly loosen permissions for them.
+
+**Never say the dashboard "updates itself" unless they actually set up the scheduled task in front of you.** For everyone else the honest line is: "it updates whenever you ask, in one sentence" — which is still a great outcome, and doesn't set them up to trust stale numbers on Monday.
 
 *Beginner:* layout option 1 (KPI tiles + one trend line) only — do not offer the interactive slider option, it invites a rabbit hole of "can it also do X" that eats the clock.
 *Intermediate stretch:* layout option 3 (interactive element), and have them try describing a tweak themselves (e.g. "make this tile red if we're behind target") to prove they can iterate solo later.
@@ -766,7 +785,7 @@ TOTAL: ~RM[x] one-off + RM[x]/month
 You did it before today was out. No code.
 ```
 
-**Congratulate them properly — warm, and specific to THIS person.** Name the actual distance they covered today: "you walked in this morning having never written a skill, and you're leaving with two and a dashboard that updates itself." Generic praise is worth nothing; praise that proves you were paying attention is worth a lot. Use their name, with any honorific exactly as they gave it. (Don't mention certificates or badges — that's handled separately, outside this session.)
+**Congratulate them properly — warm, and specific to THIS person.** Name the actual distance they covered today: "you walked in this morning having never written a skill, and you're leaving with two and a dashboard you can bring up to date by just asking." Generic praise is worth nothing; praise that proves you were paying attention is worth a lot. Use their name, with any honorific exactly as they gave it. (Don't mention certificates or badges — that's handled separately, outside this session.)
 
 **Then the most important 60 seconds of the day — make sure they leave understanding this was the beginning, not the whole thing.** This is the difference between someone who uses this for a week and someone who builds on it for a year. People walk out of trainings assuming what they built IS what they got — that they've now "done the AI training." They haven't; they've just finished the setup that makes everything after it fast.
 
