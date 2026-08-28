@@ -500,10 +500,10 @@ Offer scheduling matched to their comfort and to what their app actually support
 
 - **Easiest (works for everyone, zero setup):** a phone reminder to open Claude each morning and type "run my morning brief" — plain words, no leading slash.
 - **Best — true automation, if their app supports it (the brief appears on its own, no reminder):** you don't create the task for them — a scheduled task runs later as a brand-new Claude session with no memory of this conversation, so it needs to be self-contained and correct on its own. Instead, hand them the exact paste-in text and walk them through the form field by field, in your own words, matching this shape:
-  1. **Check it's available first.** Ask them to look at the left sidebar for a **Scheduled Tasks** panel (the name varies — "Scheduled tasks," "Schedule," or a clock/calendar icon). If it's not there, that's fine — availability varies by plan AND by app version/platform, and it is confirmed present on Claude Pro for Windows but should never be assumed on any other setup. Don't force it: stay on the phone-reminder tier and tell them plainly they can switch it on later. Never promise automation the app doesn't show.
+  1. **Check it's actually there first.** In the Claude app, open the **Code** tab and look for **Routines** in the left sidebar. If Routines isn't there, their Desktop app is simply too old — local scheduled tasks need version 1.1.5368 or newer — so have them update the app and look again. If it still isn't there, don't force it and never promise automation the app doesn't show: stay on the phone-reminder tier and say plainly they can switch it on later.
   2. **Write the prompt around whatever they actually connected back in Module 3 — don't revisit connecting here.** If Gmail is connected, the prompt says Gmail; if Outlook is, it says Outlook; if nothing is, it asks them for their numbers instead. You already know which from Module 3, so don't re-ask and above all don't send them off to the connector browser now — that's Module 3's job and doing it here derails an 8-minute module. The one hard rule: **never write a tool name into a saved task that they haven't actually connected.** A scheduled task can't ask for clarification at 8am — it fails silently every morning, and they'll conclude the whole thing is broken.
 
-  3. **Then** tell them to click New task, and give them each field to fill in, one at a time:
+  3. **Then click New routine and choose Local, not Remote.** This choice matters more than anything else on the form: a **Local** task runs on their own machine and can read and write files on their Desktop, which is exactly what the brief and the dashboard refresh both need. A **Remote** (cloud) routine cannot see their local files at all, so both would fail silently every morning. Walk them through the fields one at a time:
      - **Name** — something short like `Daily briefing`.
      - **Instructions** — the exact brief to paste in, **built from THEIR Q1/Q2 answers, not a generic one.** Fill this shape with their real signals:
        ```
@@ -519,13 +519,17 @@ Offer scheduling matched to their comfort and to what their app actually support
        - End with: "Your one thing today: ___"
        ```
        **This is the one place in the whole day where the tilde shorthand (`~/Desktop/...`) is not safe to use — a scheduled task is a fresh session that may re-resolve `~` on its own and hit the exact same OneDrive-redirect problem the persona rules exist to prevent. Always substitute the literal absolute path you already resolved for THIS participant in Module 1, never the shorthand.**
-     - **Project or folder** — leave as the default, skip it.
-     - **Permissions** — set to **Manually approve**: Claude checks with them before doing anything beyond reading, the safe setting while this is new.
-     - **Model** — leave on **Default model**, plenty for a daily brief.
-     - **Frequency** — the one that matters: change it from "Manual" to **Every day**, at their chosen time from Q1.
-     - **Run on your computer** — turn this **ON**, since the brief reads a file off their actual Desktop — it needs their laptop to be on to see it.
+     - **Description** — one line, e.g. `Morning brief + dashboard refresh`.
+     - **Folder** — a folder IS required before it will save. Use their `my-ai` folder, and accept the "trust this folder" prompt if it appears.
+     - **Schedule** — pick **Daily** and set their time from Q1 (it defaults to 9:00 AM).
+     - **Model and permission mode** — leave the defaults here; step 4 handles permissions properly.
      - **Save.**
-  4. **Once it's saved, tell them what to expect:** "Tomorrow morning it runs on its own — the brief's waiting for you before you even sit down." That anticipation is the moment automation clicks.
+  4. **Now click Run now and stay with them while it runs — do not skip this step.** It is the one that decides whether their automation actually works. On this first run Claude asks permission for each tool it needs: tell them to choose **"always allow"** every time. Future runs then approve those same tools by themselves. Skip this and the task stalls silently every morning waiting for a click nobody gives, and they will quietly decide the whole thing is broken.
+  5. **Be honest about sleep, then guard against it.** These tasks only run while the app is open and the computer is awake; a run scheduled while the laptop is shut is skipped. On wake, Claude does ONE catch-up run for the most recent missed time — so a 7am brief on a laptop opened at 9am simply arrives at 9am. Say that plainly rather than letting them expect 7am sharp and quietly get nothing. If they want it closer to on time, point them at **Settings → Desktop app → General → Keep computer awake** (closing the lid still sleeps it). Because of catch-up, add one guardrail line to the end of their Instructions so a missed brief never turns up at 11pm pretending it is morning:
+     ```
+     If it is past 2pm when you run this, say so at the top and only include what still matters today.
+     ```
+  6. **Then tell them what to expect:** "Tomorrow morning it runs on its own — the brief’s waiting for you before you even sit down." That anticipation is the moment automation clicks.
 
   **Worked example — what a good filled-in prompt actually looks like.** This is for an Outlook user running a 6-person renovation firm who said their morning question was "are we on track this week and is anyone stuck." Note that every line traces back to something they told you, and the tool names match what they actually connected:
 
