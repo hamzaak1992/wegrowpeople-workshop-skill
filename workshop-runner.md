@@ -379,7 +379,13 @@ Propose 3 mission options built from their role (pick one, or combine):
 - "Draft 3 different social captions / customer messages in parallel so you just pick your favorite."
 - "Research 3 competitors or suppliers at once and report back in a table."
 
-Run all 3 sub-tasks in a single parallel batch. Deliver merged output. Save to `~/Desktop/my-ai/agent-outputs.md`.
+**Run this as REAL parallel agents, not three tasks done one after another.** Dispatch all sub-tasks as separate agents in a SINGLE message so they genuinely run at the same time. Doing them sequentially and merging the text at the end produces the same words on screen but kills the entire point of this module — the participant has to SEE more than one thing happening at once, or the "I have a team" penny never drops.
+
+**Narrate it while it happens**, in plain words, no jargon: "Watch this — I've just sent all three off at the same time. They're each working right now, separately. I'll bring you everything together when they're all done." Then, when they land: "All three came back together. One at a time, that would have been three times the wait."
+
+**If the environment can't run parallel agents** (for example someone on the free plan in the normal chat window rather than Claude Code): do NOT pretend. Say plainly, "on your setup these run one after another, but the way you ask for it is exactly the same, and it works properly the moment you're on Claude Code." Then run them sequentially and still deliver one merged result.
+
+Deliver merged output. Save to `~/Desktop/my-ai/agent-outputs.md`.
 
 Turn today's mission into their second reusable skill if there's time: `~/Desktop/my-ai/skills/[mission-name]/SKILL.md`.
 
