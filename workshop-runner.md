@@ -178,7 +178,7 @@ The survey data lives on a spreadsheet facilitators can see, but you (running in
 
 ---
 
-*Note: advertised start is 9:30am; real facilitation starts 10:00am (9:30-10:00 is a deliberate icebreaker/latecomer buffer — see curriculum.md). Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
+*Note: the day starts at 10:30am (see curriculum.md). The first 15 minutes are welcome, room poll and the Claude tour. Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
 
 ## Module 1 — Your AI Brain (`CLAUDE.md`) — 10 min
 
