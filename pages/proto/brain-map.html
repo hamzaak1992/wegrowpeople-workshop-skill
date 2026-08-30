@@ -1,0 +1,213 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Your AI Brain</title>
+<style>
+:root{
+  --cream:#f8f4ea; --cream-deep:#f1ead9; --sage:#a3b899; --sage-deep:#5f7355;
+  --butter:#f4d77d; --ink:#17170f; --periwinkle:#bfd0f5; --peach:#f5cfa8;
+  --coral:#c2643f; --dim:#6b6b5e; --line:#e6e1d4;
+  --font: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);line-height:1.5;}
+.wrap{max-width:640px;margin:0 auto;padding:34px 20px 90px;}
+.top{text-align:center;margin-bottom:8px;}
+.top .eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep);}
+.top h1{font-size:26px;margin:8px 0 4px;}
+.top .sub{color:var(--dim);font-size:13.5px;margin:0;}
+
+/* progress dots */
+.progress{display:flex;justify-content:center;gap:7px;margin:18px 0 34px;}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s;}
+.dot.done{background:var(--sage-deep);}
+.dot.current{background:var(--butter);box-shadow:0 0 0 3px rgba(244,215,125,.4);}
+
+/* the vertical connector line running behind everything */
+.pipeline{position:relative;}
+.pipeline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:repeating-linear-gradient(to bottom, var(--sage) 0 6px, transparent 6px 12px);
+  transform:translateX(-50%);z-index:0;}
+
+.layer{position:relative;z-index:1;margin-bottom:6px;}
+.node-wrap{display:flex;justify-content:center;margin-bottom:6px;}
+.arrow{display:flex;justify-content:center;color:var(--sage-deep);font-size:18px;margin:0 0 6px;opacity:.7;}
+
+/* the central brain node */
+.brain{width:180px;height:180px;border-radius:50%;margin:0 auto;
+  background:radial-gradient(circle at 35% 30%, #fff 0%, var(--sage-soft,#c8d5c0) 30%, var(--sage) 70%, var(--sage-deep) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  box-shadow:0 0 0 8px rgba(163,184,153,.18), 0 10px 30px rgba(95,115,85,.25);
+  animation:pulse 3.2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 8px rgba(163,184,153,.18), 0 10px 30px rgba(95,115,85,.25);}
+  50%{box-shadow:0 0 0 14px rgba(163,184,153,.10), 0 10px 34px rgba(95,115,85,.3);}}
+.brain .bicon{font-size:30px;margin-bottom:4px;}
+.brain .bname{font-weight:700;font-size:15px;color:var(--ink);max-width:130px;}
+.brain .btag{font-size:10.5px;color:var(--ink);opacity:.65;margin-top:1px;}
+
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:14px;}
+.tag{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;}
+.tag .tk{color:var(--sage-deep);font-weight:700;text-transform:uppercase;font-size:9px;letter-spacing:.04em;display:block;margin-bottom:1px;}
+
+/* section card */
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 auto;max-width:480px;}
+.card.locked{background:var(--cream-deep);border-style:dashed;text-align:center;color:var(--dim);font-size:13px;padding:22px 20px;}
+.card.locked .lk{font-size:20px;margin-bottom:4px;display:block;}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-deep);text-align:center;margin-bottom:10px;}
+
+/* skills chips */
+.skillrow{display:flex;flex-direction:column;gap:8px;}
+.skill{display:flex;align-items:center;gap:10px;background:var(--cream-deep);border-radius:12px;padding:10px 13px;}
+.skill .si{width:30px;height:30px;border-radius:9px;background:var(--butter);display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;}
+.skill .st{font-weight:700;font-size:13.5px;}
+.skill .sd{font-size:11.5px;color:var(--dim);}
+
+/* connector badges */
+.connrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.conn{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.conn .cb{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;color:#fff;}
+.conn.off .cb{background:var(--line);color:var(--dim);border:2px dashed #c9c3b2;}
+.conn .cl{font-size:10px;font-weight:600;text-align:center;color:var(--dim);}
+.conn.on .cl{color:var(--ink);}
+.conn .cs{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:1px 6px;border-radius:999px;margin-top:1px;}
+.conn.on .cs{background:rgba(163,184,153,.35);color:var(--sage-deep);}
+.conn.off .cs{background:transparent;color:#a39d8c;}
+
+/* sub-brains fan */
+.fan{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.subbrain{background:var(--periwinkle);border-radius:14px;padding:10px 12px;text-align:center;min-width:110px;}
+.subbrain .sbi{font-size:18px;}
+.subbrain .sbt{font-size:11.5px;font-weight:700;margin-top:2px;}
+.merge{text-align:center;background:var(--peach);border-radius:12px;padding:9px 16px;font-size:12.5px;font-weight:700;display:inline-block;margin:0 auto;}
+.mergewrap{display:flex;justify-content:center;}
+
+/* schedule */
+.schedrow{display:flex;align-items:center;gap:14px;justify-content:center;}
+.clock{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;}
+.schedtext .st1{font-weight:700;font-size:14px;}
+.schedtext .st2{font-size:12px;color:var(--dim);}
+.pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sage-deep);margin-right:5px;animation:blink 1.6s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* dashboard screen */
+.screen{background:var(--ink);border-radius:14px;padding:14px 16px;max-width:280px;margin:0 auto;}
+.screen .sbar{display:flex;gap:4px;margin-bottom:10px;}
+.screen .sdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);}
+.screen .stiles{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.screen .stile{background:rgba(255,255,255,.08);border-radius:8px;padding:8px 9px;}
+.screen .stk{font-size:8px;color:rgba(248,244,234,.5);text-transform:uppercase;letter-spacing:.03em;}
+.screen .stv{font-size:14px;font-weight:700;color:#fff;margin-top:2px;}
+.screen-cap{text-align:center;font-size:11.5px;color:var(--dim);margin-top:8px;}
+
+footer{text-align:center;margin-top:40px;font-size:11.5px;color:var(--dim);}
+</style></head>
+<body><div class="wrap">
+
+  <div class="top">
+    <div class="eyebrow">WeGrowPeople &middot; Today's Build</div>
+    <h1>Your AI Brain</h1>
+    <p class="sub">Watch it grow through the day. This page updates after every module.</p>
+  </div>
+
+  <div class="progress">
+    <span class="dot done"></span><span class="dot current"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+
+  <div class="pipeline">
+
+    <!-- LAYER 1: BRAIN CORE -->
+    <div class="layer" id="layer1">
+      <div class="node-wrap">
+        <div class="brain">
+          <div class="bicon">&#129504;</div>
+          <div class="bname">Aisha's Renovation Co.</div>
+          <div class="btag">Your AI Brain</div>
+        </div>
+      </div>
+      <div class="tags">
+        <div class="tag"><span class="tk">Role</span>Owner, 6-person team</div>
+        <div class="tag"><span class="tk">Tools</span>Outlook &middot; Sheets</div>
+        <div class="tag"><span class="tk">Biggest job</span>Chasing site updates</div>
+        <div class="tag"><span class="tk">Tone</span>Direct, friendly</div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 2: SKILLS -->
+    <div class="layer" id="layer2">
+      <div class="card">
+        <div class="sec-label">Module 2 &middot; Skills make it smarter</div>
+        <div class="skillrow">
+          <div class="skill"><div class="si">&#9997;&#65039;</div><div><div class="st">Weekly Update Writer</div><div class="sd">Turns rough notes into a clean client update</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 3: CONNECTORS -->
+    <div class="layer" id="layer3">
+      <div class="card">
+        <div class="sec-label">Module 3 &middot; Connected to your real tools</div>
+        <div class="connrow">
+          <div class="conn on"><div class="cb" style="background:#c2643f;">O</div><div class="cl">Outlook</div><div class="cs">Live</div></div>
+          <div class="conn off"><div class="cb">S</div><div class="cl">Sheets</div><div class="cs">Later</div></div>
+          <div class="conn off"><div class="cb">H</div><div class="cl">HubSpot</div><div class="cs">Later</div></div>
+          <div class="conn off"><div class="cb">$</div><div class="cl">Accounting</div><div class="cs">Later</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 4: SUB-BRAINS -->
+    <div class="layer" id="layer4">
+      <div class="card">
+        <div class="sec-label">Module 4 &middot; Splits into a small team</div>
+        <div class="fan">
+          <div class="subbrain"><div class="sbi">&#129504;</div><div class="sbt">Supplier A</div></div>
+          <div class="subbrain"><div class="sbi">&#129504;</div><div class="sbt">Supplier B</div></div>
+          <div class="subbrain"><div class="sbi">&#129504;</div><div class="sbt">Supplier C</div></div>
+        </div>
+        <div class="mergewrap"><div class="merge">&#8595; merged into one report</div></div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 5: SCHEDULE -->
+    <div class="layer" id="layer5">
+      <div class="card">
+        <div class="sec-label">Module 5 &middot; Runs on its own</div>
+        <div class="schedrow">
+          <div class="clock">&#9200;</div>
+          <div class="schedtext">
+            <div class="st1"><span class="pulse-dot"></span>Every day at 8:00 AM</div>
+            <div class="st2">Your morning brief, waiting before you sit down</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 6: DASHBOARD -->
+    <div class="layer" id="layer6">
+      <div class="card">
+        <div class="sec-label">Module 6 &middot; Your dashboard, the front door</div>
+        <div class="screen">
+          <div class="sbar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span></div>
+          <div class="stiles">
+            <div class="stile"><div class="stk">Cash</div><div class="stv">RM 42k</div></div>
+            <div class="stile"><div class="stk">Jobs</div><div class="stv">4</div></div>
+          </div>
+        </div>
+        <div class="screen-cap">Everything above, on one screen you click</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Built live &middot; WeGrowPeople AI Workshop</footer>
+</div></body></html>
