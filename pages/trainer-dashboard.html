@@ -46,8 +46,8 @@ code,.mono{font-family:ui-monospace,"SF Mono",Consolas,monospace;}
 a{color:var(--sage-deep);}
 
 
-:root{ --dim:rgba(23,23,15,.58); --coral:#c2643f; }
-.wrap{max-width:1040px;margin:0 auto;padding:34px 22px 80px;}
+:root{ --dim:rgba(23,23,15,.58); --coral:#c2643f; --line:rgba(23,23,15,.09); }
+.wrap{max-width:1120px;margin:0 auto;padding:34px 22px 80px;}
 .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
 h1{font-size:clamp(26px,4vw,36px);margin:0;}
 h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--sage-deep);}
@@ -66,8 +66,12 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
 .tile .v small{font-size:16px;color:var(--dim);font-weight:500;}
 .tile .d{font-size:12.5px;color:var(--dim);margin-top:8px;}
 
-.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;}
-@media(max-width:760px){.cols{grid-template-columns:1fr;}}
+.section-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:30px 0 14px;}
+.section-h h2{font-size:18px;margin:0;}
+.section-h p{color:var(--dim);font-size:13px;margin:0;}
+
+.cols{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;}
+@media(max-width:820px){.cols{grid-template-columns:1fr;}}
 .card{background:var(--cream-deep);border:1px solid rgba(23,23,15,.08);border-radius:22px;padding:22px 24px;}
 .card h2{font-size:17px;margin:0 0 4px;}
 .card .h2sub{color:var(--dim);font-size:13px;margin:0 0 16px;}
@@ -80,14 +84,32 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
 .pill.ready{background:rgba(168,190,153,.5);color:var(--sage-deep);}
 .pill.wait{background:rgba(23,23,15,.06);color:var(--dim);}
 
-.igroup{margin-bottom:20px;}
-.igroup:last-child{margin-bottom:0;}
-.igroup .il{font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--sage-deep);margin:0 0 10px;}
-.brow{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13px;}
-.brow .bl{width:120px;flex:none;color:rgba(23,23,15,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+/* insight grid: separate boxes for each dimension */
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.ibox{background:var(--cream-deep);border:1px solid rgba(23,23,15,.08);border-radius:20px;padding:18px 20px;}
+.ibox .il{font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--sage-deep);margin:0 0 4px;}
+.ibox .isub{font-size:12px;color:var(--dim);margin:0 0 14px;}
+.brow{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px;}
+.brow .bl{width:118px;flex:none;color:rgba(23,23,15,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .btrack{flex:1;height:9px;background:rgba(23,23,15,.07);border-radius:6px;overflow:hidden;}
-.bfill{height:100%;background:var(--butter);border-radius:6px;}
-.brow .bv{width:26px;text-align:right;color:var(--dim);font-variant-numeric:tabular-nums;}
+.bfill{height:100%;border-radius:6px;}
+.brow .bv{width:24px;text-align:right;color:var(--dim);font-variant-numeric:tabular-nums;font-size:12px;}
+
+/* donut */
+.donutwrap{display:flex;align-items:center;gap:16px;}
+.donutwrap svg{flex:none;}
+.dlegend{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;}
+.dlegend .drow{display:flex;align-items:center;gap:8px;font-size:12.5px;}
+.dlegend .dot{width:9px;height:9px;border-radius:3px;flex:none;}
+.dlegend .dlabel{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;color:rgba(23,23,15,.8);}
+.dlegend .dval{color:var(--dim);font-variant-numeric:tabular-nums;font-size:12px;}
+
+/* wow quotes */
+.wowgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.wowcard{border-radius:18px;padding:16px 18px;position:relative;}
+.wowcard .qmark{font-family:var(--font-serif);font-style:italic;font-size:34px;line-height:.6;color:rgba(23,23,15,.18);display:block;margin-bottom:2px;}
+.wowcard .qtext{font-family:var(--font-serif);font-size:16px;line-height:1.4;margin:0 0 10px;}
+.wowcard .qwho{font-size:12px;color:var(--dim);font-weight:600;}
 
 .empty{text-align:center;color:var(--dim);font-size:14px;padding:26px 10px;}
 .errbox{background:rgba(194,100,63,.1);border:1px solid rgba(194,100,63,.3);color:#8a3f22;border-radius:14px;padding:14px 16px;font-size:13.5px;margin-top:16px;}
@@ -130,11 +152,17 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
       <div id="people"></div>
     </div>
     <div class="card">
-      <h2>Room insights</h2>
-      <p class="h2sub">Auto-built from the surveys — your Module 1 prep.</p>
-      <div id="insights"></div>
+      <h2>What makes them go "wow"</h2>
+      <p class="h2sub">Straight from the survey — the one thing they'd want Claude to do for them.</p>
+      <div id="wow"></div>
     </div>
   </div>
+
+  <div class="section-h">
+    <h2>Room insights</h2>
+    <p>Auto-built from the surveys, split out for a quick scan before Module 1.</p>
+  </div>
+  <div class="igrid" id="insights"></div>
 
   <div id="errslot"></div>
 
@@ -154,6 +182,7 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
     return key != null ? String(r[key] == null ? '' : r[key]) : '';
   };
   const digits = s => (s||'').replace(/\D/g,'');
+  const esc = s => (s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
   const THEMES = [
     { label:'Leads / sales / follow-up', kw:/lead|prospect|follow.?up|outreach|cold|pipeline|sale|clos|convert|quote|enquir|inquir/ },
@@ -165,6 +194,9 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
     { label:'Admin / repetitive',        kw:/admin|repetit|manual|copy|paste|organis|organize|\btime\b|busy|overwhelm|schedul|calendar|book/ }
   ];
 
+  // brand palette used consistently across bars + donuts (sage first, since it's the primary brand colour)
+  const PALETTE = ['#5f7355', '#c98b4b', '#7d94c9', '#c2643f', '#a3b899', '#b8965f', '#8a7ba8', '#5f9c8f'];
+
   function tally(items){
     const m = {};
     items.forEach(x => { const k = (x||'').trim(); if(k) m[k] = (m[k]||0)+1; });
@@ -173,10 +205,41 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
   function bars(pairs, max){
     if(!pairs.length) return '<div class="empty" style="padding:8px 0;">—</div>';
     const top = max || Math.max.apply(null, pairs.map(p=>p[1]));
-    return pairs.map(([label,n]) => `<div class="brow">
-      <span class="bl" title="${label}">${label}</span>
-      <span class="btrack"><span class="bfill" style="width:${Math.round(n/top*100)}%;"></span></span>
+    return pairs.map(([label,n], i) => `<div class="brow">
+      <span class="bl" title="${esc(label)}">${esc(label)}</span>
+      <span class="btrack"><span class="bfill" style="width:${Math.round(n/top*100)}%;background:${PALETTE[i%PALETTE.length]};"></span></span>
       <span class="bv">${n}</span></div>`).join('');
+  }
+
+  // real inline-SVG donut chart, no libraries
+  function donut(pairs, opts){
+    opts = opts || {};
+    const size = opts.size || 132, stroke = opts.stroke || 20;
+    const r = (size - stroke) / 2, cx = size/2, cy = size/2, C = 2*Math.PI*r;
+    const total = pairs.reduce((a,[,n])=>a+n, 0);
+    if(!total) return '<div class="empty" style="padding:8px 0;">—</div>';
+    let offset = 0;
+    const segs = pairs.map(([label,n], i) => {
+      const frac = n/total, len = frac*C;
+      const seg = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${PALETTE[i%PALETTE.length]}"
+        stroke-width="${stroke}" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-offset}"
+        transform="rotate(-90 ${cx} ${cy})" stroke-linecap="butt"/>`;
+      offset += len;
+      return seg;
+    }).join('');
+    const legend = pairs.map(([label,n], i) => `<div class="drow">
+        <span class="dot" style="background:${PALETTE[i%PALETTE.length]};"></span>
+        <span class="dlabel" title="${esc(label)}">${esc(label)}</span>
+        <span class="dval">${n}</span></div>`).join('');
+    return `<div class="donutwrap">
+      <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(23,23,15,.06)" stroke-width="${stroke}"/>
+        ${segs}
+        <text x="${cx}" y="${cy-3}" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)" font-family="var(--font-sans)">${total}</text>
+        <text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="9.5" fill="var(--dim)" font-family="var(--font-sans)">people</text>
+      </svg>
+      <div class="dlegend">${legend}</div>
+    </div>`;
   }
 
   function render(surveys, homework){
@@ -201,8 +264,8 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
     // PEOPLE (surveys, ready first)
     const sorted = surveys.slice().sort((a,b)=> (isReady(b)?1:0) - (isReady(a)?1:0));
     let peopleHtml = sorted.map(s => `<div class="person">
-        <div><div class="pn">${g(s,'name') || '(no name)'}</div>
-        <div class="pm">${g(s,'industry') || '—'} · ${g(s,'teamsize') || '—'}</div></div>
+        <div><div class="pn">${esc(g(s,'name')) || '(no name)'}</div>
+        <div class="pm">${esc(g(s,'industry')) || '—'} · ${esc(g(s,'teamsize')) || '—'}</div></div>
         <span class="pill ${isReady(s)?'ready':'wait'}">${isReady(s)?'✓ Ready':'Not yet'}</span>
       </div>`).join('');
     // homework people with no matching survey
@@ -210,22 +273,48 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
     const orphanHw = homework.filter(h => !surveyKeys.has(digits(g(h,'phone'))) && !surveyKeys.has(g(h,'name').trim().toLowerCase()));
     if(orphanHw.length){
       peopleHtml += orphanHw.map(h => `<div class="person">
-        <div><div class="pn">${g(h,'name') || '(no name)'}</div><div class="pm">set up · no survey yet</div></div>
+        <div><div class="pn">${esc(g(h,'name')) || '(no name)'}</div><div class="pm">set up · no survey yet</div></div>
         <span class="pill ready">✓ Ready</span></div>`).join('');
     }
     $('#people').innerHTML = (surveys.length || orphanHw.length) ? peopleHtml
-      : '<div class="empty">No submissions yet.<br>They\'ll appear here as people fill the survey.</div>';
+      : '<div class="empty">No submissions yet.<br>They will appear here as people fill the survey.</div>';
 
-    // INSIGHTS
+    // WOW — pulled straight from the survey's "what would make you go wow" field (goal)
+    const wowTones = ['tone-sage','tone-butter','tone-periwinkle','tone-peach','tone-lilac','tone-blush'];
+    const wowPairs = surveys
+      .map(s => ({ name: g(s,'name') || 'Anonymous', goal: g(s,'goal').trim() }))
+      .filter(w => w.goal);
+    $('#wow').innerHTML = wowPairs.length ? `<div class="wowgrid">${
+      wowPairs.map((w,i) => `<div class="wowcard ${wowTones[i%wowTones.length]}">
+        <span class="qmark">"</span>
+        <p class="qtext">${esc(w.goal)}</p>
+        <div class="qwho">— ${esc(w.name)}</div>
+      </div>`).join('')
+    }</div>` : '<div class="empty">Their "wow" answers will show up here once surveys come in.</div>';
+
+    // INSIGHTS — separated into their own boxes, each with a real chart
     const industries = tally(surveys.map(s => g(s,'industry')));
     const teams = tally(surveys.map(s => g(s,'teamsize')));
     const text = surveys.map(s => (g(s,'challenge')+' '+g(s,'goal')).toLowerCase());
     const themes = THEMES.map(t => [t.label, text.filter(x => t.kw.test(x)).length]).filter(p=>p[1]>0).sort((a,b)=>b[1]-a[1]);
+
     $('#insights').innerHTML = surveys.length ? `
-      <div class="igroup"><div class="il">Top pain points (feeds Module 2)</div>${bars(themes)}</div>
-      <div class="igroup"><div class="il">By industry</div>${bars(industries)}</div>
-      <div class="igroup"><div class="il">By team size</div>${bars(teams)}</div>`
-      : '<div class="empty">Insights will build automatically once surveys come in.</div>';
+      <div class="ibox">
+        <div class="il">Top pain points</div>
+        <p class="isub">Feeds Module 2's skill suggestions</p>
+        ${bars(themes)}
+      </div>
+      <div class="ibox">
+        <div class="il">By industry</div>
+        <p class="isub">${industries.length} industr${industries.length===1?'y':'ies'} in the room</p>
+        ${donut(industries)}
+      </div>
+      <div class="ibox">
+        <div class="il">By team size</div>
+        <p class="isub">${teams.length} size band${teams.length===1?'':'s'}</p>
+        ${donut(teams)}
+      </div>`
+      : '<div class="empty" style="grid-column:1/-1;">Insights will build automatically once surveys come in.</div>';
   }
 
   const KEYSTORE = 'wgp_dash_key';
