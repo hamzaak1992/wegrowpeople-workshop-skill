@@ -180,6 +180,265 @@ The survey data lives on a spreadsheet facilitators can see, but you (running in
 
 *Note: the day starts at 10:30am (see curriculum.md). The first 15 minutes are welcome, room poll and the Claude tour. Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
 
+### Your AI Brain Map — a growing visual, built after every module
+
+**Alongside everything else today, build one evolving illustrated page: `~/Desktop/my-ai/brain-map.html`.** Six modules of "here's what you built" spoken aloud is a lot to hold in your head — this gives them a picture instead. It shows the same idea the whole day: their AI Brain, growing new abilities module by module, ending in the dashboard as its front door.
+
+**How it works, in one sentence: create it once at the end of Module 1 from the exact template below, then at the end of every module after that, edit ONLY that module's `<!-- LAYERn:START -->` … `<!-- LAYERn:END -->` block and reopen the file.** Never touch a layer that isn't this module's — the whole point of the fixed markers is that five-sixths of the file never changes, so nothing you built earlier can break.
+
+**At the end of Module 1**, create the file with this exact HTML, CSS and structure verbatim — do not redesign it, do not change the CSS, only fill in the bracketed placeholders inside LAYER1 with this participant's real Module 1 answers:
+
+```html
+<!doctype html><html><head><meta charset="utf-8"><title>Your AI Brain</title>
+<style>
+:root{
+  --cream:#f8f4ea; --cream-deep:#f1ead9; --sage:#a3b899; --sage-soft:#c8d5c0; --sage-deep:#5f7355;
+  --butter:#f4d77d; --ink:#17170f; --periwinkle:#bfd0f5; --peach:#f5cfa8;
+  --coral:#c2643f; --dim:#6b6b5e; --line:#e6e1d4;
+  --font: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);line-height:1.5;}
+.wrap{max-width:640px;margin:0 auto;padding:34px 20px 90px;}
+.top{text-align:center;margin-bottom:8px;}
+.top .eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep);}
+.top h1{font-size:26px;margin:8px 0 4px;}
+.top .sub{color:var(--dim);font-size:13.5px;margin:0;}
+
+.progress{display:flex;justify-content:center;gap:7px;margin:18px 0 34px;}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s;}
+.dot.done{background:var(--sage-deep);}
+.dot.current{background:var(--butter);box-shadow:0 0 0 3px rgba(244,215,125,.4);}
+
+.pipeline{position:relative;}
+.pipeline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:repeating-linear-gradient(to bottom, var(--sage) 0 6px, transparent 6px 12px);
+  transform:translateX(-50%);z-index:0;}
+
+.layer{position:relative;z-index:1;margin-bottom:6px;}
+.node-wrap{display:flex;justify-content:center;margin-bottom:6px;}
+.arrow{display:flex;justify-content:center;color:var(--sage-deep);font-size:18px;margin:0 0 6px;opacity:.7;}
+
+.brain{width:180px;height:180px;border-radius:50%;margin:0 auto;
+  background:radial-gradient(circle at 35% 30%, #fff 0%, var(--sage-soft) 30%, var(--sage) 70%, var(--sage-deep) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  box-shadow:0 0 0 8px rgba(163,184,153,.18), 0 10px 30px rgba(95,115,85,.25);
+  animation:pulse 3.2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 8px rgba(163,184,153,.18), 0 10px 30px rgba(95,115,85,.25);}
+  50%{box-shadow:0 0 0 14px rgba(163,184,153,.10), 0 10px 34px rgba(95,115,85,.3);}}
+.brain .bicon{font-size:30px;margin-bottom:4px;}
+.brain .bname{font-weight:700;font-size:15px;color:var(--ink);max-width:130px;}
+.brain .btag{font-size:10.5px;color:var(--ink);opacity:.65;margin-top:1px;}
+
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:14px;}
+.tag{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;}
+.tag .tk{color:var(--sage-deep);font-weight:700;text-transform:uppercase;font-size:9px;letter-spacing:.04em;display:block;margin-bottom:1px;}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 auto;max-width:480px;}
+.card.locked{background:var(--cream-deep);border-style:dashed;text-align:center;color:var(--dim);font-size:13px;padding:24px 20px;}
+.card.locked .lk{font-size:22px;margin-bottom:6px;display:block;}
+.card.locked .lt{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:3px;}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-deep);text-align:center;margin-bottom:10px;}
+
+.skillrow{display:flex;flex-direction:column;gap:8px;}
+.skill{display:flex;align-items:center;gap:10px;background:var(--cream-deep);border-radius:12px;padding:10px 13px;}
+.skill .si{width:30px;height:30px;border-radius:9px;background:var(--butter);display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;}
+.skill .st{font-weight:700;font-size:13.5px;}
+.skill .sd{font-size:11.5px;color:var(--dim);}
+
+.connrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.conn{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.conn .cb{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;color:#fff;}
+.conn.off .cb{background:var(--line);color:var(--dim);border:2px dashed #c9c3b2;}
+.conn .cl{font-size:10px;font-weight:600;text-align:center;color:var(--dim);}
+.conn.on .cl{color:var(--ink);}
+.conn .cs{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:1px 6px;border-radius:999px;margin-top:1px;}
+.conn.on .cs{background:rgba(163,184,153,.35);color:var(--sage-deep);}
+.conn.off .cs{background:transparent;color:#a39d8c;}
+
+.fan{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.subbrain{background:var(--periwinkle);border-radius:14px;padding:10px 12px;text-align:center;min-width:110px;}
+.subbrain .sbi{font-size:18px;}
+.subbrain .sbt{font-size:11.5px;font-weight:700;margin-top:2px;}
+.merge{text-align:center;background:var(--peach);border-radius:12px;padding:9px 16px;font-size:12.5px;font-weight:700;display:inline-block;margin:0 auto;}
+.mergewrap{display:flex;justify-content:center;}
+
+.schedrow{display:flex;align-items:center;gap:14px;justify-content:center;}
+.clock{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;}
+.schedtext .st1{font-weight:700;font-size:14px;}
+.schedtext .st2{font-size:12px;color:var(--dim);}
+.pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sage-deep);margin-right:5px;animation:blink 1.6s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+.screen{background:var(--ink);border-radius:14px;padding:14px 16px;max-width:280px;margin:0 auto;}
+.screen .sbar{display:flex;gap:4px;margin-bottom:10px;}
+.screen .sdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);}
+.screen .stiles{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.screen .stile{background:rgba(255,255,255,.08);border-radius:8px;padding:8px 9px;}
+.screen .stk{font-size:8px;color:rgba(248,244,234,.5);text-transform:uppercase;letter-spacing:.03em;}
+.screen .stv{font-size:14px;font-weight:700;color:#fff;margin-top:2px;}
+.screen-cap{text-align:center;font-size:11.5px;color:var(--dim);margin-top:8px;}
+
+footer{text-align:center;margin-top:40px;font-size:11.5px;color:var(--dim);}
+</style></head>
+<body><div class="wrap">
+
+  <div class="top">
+    <div class="eyebrow">WeGrowPeople &middot; Today's Build</div>
+    <h1>Your AI Brain</h1>
+    <p class="sub">Watch it grow through the day. This page updates after every module.</p>
+  </div>
+
+  <div class="progress" id="progress">
+    <span class="dot done"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+
+  <div class="pipeline">
+
+    <!-- LAYER1:START -->
+    <div class="layer" id="layer1">
+      <div class="node-wrap">
+        <div class="brain">
+          <div class="bicon">&#129504;</div>
+          <div class="bname">[BUSINESS NAME]</div>
+          <div class="btag">Your AI Brain</div>
+        </div>
+      </div>
+      <div class="tags">
+        <div class="tag"><span class="tk">Role</span>[ROLE / TEAM SIZE]</div>
+        <div class="tag"><span class="tk">Tools</span>[THEIR TOOLS]</div>
+        <div class="tag"><span class="tk">Biggest job</span>[THEIR REPEATED TASK]</div>
+        <div class="tag"><span class="tk">Tone</span>[HOW THEY LIKE THINGS WRITTEN]</div>
+      </div>
+    </div>
+    <!-- LAYER1:END -->
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER2:START -->
+    <div class="layer" id="layer2">
+      <div class="card locked"><span class="lk">&#9997;&#65039;</span><span class="lt">Skills</span>Unlocks in Module 2 &mdash; teaches your brain to do a real recurring job for you.</div>
+    </div>
+    <!-- LAYER2:END -->
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER3:START -->
+    <div class="layer" id="layer3">
+      <div class="card locked"><span class="lk">&#128279;</span><span class="lt">Connectors</span>Unlocks in Module 3 &mdash; plugs your brain into your real inbox and tools.</div>
+    </div>
+    <!-- LAYER3:END -->
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER4:START -->
+    <div class="layer" id="layer4">
+      <div class="card locked"><span class="lk">&#129504;&#129504;&#129504;</span><span class="lt">Sub-brains</span>Unlocks in Module 4 &mdash; splits into a small team working in parallel.</div>
+    </div>
+    <!-- LAYER4:END -->
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER5:START -->
+    <div class="layer" id="layer5">
+      <div class="card locked"><span class="lk">&#9200;</span><span class="lt">Schedule</span>Unlocks in Module 5 &mdash; your brain starts running on its own, on a timer.</div>
+    </div>
+    <!-- LAYER5:END -->
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER6:START -->
+    <div class="layer" id="layer6">
+      <div class="card locked"><span class="lk">&#128202;</span><span class="lt">Dashboard</span>Unlocks in Module 6 &mdash; the front door to everything above, on one screen.</div>
+    </div>
+    <!-- LAYER6:END -->
+
+  </div>
+
+  <footer>Built live &middot; WeGrowPeople AI Workshop</footer>
+</div></body></html>
+```
+
+Open it in their browser once it's created. Every module after this only edits its own marked block and reopens the same file — never regenerate the whole page.
+
+**Module 2 update — fill LAYER2, and mark progress dot 2 as done:**
+Replace the LAYER2 locked card with:
+```html
+<div class="card">
+  <div class="sec-label">Module 2 &middot; Skills make it smarter</div>
+  <div class="skillrow">
+    <div class="skill"><div class="si">[ONE EMOJI FOR THEIR SKILL]</div><div><div class="st">[THEIR SKILL'S REAL NAME]</div><div class="sd">[WHAT IT DOES, ONE SHORT LINE]</div></div></div>
+  </div>
+</div>
+```
+In `.progress`, change the 2nd dot's class to `dot done` (or `dot current` if you prefer to show exactly where they are — pick one convention and use it consistently every module).
+
+**Module 3 update — fill LAYER3:** Replace the locked card with a `.card` containing a `.connrow` of `.conn` badges — ONE badge per tool that came up in Module 1/3, not a fixed list. Give each a one or two-letter monogram and a colour (coral `#c2643f` for Outlook, blue `#3a6ea5` for Microsoft 365, green `#5f9c78` for Gmail/Sheets, orange `#e8843a` for HubSpot, teal `#4f8f8a` for generic accounting, periwinkle `#7d94c9` for Calendar). **The tool they actually connected live gets `class="conn on"` with `<div class="cs">Live</div>`; every other realistic tool for their business gets `class="conn off"` with `<div class="cs">Later</div>` — this is the "here's the fuller picture" menu, never claim one that isn't actually connected as Live.** Example shape:
+```html
+<div class="card">
+  <div class="sec-label">Module 3 &middot; Connected to your real tools</div>
+  <div class="connrow">
+    <div class="conn on"><div class="cb" style="background:#c2643f;">O</div><div class="cl">Outlook</div><div class="cs">Live</div></div>
+    <div class="conn off"><div class="cb">S</div><div class="cl">Sheets</div><div class="cs">Later</div></div>
+    <div class="conn off"><div class="cb">H</div><div class="cl">HubSpot</div><div class="cs">Later</div></div>
+  </div>
+</div>
+```
+
+**Module 4 update — fill LAYER4:** Replace the locked card with a `.card` containing a `.fan` of 2-4 `.subbrain` nodes (one per real sub-task they ran, using their real task names, not "Task A"), then a `.mergewrap` > `.merge` line naming what they got back. Example shape:
+```html
+<div class="card">
+  <div class="sec-label">Module 4 &middot; Splits into a small team</div>
+  <div class="fan">
+    <div class="subbrain"><div class="sbi">&#129504;</div><div class="sbt">[REAL SUB-TASK 1]</div></div>
+    <div class="subbrain"><div class="sbi">&#129504;</div><div class="sbt">[REAL SUB-TASK 2]</div></div>
+  </div>
+  <div class="mergewrap"><div class="merge">&#8595; [WHAT THEY GOT BACK, ONE LINE]</div></div>
+</div>
+```
+
+**Module 5 update — fill LAYER5:** Replace the locked card with a `.card` containing `.schedrow` > `.clock` + `.schedtext`, using their real chosen time from Q3. Example shape:
+```html
+<div class="card">
+  <div class="sec-label">Module 5 &middot; Runs on its own</div>
+  <div class="schedrow">
+    <div class="clock">&#9200;</div>
+    <div class="schedtext">
+      <div class="st1"><span class="pulse-dot"></span>Every day at [THEIR CHOSEN TIME]</div>
+      <div class="st2">[THEIR MORNING QUESTION FROM Q1], waiting before you sit down</div>
+    </div>
+  </div>
+</div>
+```
+**If they only set up the phone-reminder tier, not a real scheduled task,** the second line must say so honestly, e.g. "Reminder set on your phone &middot; you'll ask for it each morning" — never show the pulsing "runs on its own" badge for something that isn't automated.
+
+**Module 6 update — fill LAYER6, and mark progress dot 6 as done (the map is now complete):** Replace the locked card with a `.card` containing `.screen` — a tiny mock of their actual dashboard, with real tile labels and numbers/values from what they built (2-4 tiles is plenty, it's a preview not a copy). Example shape:
+```html
+<div class="card">
+  <div class="sec-label">Module 6 &middot; Your dashboard, the front door</div>
+  <div class="screen">
+    <div class="sbar"><span class="sdot"></span><span class="sdot"></span><span class="sdot"></span></div>
+    <div class="stiles">
+      <div class="stile"><div class="stk">[TILE 1 LABEL]</div><div class="stv">[TILE 1 VALUE]</div></div>
+      <div class="stile"><div class="stk">[TILE 2 LABEL]</div><div class="stv">[TILE 2 VALUE]</div></div>
+    </div>
+  </div>
+  <div class="screen-cap">Everything above, on one screen you click</div>
+</div>
+```
+After this update, tell them plainly: "that page in your my-ai folder now shows everything you built today, start to finish — worth a screenshot." Add `brain-map.html — Your AI Brain, illustrated` to the Finale folder tour list.
+
+**Rules that apply to every update, no exceptions:**
+- Never touch a layer's block that isn't this module's — find the exact `<!-- LAYERn:START -->` / `<!-- LAYERn:END -->` pair and replace only what's between them.
+- Never invent data. If a module produced nothing usable (they skipped ahead, a connector failed, etc.), leave that layer's locked card in place rather than filling it with placeholder content — an honest "not yet" beats a fake "done."
+- Reopen the file in their browser after every update so they actually see it change — don't just save it silently.
+- Keep every class name and the overall HTML structure exactly as given; only the bracketed content and the specific example shapes above change.
+
+---
+
 ## Module 1 — Your AI Brain (`CLAUDE.md`) — 10 min
 
 **Open with this header card:**
@@ -249,6 +508,8 @@ no CLAUDE.md. What happens?
 ```
 Correct answer: B. Explain why: nothing persists between sessions unless it's saved to a real file — that's the whole reason Module 1 exists.
 
+**Create the Brain Map now, before this gate.** Build `~/Desktop/my-ai/brain-map.html` from the template in "Your AI Brain Map" (near the top of this document), fill LAYER1 with THIS participant's real answers, and open it in their browser.
+
 **Gate:** "That's your AI Brain saved. When you're ready to build something with it, type module2."
 
 ---
@@ -313,6 +574,8 @@ What are the 3 parts of a skill?
 Correct answer: A. Explain why: naming the anatomy is what lets them build their OWN skills later, without needing you in the room.
 
 Unlock: Gift 1. Append the full content from the "Gift 1" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — create the file with this as its first section (title it "Gift 1 — 10 Prompts That Get Things Done"). Never just say a gift is "unlocked" without actually writing the file — an unlock that isn't a real file is a broken promise. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
+
+**Update the Brain Map now, before this gate.** Fill LAYER2 in `brain-map.html` with their real skill (see "Your AI Brain Map"), mark progress dot 2, and reopen the file.
 
 **Gate:** "That skill is working and saved. When you're ready to connect your tools, type module3."
 
@@ -385,6 +648,8 @@ Should you build a custom MCP for it too?
   C) Doesn't matter either way
 ```
 Correct answer: B. Explain why: a Connector is a plug that already exists; building your own is only for when no plug exists yet.
+
+**Update the Brain Map now, before this gate.** Fill LAYER3 in `brain-map.html` with their real connectors — the one that's live, plus realistic ones marked "Later" (see "Your AI Brain Map") — mark progress dot 3, and reopen the file.
 
 **Gate:** "Your tool is connected. When you're ready to see me handle a few things at once, type module4."
 
@@ -471,6 +736,8 @@ things at once instead of one at a time?
 Correct answer: B. Explain why: this is the shift from "I have an assistant" to "I have a small team" — the whole point of Module 4.
 
 Unlock: Gift 2. Append the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — add it as a new section below Gift 1 (title it "Gift 2 — 5 Delegation Workflows"), keeping what's already in the file. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
+
+**Update the Brain Map now, before this gate.** Fill LAYER4 in `brain-map.html` with their real sub-tasks and merged result (see "Your AI Brain Map"), mark progress dot 4, and reopen the file.
 
 **Gate:** "That's saved. Type module5 when you're back and ready — or if there's no break scheduled, go ahead now."
 
@@ -585,6 +852,8 @@ just asking a fresh question every day?
   C) Because it only works one time
 ```
 Correct answer: A. Explain why: a saved skill is repeatable on demand — a one-off question is not.
+
+**Update the Brain Map now, before this gate.** Fill LAYER5 in `brain-map.html` with their real schedule — or the honest phone-reminder wording if that's what they set up (see "Your AI Brain Map") — mark progress dot 5, and reopen the file.
 
 **Gate:** "Your morning brief is saved. When you're ready to see it all pulled together on one screen, type module6."
 
@@ -755,6 +1024,8 @@ Unlock: Gift 3. Append the full content from the "Gift 3" section of the appendi
    First 3 posts win a gift!
 ═══════════════════════════════
 ```
+
+**Update the Brain Map now, before this gate — this is the last layer.** Fill LAYER6 in `brain-map.html` with a small preview of their real dashboard tiles (see "Your AI Brain Map"), mark progress dot 6, reopen the file, and tell them it now shows their whole day start to finish.
 
 **Gate:** "That's your dashboard done — the big one. Type finale to wrap up and see everything you built today."
 
