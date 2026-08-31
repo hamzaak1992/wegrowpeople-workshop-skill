@@ -918,6 +918,37 @@ TOTAL: ~RM[x] one-off + RM[x]/month
 You did it before today was out. No code.
 ```
 
+**Last hands-on moment of the day — Claude in Chrome, on a page that isn't yours.** Everything so far has been Claude working on files and connected tools. This shows the other half: Claude working on *any website you're looking at*, including the hundreds of tools that will never have a connector. Only run this if they installed the Chrome extension in their homework; if they didn't, describe it in two sentences and move on rather than making them install anything now.
+
+Send them to this demo page — a fake enquiry list for a fake interiors company:
+
+```
+https://hamzaak1992.github.io/wegrowpeople-workshop-skill/pages/demo-leads.html
+```
+
+Say plainly what it is: made-up leads, on a website they have no connector for and no login to, exactly like a supplier portal or an industry directory they might actually deal with.
+
+**Then have them open the Claude side panel on that page and ask for this, in their own words:**
+
+```
+Pull every lead on this page into a table with name, company, email, project and value.
+Sort it by value, highest first, and tell me which three I should call today and why.
+```
+
+That is the moment worth waiting for: it reads a page it has never seen, that nobody connected, and hands back something useful.
+
+**Then the Google Sheet, and be straight with them about how it works.** They will ask "can it just put this in a Sheet for me?" The honest answer is yes, two ways, and they should know the difference because it is the difference between a demo and something they can rely on:
+- **The reliable way:** ask it for the table, then paste into a Sheet. Two seconds, works every time. For a one-off pull, this is genuinely the right answer and you should say so rather than reaching for the fancier option.
+- **The impressive way:** ask it to open Google Sheets and build the sheet itself. It can do this — it clicks, types and navigates using their own logged-in browser — but it is typing into a live web app cell by cell, so it is slower and more likely to need a nudge. **Set that expectation before you run it, not after.** Twelve rows is about the right size to try live; do not attempt it with hundreds.
+
+If you run the impressive version, the prompt is:
+```
+Open Google Sheets, make a new spreadsheet called Nexa Leads, and put this table in it.
+```
+They will be asked to approve actions as it goes — that is the extension working as designed, not a fault. Narrate it once so nobody panics: "it's asking permission before it touches anything, which is exactly what you want."
+
+**Land the point, then stop.** The line that matters: *"The connector you set up this morning is for the tools you use every day. This is for everything else — any website, any portal, anything with no connector at all. Between the two, there's almost nothing you can't reach."* Then close the day. Do not let this turn into a second workshop; it is a five-minute taste, deliberately at the end because it is the thing they will go home and play with.
+
 **Congratulate them properly — warm, and specific to THIS person.** Name the actual distance they covered today: "you walked in this morning having never written a skill, and you’re leaving with [count their ACTUAL skills — usually three: their Module 2 skill, daily-brief, and update-dashboard], and a dashboard that refreshes itself every morning." Say the automated version only if their scheduled task is actually running; if their plan did not offer Scheduled Tasks, say "a dashboard you can update by just asking" instead — never hand someone automation they do not have.) Generic praise is worth nothing; praise that proves you were paying attention is worth a lot. Use their name, with any honorific exactly as they gave it. (Don't mention certificates or badges — that's handled separately, outside this session.)
 
 **Then the most important 60 seconds of the day — make sure they leave understanding this was the beginning, not the whole thing.** This is the difference between someone who uses this for a week and someone who builds on it for a year. People walk out of trainings assuming what they built IS what they got — that they've now "done the AI training." They haven't; they've just finished the setup that makes everything after it fast.
