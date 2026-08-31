@@ -408,6 +408,8 @@ Rule: **official connector if one exists (point-and-click, no code). Build a cus
 - **If the sign-in gets blocked or asks for an administrator to approve it, that's a company IT policy, not something they did wrong** — say that out loud immediately, because people assume they broke it. Lots of corporate Microsoft 365 accounts block third-party apps until IT allows them. Don't fight it and don't burn module time on it: note it as something their IT can switch on later, connect a different tool they *can* connect (a personal calendar, Sheets, Drive), and keep moving.
 - **If there's no usable Outlook connection at all,** say so plainly and put it straight into their `mcp-plan.md` as tonight's homework — Microsoft's email API is well documented, so it's a realistic thing to build at home rather than a dead end. They lose nothing today: every later module still works, the morning brief just asks them for their numbers instead of reading the inbox.
 
+**Make the case for connecting email before you connect it — don't just do it silently.** Say why in one line they will feel: "if we connect your email, Claude can read what came in overnight and, later today, send you a summary every morning without you asking. That is the difference between a tool you have to remember to open and one that just turns up in your inbox." Connecting the inbox is what makes the Module 5 morning brief actually land somewhere they will see it, so frame it as the setup for that payoff, not as admin.
+
 From their tool list in Module 1, walk them through connecting ONE high-value tool live — whichever they're actually on. Give the actual click-path, don't just say "connect it" and assume they know how:
 
 1. **Ask first, don't assume:** "Which do you actually use for work email — Gmail, or Outlook/Microsoft?" Roughly half a room of Malaysian business owners is on Microsoft 365, so treat whichever they say as the normal answer and connect THAT one. Never connect Gmail by default because it's the easier path.
@@ -636,6 +638,19 @@ Three things to say plainly when you set this up:
      If it is past 2pm when you run this, say so at the top and only include what still matters today.
      ```
   6. **Then tell them what to expect:** "Tomorrow morning it runs on its own — the brief’s waiting for you before you even sit down." That anticipation is the moment automation clicks.
+
+  **The email brief, as a simple sequence to say out loud** — this is the whole thing in five plain steps, so you can talk them through it without them feeling lost:
+  1. In the task Instructions, the last line already says *email this brief to me at [their address]* — so the task both writes the brief AND sends it. Confirm their address is spelled right; it only ever goes to them.
+  2. Set Frequency to **Daily** at their time.
+  3. Turn **"Only on this computer" ON** (this is the normal version — it runs on their laptop).
+  4. **Save, then Run now.** On this first run it asks permission to send an email — choose **always allow**. That one approval is what lets every future morning send itself.
+  5. Check their inbox. The brief should be sitting there. That is the proof it works.
+
+  **"Can it send even when my laptop is shut?" — yes, by moving it to the cloud, with one real trade-off. Offer this to anyone who asks, and to anyone who travels or closes their laptop at night.** The normal task above runs on their computer, so a shut laptop means it waits until they open it. There is a cloud version that runs on Anthropic's servers instead and fires on time no matter what their laptop is doing. The catch is simple and worth stating plainly: **the cloud version cannot open files on their computer**, so it cannot read their AI Brain file the way the normal one does. It CAN still read their connected email and calendar and send the brief, because those are connections, not files.
+
+  So the fix is one change to the Instructions: instead of *"Read my AI Brain at C:\...\CLAUDE.md"*, paste the few lines of context the brief actually needs straight into the task — their name, what their business does, and their tone — then the same checklist. Everything the brief reads live (inbox, calendar) keeps working; the only thing you swap out is the file it can't reach.
+
+  To turn a task into the cloud version: **turn "Only on this computer" OFF**, and make sure the Instructions carry their context inline rather than pointing at a file. Say the trade-off in one honest line: "this one runs even with your laptop shut, but it works off what we type into it plus your connected email and calendar, not the full brain file on your desktop." For most people the on-laptop version is the right default and the catch-up run covers the shut-lid case; reach for the cloud version when someone specifically needs it to land at a fixed time every day regardless of their machine.
 
   **Worked example — what a good filled-in prompt actually looks like.** This is for an Outlook user running a 6-person renovation firm who said their morning question was "are we on track this week and is anyone stuck." Note that every line traces back to something they told you, and the tool names match what they actually connected:
 
