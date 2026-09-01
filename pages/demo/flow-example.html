@@ -1,0 +1,123 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Your AI System</title>
+<style>
+:root{
+  --cream:#f8f4ea; --ink:#1c1b16; --dim:#6f6b5e; --line:#e7e2d5; --card:#fffdf8;
+  --c1:#5f7355; --c1b:#e4ecdd;
+  --c2:#c99a1e; --c2b:#faf0cf;
+  --c3:#5b74c4; --c3b:#e2e8fb;
+  --c4:#8a6bd1; --c4b:#ece3fb;
+  --c5:#c2703e; --c5b:#f8e3d1;
+  --c6:#c05a86; --c6b:#f8dbe8;
+  --font:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);line-height:1.5;}
+.wrap{max-width:620px;margin:0 auto;padding:30px 18px 70px;}
+.head{text-align:center;margin-bottom:8px;}
+.eye{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--c1);}
+h1{font-size:26px;margin:8px 0 4px;}
+.head p{color:var(--dim);font-size:14px;margin:0;}
+.prog{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:6px 8px 6px 14px;font-size:12.5px;font-weight:700;color:var(--dim);}
+.prog b{color:var(--ink);}
+.pdots{display:flex;gap:5px;}
+.pd{width:9px;height:9px;border-radius:50%;background:var(--line);}
+.pd.on{background:var(--c1);}
+
+.flow{margin-top:26px;position:relative;}
+.step{position:relative;padding-left:6px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card.todo{opacity:.78;border-style:dashed;}
+.bar{padding:12px 16px;display:flex;align-items:center;gap:11px;color:#fff;}
+.numico{display:flex;align-items:center;gap:8px;}
+.ico{font-size:20px;line-height:1;}
+.bar .n{font-size:11.5px;font-weight:800;opacity:.9;letter-spacing:.05em;}
+.bar h3{font-size:16px;margin:0;font-weight:800;flex:1;}
+.chk{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:13px;}
+.body{padding:13px 16px 15px;}
+.what{font-size:13.5px;color:var(--dim);margin-bottom:9px;}
+.mine{font-size:13.5px;background:var(--tint);border-radius:10px;padding:10px 12px;color:var(--ink);}
+.mine .ml{display:block;font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px;color:var(--accent);}
+.mine b{font-weight:700;}
+.soon{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  background:var(--tint);border-radius:999px;padding:3px 10px;margin-bottom:8px;}
+.link{display:flex;justify-content:center;color:var(--line);font-size:20px;line-height:1;margin:5px 0;}
+
+.s1 .bar{background:var(--c1);} .s1{--tint:var(--c1b);--accent:var(--c1);}
+.s2 .bar{background:var(--c2);} .s2{--tint:var(--c2b);--accent:var(--c2);}
+.s3 .bar{background:var(--c3);} .s3{--tint:var(--c3b);--accent:var(--c3);}
+.s4 .bar{background:var(--c4);} .s4{--tint:var(--c4b);--accent:var(--c4);}
+.s5 .bar{background:var(--c5);} .s5{--tint:var(--c5b);--accent:var(--c5);}
+.s6 .bar{background:var(--c6);} .s6{--tint:var(--c6b);--accent:var(--c6);}
+.card.todo .bar{background:var(--card);color:var(--accent);border-bottom:1px dashed var(--line);}
+.card.todo .chk{display:none;}
+</style></head>
+<body><div class="wrap">
+
+<div class="head">
+  <div class="eye">WeGrowPeople &middot; Today's Build</div>
+  <h1>Aisha's AI System</h1>
+  <p>Everything you're building today, in order. It fills in as you go.</p>
+  <div class="prog"><span><b>3</b> of 6 done</span>
+    <span class="pdots"><i class="pd on"></i><i class="pd on"></i><i class="pd on"></i><i class="pd"></i><i class="pd"></i><i class="pd"></i></span>
+  </div>
+</div>
+
+<div class="flow">
+
+  <div class="step"><div class="card s1">
+    <div class="bar"><span class="numico"><span class="ico">🧠</span><span class="n">STEP 1</span></span><h3>Your AI Brain</h3><span class="chk">✓</span></div>
+    <div class="body">
+      <div class="what">You taught Claude who you are, once.</div>
+      <div class="mine"><span class="ml">What you built</span><b>Aisha</b>, owner of a 6-person renovation firm. Outlook + Sheets. Direct, friendly tone.</div>
+    </div>
+  </div></div>
+  <div class="link">↓</div>
+
+  <div class="step"><div class="card s2">
+    <div class="bar"><span class="numico"><span class="ico">🛠️</span><span class="n">STEP 2</span></span><h3>Your first skill</h3><span class="chk">✓</span></div>
+    <div class="body">
+      <div class="what">You taught it a job you repeat, done the same way every time.</div>
+      <div class="mine"><span class="ml">What you built</span><b>Site Update Writer</b> — turns your rough voice notes into a clean client update.</div>
+    </div>
+  </div></div>
+  <div class="link">↓</div>
+
+  <div class="step"><div class="card s3">
+    <div class="bar"><span class="numico"><span class="ico">🔌</span><span class="n">STEP 3</span></span><h3>Connect your tools</h3><span class="chk">✓</span></div>
+    <div class="body">
+      <div class="what">You plugged it into your real inbox and spreadsheet.</div>
+      <div class="mine"><span class="ml">What you built</span><b>Outlook + Google Sheets</b> connected live. HubSpot noted for later.</div>
+    </div>
+  </div></div>
+  <div class="link">↓</div>
+
+  <div class="step"><div class="card s4 todo">
+    <div class="bar"><span class="numico"><span class="ico">👥</span><span class="n">STEP 4</span></span><h3>Several jobs at once</h3></div>
+    <div class="body">
+      <span class="soon">Coming up next</span>
+      <div class="what">It splits into a small team, works on several things in parallel, and hands you back one answer.</div>
+    </div>
+  </div></div>
+  <div class="link">↓</div>
+
+  <div class="step"><div class="card s5 todo">
+    <div class="bar"><span class="numico"><span class="ico">⏰</span><span class="n">STEP 5</span></span><h3>Your morning brief</h3></div>
+    <div class="body">
+      <span class="soon">Later today</span>
+      <div class="what">A short brief, emailed to you every morning on a schedule, without being asked.</div>
+    </div>
+  </div></div>
+  <div class="link">↓</div>
+
+  <div class="step"><div class="card s6 todo">
+    <div class="bar"><span class="numico"><span class="ico">📊</span><span class="n">STEP 6</span></span><h3>Your dashboard</h3></div>
+    <div class="body">
+      <span class="soon">The finale</span>
+      <div class="what">One screen at the front of everything above, built from your real numbers.</div>
+    </div>
+  </div></div>
+
+</div>
+
+</div></body></html>
