@@ -24,24 +24,29 @@ h1{font-size:26px;margin:8px 0 4px;}
 .pd{width:9px;height:9px;border-radius:50%;background:var(--line);}
 .pd.on{background:var(--c1);}
 
-.flow{margin-top:26px;position:relative;}
-.step{position:relative;padding-left:6px;}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03);}
-.card.todo{opacity:.78;border-style:dashed;}
-.bar{padding:12px 16px;display:flex;align-items:center;gap:11px;color:#fff;}
-.numico{display:flex;align-items:center;gap:8px;}
-.ico{font-size:20px;line-height:1;}
-.bar .n{font-size:11.5px;font-weight:800;opacity:.9;letter-spacing:.05em;}
-.bar h3{font-size:16px;margin:0;font-weight:800;flex:1;}
-.chk{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:13px;}
+.flow{margin-top:26px;}
+.step{position:relative;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 2px 6px rgba(28,27,22,.05);}
+.card.todo{opacity:.82;border-style:dashed;}
+.bar{position:relative;padding:14px 16px;display:flex;align-items:center;gap:12px;color:#fff;overflow:hidden;}
+.watermark{position:absolute;right:-14px;top:50%;transform:translateY(-50%);opacity:.16;pointer-events:none;}
+.watermark svg{width:88px;height:88px;display:block;}
+.badge{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;flex:none;}
+.badge svg{width:24px;height:24px;display:block;}
+.bt{flex:1;position:relative;z-index:1;}
+.bt .n{font-size:11px;font-weight:800;opacity:.9;letter-spacing:.06em;}
+.bt h3{font-size:16px;margin:1px 0 0;font-weight:800;}
+.chk{position:relative;z-index:1;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.32);display:flex;align-items:center;justify-content:center;flex:none;}
+.chk svg{width:15px;height:15px;}
 .body{padding:13px 16px 15px;}
 .what{font-size:13.5px;color:var(--dim);margin-bottom:9px;}
 .mine{font-size:13.5px;background:var(--tint);border-radius:10px;padding:10px 12px;color:var(--ink);}
 .mine .ml{display:block;font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px;color:var(--accent);}
 .mine b{font-weight:700;}
 .soon{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
-  background:var(--tint);border-radius:999px;padding:3px 10px;margin-bottom:8px;}
-.link{display:flex;justify-content:center;color:var(--line);font-size:20px;line-height:1;margin:5px 0;}
+  background:var(--tint);border-radius:999px;padding:3px 11px;margin-bottom:8px;}
+.link{display:flex;justify-content:center;align-items:center;height:26px;color:var(--line);}
+.link svg{width:18px;height:18px;}
 
 .s1 .bar{background:var(--c1);} .s1{--tint:var(--c1b);--accent:var(--c1);}
 .s2 .bar{background:var(--c2);} .s2{--tint:var(--c2b);--accent:var(--c2);}
@@ -50,9 +55,54 @@ h1{font-size:26px;margin:8px 0 4px;}
 .s5 .bar{background:var(--c5);} .s5{--tint:var(--c5b);--accent:var(--c5);}
 .s6 .bar{background:var(--c6);} .s6{--tint:var(--c6b);--accent:var(--c6);}
 .card.todo .bar{background:var(--card);color:var(--accent);border-bottom:1px dashed var(--line);}
+.card.todo .badge{background:var(--tint);}
 .card.todo .chk{display:none;}
+.card.todo .watermark{opacity:.10;}
+.card.todo .watermark svg [stroke]{stroke:var(--accent);} .card.todo .watermark svg [fill]:not([fill="none"]){fill:var(--accent);}
+.card.todo .badge svg [stroke]{stroke:var(--accent);}
 </style></head>
 <body><div class="wrap">
+
+<!-- ICON DEFS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="i-brain" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M9 3.5c-2 0-3 1.4-3 3 0 .4-1.5.6-1.5 2.3 0 1 .7 1.5.7 1.5s-.9.6-.9 1.9c0 1.4 1.2 2 1.2 2s-.2 1.7 1.8 2.2c.6 1.4 2 1.6 3 1.1"/>
+    <path d="M15 3.5c2 0 3 1.4 3 3 0 .4 1.5.6 1.5 2.3 0 1-.7 1.5-.7 1.5s.9.6.9 1.9c0 1.4-1.2 2-1.2 2s.2 1.7-1.8 2.2c-.6 1.4-2 1.6-3 1.1"/>
+    <line x1="12" y1="3.5" x2="12" y2="20.5"/>
+    <rect x="10" y="9.5" width="4" height="5" rx="1" fill="currentColor" stroke="none"/>
+  </g>
+  <g id="i-skill" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="4" y="3" width="16" height="18" rx="2.5"/>
+    <line x1="7.5" y1="8" x2="16.5" y2="8"/><line x1="7.5" y1="12" x2="13" y2="12"/>
+    <path d="M7.5 16.5l1.6 1.6 3.4-3.6"/>
+  </g>
+  <g id="i-plug" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M8.5 3.5v4M15.5 3.5v4"/>
+    <path d="M6 7.5h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/>
+    <line x1="12" y1="16.5" x2="12" y2="21"/>
+  </g>
+  <g id="i-agents" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="7" cy="8" r="2.4"/><circle cx="17" cy="8" r="2.4"/><circle cx="12" cy="7" r="2.6"/>
+    <path d="M3.5 18c0-2.5 1.8-4 3.5-4M20.5 18c0-2.5-1.8-4-3.5-4M8 19c0-3 2-4.5 4-4.5s4 1.5 4 4.5"/>
+  </g>
+  <g id="i-brief" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="3.5" y="6" width="17" height="12" rx="2.5"/>
+    <path d="M4.5 8l7.5 5 7.5-5"/>
+    <circle cx="18.5" cy="6" r="3.4" fill="var(--card)"/>
+    <path d="M18.5 4.4v1.7l1.1.9"/>
+  </g>
+  <g id="i-dash" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/>
+    <line x1="3.5" y1="9" x2="20.5" y2="9"/>
+    <line x1="8" y1="16" x2="8" y2="13"/><line x1="12" y1="16" x2="12" y2="11.5"/><line x1="16" y1="16" x2="16" y2="12.5"/>
+  </g>
+  <g id="i-check" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M5 12.5l4 4 10-10"/>
+  </g>
+  <g id="i-arrow" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M12 4v16M6 14l6 6 6-6"/>
+  </g>
+</defs></svg>
 
 <div class="head">
   <div class="eye">WeGrowPeople &middot; Today's Build</div>
@@ -66,52 +116,73 @@ h1{font-size:26px;margin:8px 0 4px;}
 <div class="flow">
 
   <div class="step"><div class="card s1">
-    <div class="bar"><span class="numico"><span class="ico">🧠</span><span class="n">STEP 1</span></span><h3>Your AI Brain</h3><span class="chk">✓</span></div>
+    <div class="bar"><span class="badge"><svg><use href="#i-brain"/></svg></span>
+      <span class="bt"><span class="n">STEP 1</span><h3>Your AI Brain</h3></span>
+      <span class="chk"><svg><use href="#i-check"/></svg></span>
+      <span class="watermark"><svg><use href="#i-brain"/></svg></span>
+    </div>
     <div class="body">
       <div class="what">You taught Claude who you are, once.</div>
       <div class="mine"><span class="ml">What you built</span><b>Aisha</b>, owner of a 6-person renovation firm. Outlook + Sheets. Direct, friendly tone.</div>
     </div>
   </div></div>
-  <div class="link">↓</div>
+  <div class="link"><svg><use href="#i-arrow"/></svg></div>
 
   <div class="step"><div class="card s2">
-    <div class="bar"><span class="numico"><span class="ico">🛠️</span><span class="n">STEP 2</span></span><h3>Your first skill</h3><span class="chk">✓</span></div>
+    <div class="bar"><span class="badge"><svg><use href="#i-skill"/></svg></span>
+      <span class="bt"><span class="n">STEP 2</span><h3>Your first skill</h3></span>
+      <span class="chk"><svg><use href="#i-check"/></svg></span>
+      <span class="watermark"><svg><use href="#i-skill"/></svg></span>
+    </div>
     <div class="body">
       <div class="what">You taught it a job you repeat, done the same way every time.</div>
       <div class="mine"><span class="ml">What you built</span><b>Site Update Writer</b> — turns your rough voice notes into a clean client update.</div>
     </div>
   </div></div>
-  <div class="link">↓</div>
+  <div class="link"><svg><use href="#i-arrow"/></svg></div>
 
   <div class="step"><div class="card s3">
-    <div class="bar"><span class="numico"><span class="ico">🔌</span><span class="n">STEP 3</span></span><h3>Connect your tools</h3><span class="chk">✓</span></div>
+    <div class="bar"><span class="badge"><svg><use href="#i-plug"/></svg></span>
+      <span class="bt"><span class="n">STEP 3</span><h3>Connect your tools</h3></span>
+      <span class="chk"><svg><use href="#i-check"/></svg></span>
+      <span class="watermark"><svg><use href="#i-plug"/></svg></span>
+    </div>
     <div class="body">
       <div class="what">You plugged it into your real inbox and spreadsheet.</div>
       <div class="mine"><span class="ml">What you built</span><b>Outlook + Google Sheets</b> connected live. HubSpot noted for later.</div>
     </div>
   </div></div>
-  <div class="link">↓</div>
+  <div class="link"><svg><use href="#i-arrow"/></svg></div>
 
   <div class="step"><div class="card s4 todo">
-    <div class="bar"><span class="numico"><span class="ico">👥</span><span class="n">STEP 4</span></span><h3>Several jobs at once</h3></div>
+    <div class="bar"><span class="badge"><svg><use href="#i-agents"/></svg></span>
+      <span class="bt"><span class="n">STEP 4</span><h3>Multiple agents working for you</h3></span>
+      <span class="watermark"><svg><use href="#i-agents"/></svg></span>
+    </div>
     <div class="body">
       <span class="soon">Coming up next</span>
-      <div class="what">It splits into a small team, works on several things in parallel, and hands you back one answer.</div>
+      <div class="what">Instead of one assistant, a small team of AI agents works on several tasks at the same time, then hands you back one merged answer.</div>
     </div>
   </div></div>
-  <div class="link">↓</div>
+  <div class="link"><svg><use href="#i-arrow"/></svg></div>
 
   <div class="step"><div class="card s5 todo">
-    <div class="bar"><span class="numico"><span class="ico">⏰</span><span class="n">STEP 5</span></span><h3>Your morning brief</h3></div>
+    <div class="bar"><span class="badge"><svg><use href="#i-brief"/></svg></span>
+      <span class="bt"><span class="n">STEP 5</span><h3>Your morning brief</h3></span>
+      <span class="watermark"><svg><use href="#i-brief"/></svg></span>
+    </div>
     <div class="body">
       <span class="soon">Later today</span>
       <div class="what">A short brief, emailed to you every morning on a schedule, without being asked.</div>
     </div>
   </div></div>
-  <div class="link">↓</div>
+  <div class="link"><svg><use href="#i-arrow"/></svg></div>
 
   <div class="step"><div class="card s6 todo">
-    <div class="bar"><span class="numico"><span class="ico">📊</span><span class="n">STEP 6</span></span><h3>Your dashboard</h3></div>
+    <div class="bar"><span class="badge"><svg><use href="#i-dash"/></svg></span>
+      <span class="bt"><span class="n">STEP 6</span><h3>Your dashboard</h3></span>
+      <span class="watermark"><svg><use href="#i-dash"/></svg></span>
+    </div>
     <div class="body">
       <span class="soon">The finale</span>
       <div class="what">One screen at the front of everything above, built from your real numbers.</div>
