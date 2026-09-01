@@ -115,6 +115,47 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
 .errbox{background:rgba(194,100,63,.1);border:1px solid rgba(194,100,63,.3);color:#8a3f22;border-radius:14px;padding:14px 16px;font-size:13.5px;margin-top:16px;}
 footer{margin-top:40px;text-align:center;color:var(--dim);font-size:12.5px;}
 footer .grow{font-family:var(--font-serif);font-style:italic;}
+
+/* ============ BLACK & YELLOW THEME ============ */
+:root{ --bg:#151206; --panel:#211d10; --panel2:#2b2614; --text:#f7f0da; --mut:rgba(247,240,218,.56); --edge:rgba(247,240,218,.13); --yellow:#f4d77d; --amber:#e0b64e; }
+body{background:var(--bg);color:var(--text);}
+h1{color:var(--text);} h1 .accent{color:var(--yellow);}
+.sub{color:var(--mut);}
+.refresh{background:var(--panel2);color:var(--yellow);border:1px solid rgba(244,215,125,.5);}
+.refresh:hover{background:#332d18;opacity:1;}
+.livebadge{color:var(--yellow);} .livebadge.err{color:#e8956a;}
+.note{background:var(--panel);border:1px solid var(--edge);color:var(--mut);}
+.section-h h2{color:var(--text);} .section-h p{color:var(--mut);}
+.tiles .tile{background:var(--panel);border:1px solid var(--edge);position:relative;overflow:hidden;}
+.tiles .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yellow);}
+.tiles .tile .k{color:var(--mut);}
+.tiles .tile .v{color:var(--yellow);}
+.tiles .tile .v small{color:var(--mut);}
+.tiles .tile .d{color:var(--mut);}
+.card{background:var(--panel);border:1px solid var(--edge);}
+.card h2{color:var(--text);} .card .h2sub{color:var(--mut);}
+.person{border-bottom-color:var(--edge);}
+.person .pn{color:var(--text);} .person .pm{color:var(--mut);}
+.pill.ready{background:var(--yellow);color:#1a1608;}
+.pill.wait{background:rgba(247,240,218,.09);color:var(--mut);}
+.igrid .ibox{background:var(--panel);border:1px solid var(--edge);}
+.ibox .il{color:var(--yellow);} .ibox .isub{color:var(--mut);}
+.brow .bl{color:rgba(247,240,218,.85);}
+.btrack{background:rgba(247,240,218,.1);}
+.brow .bv{color:var(--mut);}
+.donutwrap svg text{fill:var(--text);}
+.dlegend .dlabel{color:rgba(247,240,218,.85);} .dlegend .dval{color:var(--mut);}
+.wowgrid .wowcard{background:var(--panel2);border:1px solid var(--edge);border-left:3px solid var(--yellow);}
+.wowcard .qmark{color:var(--yellow);opacity:.85;}
+.wowcard .qtext{color:var(--text);} .wowcard .qwho{color:var(--mut);}
+.empty{color:var(--mut);}
+footer{color:var(--mut);}
+.errbox{background:rgba(232,149,106,.12);border:1px solid rgba(232,149,106,.35);color:#f0b48f;}
+.rightrail .section-h{margin-top:0;}
+#lockscreen h1{color:var(--text);}
+#lockscreen .sub{color:var(--mut);}
+#lockscreen input{background:var(--panel)!important;border:1px solid var(--edge)!important;color:var(--text)!important;}
+#lockscreen button{background:var(--yellow)!important;color:#1a1608!important;}
 </style>
 
 <div class="wrap">
@@ -151,18 +192,20 @@ footer .grow{font-family:var(--font-serif);font-style:italic;}
       <p class="h2sub">Everyone who filled the survey — <b>Ready</b> means they've also finished their setup.</p>
       <div id="people"></div>
     </div>
-    <div class="card">
-      <h2>What makes them go "wow"</h2>
-      <p class="h2sub">Straight from the survey — the one thing they'd want Claude to do for them.</p>
-      <div id="wow"></div>
+    <div class="rightrail">
+      <div class="section-h">
+        <h2>Room insights</h2>
+        <p>A quick scan before Module 1.</p>
+      </div>
+      <div class="igrid" id="insights"></div>
     </div>
   </div>
 
   <div class="section-h">
-    <h2>Room insights</h2>
-    <p>Auto-built from the surveys, split out for a quick scan before Module 1.</p>
+    <h2>What makes them go "wow"</h2>
+    <p>Straight from the survey — the one thing each person would want Claude to do for them.</p>
   </div>
-  <div class="igrid" id="insights"></div>
+  <div id="wow"></div>
 
   <div id="errslot"></div>
 
