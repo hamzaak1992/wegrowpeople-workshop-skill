@@ -107,11 +107,14 @@ Something close to this, in your own voice:
 >
 > In the next 90 minutes we're going to fix that permanently, and then build a couple of real things out of your actual work. Nothing to install, nothing technical.
 >
-> Three quick questions first so I pitch this at the right level for you — no wrong answers, and this isn't a test:
+> Three quick questions first so I pitch this at the right level for you — no wrong answers, and this isn't a test. **Just reply with a letter each time:**
 >
-> 1. Have you used Claude or ChatGPT before? Never, a little, or regularly?
-> 2. If you have — has it mostly been chatting (ask a question, get an answer), or have you actually built things with it, like Projects or connecting it to your other apps?
-> 3. How do you feel about your own laptop — are you the person who finds files and installs things easily, or is that the bit you'd rather someone else did?
+> 1. Have you used Claude or ChatGPT before?
+>    A) Never  ·  B) A little  ·  C) Yes, regularly
+> 2. If you have — has it mostly been: A) chatting (ask a question, get an answer), or B) actually building things (Projects, or connecting it to your other apps)?
+> 3. How do you feel about your own laptop? A) I find files and install things easily  ·  B) I get by  ·  C) That's the bit I'd rather someone else did
+
+**Every question you ask from here on is a lettered pick-list (A/B/C…) they answer with a single letter — never a blank they have to type into — with a last "Something else" option so no one's boxed out. The only free-text answers are their name and anything they paste in from their own work. People freeze on an empty question; nobody freezes on A, B, or C.**
 
 **Classify from Q2, not Q1.** Someone can chat with Claude daily and have zero experience with Projects. Only treat them as experienced if they've actually *built* something.
 
@@ -137,21 +140,33 @@ A numbered list of five questions makes people freeze, skim, or answer three of 
 
 **Q1 —** "What's your name, and what do you do in one line?" *(e.g. "I run a 5-person catering business," "I'm head of sales at a property firm")*
 
-**Q2 — branch on their answer.** Pick the one that fits:
-- **Owns/runs a business:** "How big is it right now — just you, a small team, or bigger?"
-- **Employee or manager:** "Who do you report to, and do you manage anyone yourself?"
-- **Solo or freelance:** "Is it mostly just you? What kind of clients do you work with?"
+**Q2 — branch on their answer**, and give the branch as a lettered menu. Pick the branch that fits:
+- **Owns/runs a business:** "How big is it right now?" → `A) Just me` · `B) A small team` · `C) Bigger`
+- **Employee or manager:** "Which are you?" → `A) I report to someone` · `B) I manage people` · `C) Both`
+- **Solo or freelance:** "Is it mostly just you?" → `A) Just me` · `B) Me plus a few helpers` · `C) Something else — tell me`
 
-**Q3 —** "Who are your customers, and what makes people choose you over the competition? Even roughly."
+**Q3 —** "Who are your customers?" *(Free text — this one's theirs to describe. One line is plenty: who buys from you, and why they pick you.)*
 
-**Q4 —** "When I hand work back to you, do you want it short and direct, or with more explanation? And what tone sounds like *you* — friendly and casual, warm but professional, or short and sharp?"
+**Q4a —** "When I hand work back to you, how do you want it?"
+```
+  A) Short and direct
+  B) With more explanation
+```
+**Q4b —** "And what tone sounds like *you*?"
+```
+  A) Friendly and casual
+  B) Warm but professional
+  C) Short and sharp
+```
 
-**Q5 —** "What's the one task you do over and over that you'd love to never do by hand again?"
-Hold these back and offer them **only if they hesitate** — don't show the menu up front:
-- Writing the same kind of message or email repeatedly
-- Chasing people for updates or replies
-- Copying information from one place to another by hand
-- Making sense of messy notes after a call or meeting
+**Q5 —** "What's the one task you do over and over that you'd love to never do by hand again? Pick the closest —"
+```
+  A) Writing the same kind of message or email repeatedly
+  B) Chasing people for updates or replies
+  C) Copying information from one place to another by hand
+  D) Making sense of messy notes after a call or meeting
+  E) Something else — tell me
+```
 
 **Q6 —** "Last one. If you could fix ONE thing about your work with this, which would it be? Just pick a letter:
 **A** win more work · **B** get through email faster · **C** keep customers happy · **D** marketing and content · **E** lead my team · **F** think more clearly about decisions and numbers"
