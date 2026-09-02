@@ -207,148 +207,56 @@ The survey data lives on a spreadsheet facilitators can see, but you (running in
 
 *Note: the day starts at 10:30am (see curriculum.md). The first 15 minutes are welcome, room poll and the Claude tour. Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
 
-### The AI System diagram — one colourful picture, updated in place all day
+### The workshop flowchart — one simple step-by-step picture, filled in all day
 
-**In Module 3 you create ONE file, `~/Desktop/my-ai/flow.html`, and from then on you EDIT that same file after every module — you never create a second one.** It is a radial diagram: their AI Brain in the middle, and the six things they build today arranged around it as coloured nodes with arrows. Steps already done are solid and ticked; steps still to come are dashed and tagged NEXT. It is the picture that ties the whole day together.
+**In Module 3 you create ONE file, `~/Desktop/my-ai/flow.html`, and from then on you EDIT that same file after every module — you never create a second one.** It is a clean vertical step-by-step: the six things they build today, stacked in order with an arrow between each, each in its own box. A step that's **done** is a solid box with a **"Yours:"** line filled in with what THEY actually built. A step **still to come** is a dashed, faded box with no "Yours:" line yet. It is the picture that ties the whole day together — by the finale every box is solid and every "Yours:" line is their own.
 
-**Create it at the END of Module 3** (by then steps 1, 2 and 3 have all happened, so three parts are already lit). Write this file EXACTLY as below — do not redesign it, do not touch the CSS or the SVG coordinates — only replace `[THEIR BUSINESS]` (it appears twice) with this participant's real business name, then open it in their browser:
+**Create it at the END of Module 3** (by then steps 1, 2 and 3 have happened, so those three boxes are solid with their real "Yours:" lines; boxes 4, 5 and 6 are still dashed). Write this file EXACTLY as below — do not redesign it, do not touch the CSS. Only replace the three bracketed **[…]** "Yours:" lines in boxes 1–3 with this participant's real details, and leave boxes 4, 5 and 6 exactly as `class="box todo"` with no "Yours:" line (they fill in later). Then open it in their browser:
 
 ```html
-<!doctype html><html><head><meta charset="utf-8"><title>Your AI System</title>
+<!doctype html><html><head><meta charset="utf-8"><title>How today fits together</title>
 <style>
-:root{--cream:#f8f4ea;--ink:#1c1b16;--dim:#6f6b5e;--sage:#5f7355;--font:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
-*{box-sizing:border-box;}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);line-height:1.5;}
-.wrap{max-width:940px;margin:0 auto;padding:26px 16px 50px;}
-.head{text-align:center;margin-bottom:4px;}
-.eye{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);}
-h1{font-size:25px;margin:8px 0 3px;}
-.head p{color:var(--dim);font-size:13.5px;margin:0;}
-.prog{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#fffdf8;border:1px solid #e7e2d5;border-radius:999px;padding:6px 8px 6px 14px;font-size:12.5px;font-weight:700;color:var(--dim);}
-.prog b{color:var(--ink);}.pdots{display:flex;gap:5px;}.pd{width:9px;height:9px;border-radius:50%;background:#e7e2d5;}.pd.on{background:var(--sage);}
-.scroll{overflow-x:auto;}
-svg.diagram{display:block;width:100%;height:auto;min-width:680px;}
-/* node states, driven entirely by class so the skill flips one word per module */
-.node .box{fill:var(--t);stroke:var(--c);stroke-width:2;stroke-dasharray:4 4;}
-.node.done .box{fill:var(--c);stroke:none;stroke-dasharray:none;}
-.node .badge{fill:#fff;}
-.node.done .badge{fill:rgba(255,255,255,.25);}
-.node .icon{color:var(--c);}
-.node.done .icon{color:#fff;}
-.node .step,.node .ttl{fill:var(--c);font-family:Arial;font-weight:800;}
-.node.done .step,.node.done .ttl{fill:#fff;}
-.node .step{font-size:11px;letter-spacing:.4px;}
-.node .ttl{font-size:15px;}
-.node.done .nx{display:none;}
-.node .check{display:none;color:#fff;}
-.node.done .check{display:block;}
-.spoke{stroke:var(--c);stroke-width:3.5;stroke-linecap:round;fill:none;stroke-dasharray:2 7;}
-.spoke.done{stroke-dasharray:none;}
-.s2{--c:#c99a1e;--t:#faf0cf;}
-.s3{--c:#5b74c4;--t:#e2e8fb;}
-.s4{--c:#8a6bd1;--t:#ece3fb;}
-.s5{--c:#c2703e;--t:#f8e3d1;}
-.s6{--c:#c05a86;--t:#f8dbe8;}
+body{margin:0;background:#f8f4ea;color:#17170f;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45;}
+.wrap{max-width:560px;margin:0 auto;padding:32px 20px 70px;}
+h1{font-size:23px;text-align:center;margin:0 0 4px;}
+.sub{text-align:center;color:#6b6b5e;font-size:13px;margin:0 0 26px;}
+.box{border:2px solid #5f7355;border-radius:14px;padding:14px 16px;background:#fff;}
+.box.todo{border-color:#ddd8c8;border-style:dashed;background:#f1ead9;opacity:.65;}
+.row{display:flex;align-items:flex-start;gap:12px;}
+.num{width:30px;height:30px;border-radius:50%;background:#5f7355;color:#fff;font-weight:700;font-size:14px;
+  display:flex;align-items:center;justify-content:center;flex:none;}
+.box.todo .num{background:#c9c3b2;}
+.ttl{font-weight:700;font-size:15.5px;}
+.what{font-size:13px;color:#6b6b5e;margin-top:1px;}
+.mine{font-size:13px;margin-top:7px;padding-top:7px;border-top:1px solid #eee7d8;}
+.mine b{color:#5f7355;}
+.arrow{text-align:center;color:#a3b899;font-size:20px;line-height:1;margin:7px 0;}
 </style></head><body><div class="wrap">
+<h1>How today fits together</h1>
+<p class="sub">Six steps. Each one adds something to the last.</p>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <g id="i-brain" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M9 3.5c-2 0-3 1.4-3 3 0 .4-1.5.6-1.5 2.3 0 1 .7 1.5.7 1.5s-.9.6-.9 1.9c0 1.4 1.2 2 1.2 2s-.2 1.7 1.8 2.2c.6 1.4 2 1.6 3 1.1"/>
-    <path d="M15 3.5c2 0 3 1.4 3 3 0 .4 1.5.6 1.5 2.3 0 1-.7 1.5-.7 1.5s.9.6.9 1.9c0 1.4-1.2 2-1.2 2s.2 1.7-1.8 2.2c-.6 1.4-2 1.6-3 1.1"/>
-    <line x1="12" y1="3.5" x2="12" y2="20.5"/><rect x="10" y="9.5" width="4" height="5" rx="1" fill="currentColor" stroke="none"/></g>
-  <g id="i-skill" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-    <rect x="4" y="3" width="16" height="18" rx="2.5"/><line x1="7.5" y1="8" x2="16.5" y2="8"/><line x1="7.5" y1="12" x2="13" y2="12"/><path d="M7.5 16.5l1.6 1.6 3.4-3.6"/></g>
-  <g id="i-plug" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M8.5 3.5v4M15.5 3.5v4"/><path d="M6 7.5h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><line x1="12" y1="16.5" x2="12" y2="21"/></g>
-  <g id="i-agents" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-    <circle cx="7" cy="8" r="2.4"/><circle cx="17" cy="8" r="2.4"/><circle cx="12" cy="7" r="2.6"/><path d="M3.5 18c0-2.5 1.8-4 3.5-4M20.5 18c0-2.5-1.8-4-3.5-4M8 19c0-3 2-4.5 4-4.5s4 1.5 4 4.5"/></g>
-  <g id="i-brief" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-    <rect x="3.5" y="6" width="17" height="12" rx="2.5"/><path d="M4.5 8l7.5 5 7.5-5"/><circle cx="18.5" cy="6" r="3.4" fill="#f8e3d1"/><path d="M18.5 4.4v1.7l1.1.9"/></g>
-  <g id="i-dash" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-    <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><line x1="3.5" y1="9" x2="20.5" y2="9"/><line x1="8" y1="16" x2="8" y2="13"/><line x1="12" y1="16" x2="12" y2="11.5"/><line x1="16" y1="16" x2="16" y2="12.5"/></g>
-  <g id="i-check" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M5 12.5l4 4 10-10"/></g>
-  <marker id="ah-2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c99a1e"/></marker>
-  <marker id="ah-3" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b74c4"/></marker>
-  <marker id="ah-4" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a6bd1"/></marker>
-  <marker id="ah-5" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c2703e"/></marker>
-  <marker id="ah-6" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c05a86"/></marker>
-</defs></svg>
-
-<div class="head">
-  <div class="eye">WeGrowPeople &middot; Today's Build</div>
-  <h1><span id="who">[THEIR BUSINESS]</span>'s AI System</h1>
-  <p>Your AI Brain in the middle. Everything you build today plugs into it.</p>
-  <div class="prog"><span><b id="ndone">3</b> of 6 done</span>
-    <span class="pdots"><i class="pd on"></i><i class="pd on"></i><i class="pd on"></i><i class="pd" id="d4"></i><i class="pd" id="d5"></i><i class="pd" id="d6"></i></span></div>
-</div>
-
-<div class="scroll">
-<svg class="diagram" viewBox="0 0 940 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI system, brain in the centre">
-  <line class="spoke done s2" x1="470.0" y1="250.0" x2="470.0" y2="159.0" marker-end="url(#ah-2)"/>
-  <line class="spoke done s3" x1="565.1" y1="319.1" x2="651.7" y2="291.0" marker-end="url(#ah-3)"/>
-  <line class="spoke todo s4" x1="528.8" y1="430.9" x2="582.3" y2="504.5" marker-end="url(#ah-4)"/>
-  <line class="spoke todo s5" x1="411.2" y1="430.9" x2="357.7" y2="504.5" marker-end="url(#ah-5)"/>
-  <line class="spoke todo s6" x1="374.9" y1="319.1" x2="288.3" y2="291.0" marker-end="url(#ah-6)"/>
-
-  <circle cx="470" cy="350" r="103" fill="none" stroke="var(--sage)" stroke-width="2" opacity=".26"/>
-  <circle cx="470" cy="350" r="94" fill="var(--sage)" stroke="#4c5c44" stroke-width="3"/>
-  <g transform="translate(443,308)" color="#fff"><svg width="54" height="54" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-brain"/></svg></g>
-  <text x="470" y="384" text-anchor="middle" fill="#fff" font-family="Arial" font-weight="900" font-size="16">AI BRAIN</text>
-  <text x="470" y="403" text-anchor="middle" fill="rgba(255,255,255,.82)" font-family="Arial" font-weight="700" font-size="10.5">STEP 1 &#183; <tspan id="whoc">[THEIR BUSINESS]</tspan></text>
-
-  <g class="node done s2" data-step="2" transform="translate(377.0,85.0)">
-    <rect class="box" width="186" height="60" rx="15"/>
-    <rect class="badge" x="12" y="12" width="36" height="36" rx="10"/>
-    <g class="icon" transform="translate(18,18)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-skill"/></svg></g>
-    <text class="step" x="60" y="25">STEP 2<tspan class="nx"> &#183; NEXT</tspan></text>
-    <text class="ttl" x="60" y="43">First skill</text>
-    <g class="check" transform="translate(159,22)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-check"/></svg></g>
-  </g>
-  <g class="node done s3" data-step="3" transform="translate(600.5,247.4)">
-    <rect class="box" width="186" height="60" rx="15"/>
-    <rect class="badge" x="12" y="12" width="36" height="36" rx="10"/>
-    <g class="icon" transform="translate(18,18)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-plug"/></svg></g>
-    <text class="step" x="60" y="25">STEP 3<tspan class="nx"> &#183; NEXT</tspan></text>
-    <text class="ttl" x="60" y="43">Connect tools</text>
-    <g class="check" transform="translate(159,22)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-check"/></svg></g>
-  </g>
-  <g class="node todo s4" data-step="4" transform="translate(515.1,510.1)">
-    <rect class="box" width="186" height="60" rx="15"/>
-    <rect class="badge" x="12" y="12" width="36" height="36" rx="10"/>
-    <g class="icon" transform="translate(18,18)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-agents"/></svg></g>
-    <text class="step" x="60" y="25">STEP 4<tspan class="nx"> &#183; NEXT</tspan></text>
-    <text class="ttl" x="60" y="43">Agents</text>
-    <g class="check" transform="translate(159,22)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-check"/></svg></g>
-  </g>
-  <g class="node todo s5" data-step="5" transform="translate(238.9,510.1)">
-    <rect class="box" width="186" height="60" rx="15"/>
-    <rect class="badge" x="12" y="12" width="36" height="36" rx="10"/>
-    <g class="icon" transform="translate(18,18)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-brief"/></svg></g>
-    <text class="step" x="60" y="25">STEP 5<tspan class="nx"> &#183; NEXT</tspan></text>
-    <text class="ttl" x="60" y="43">Morning brief</text>
-    <g class="check" transform="translate(159,22)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-check"/></svg></g>
-  </g>
-  <g class="node todo s6" data-step="6" transform="translate(153.5,247.4)">
-    <rect class="box" width="186" height="60" rx="15"/>
-    <rect class="badge" x="12" y="12" width="36" height="36" rx="10"/>
-    <g class="icon" transform="translate(18,18)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-dash"/></svg></g>
-    <text class="step" x="60" y="25">STEP 6<tspan class="nx"> &#183; NEXT</tspan></text>
-    <text class="ttl" x="60" y="43">Dashboard</text>
-    <g class="check" transform="translate(159,22)"><svg width="24" height="24" viewBox="0 0 24 24" style="overflow:visible"><use href="#i-check"/></svg></g>
-  </g>
-</svg>
-</div>
+<!-- BOX1 --><div class="box"><div class="row"><div class="num">1</div><div><div class="ttl">Your AI Brain</div><div class="what">Teach it who you are, once.</div><div class="mine"><b>Yours:</b> [THEIR AI BRAIN — their name + what they do, e.g. Aisha, owner of a 6-person renovation firm]</div></div></div></div>
+<div class="arrow">&#8595;</div>
+<!-- BOX2 --><div class="box"><div class="row"><div class="num">2</div><div><div class="ttl">Skills</div><div class="what">Teach it a job you repeat, so it does it the same way every time.</div><div class="mine"><b>Yours:</b> [THEIR SKILL — its name + what it does, e.g. Site Update Writer, turns my voice notes into a clean client update]</div></div></div></div>
+<div class="arrow">&#8595;</div>
+<!-- BOX3 --><div class="box"><div class="row"><div class="num">3</div><div><div class="ttl">Connectors &amp; MCP</div><div class="what">Plug it into your real email, calendar and spreadsheet.</div><div class="mine"><b>Yours:</b> [WHAT THEY CONNECTED, e.g. Outlook + Google Sheets connected]</div></div></div></div>
+<div class="arrow">&#8595;</div>
+<!-- BOX4 --><div class="box todo"><div class="row"><div class="num">4</div><div><div class="ttl">Several jobs at once</div><div class="what">It splits into a small team, works in parallel, hands back one answer.</div></div></div></div>
+<div class="arrow">&#8595;</div>
+<!-- BOX5 --><div class="box todo"><div class="row"><div class="num">5</div><div><div class="ttl">Your morning brief</div><div class="what">It runs on a schedule and emails you, without being asked.</div></div></div></div>
+<div class="arrow">&#8595;</div>
+<!-- BOX6 --><div class="box todo"><div class="row"><div class="num">6</div><div><div class="ttl">Your dashboard</div><div class="what">One screen at the front of all of it.</div></div></div></div>
 
 </div></body></html>
 ```
 
-**After that, never rewrite the file and never make a new one. Each later module changes only four tiny things and re-opens the SAME file:**
+**After that, never rewrite the file and never make a new one. Each later module changes only TWO tiny things in the SAME file, then re-opens it:**
 
-- **Module 4** → find `class="node todo s4"` and change `todo` to `done`; find `class="spoke todo s4"` and change `todo` to `done`; give the 4th progress dot the class (change `<i class="pd" id="d4">` to `<i class="pd on" id="d4">`); change `<b id="ndone">3</b>` to `4`. Reopen the file.
-- **Module 5** → same four edits for **s5** / `id="d5"`, and set `ndone` to `5`.
-- **Module 6** → same four edits for **s6** / `id="d6"`, and set `ndone` to `6`. This is the last one — the picture is now complete; tell them it shows their whole system, worth a screenshot.
+- **Module 4** → find `<!-- BOX4 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line just before that box's closing tags, describing what their parallel job did in their own words (e.g. "Priced 3 suppliers at once, came back as one comparison"). Reopen the file.
+- **Module 5** → same for `<!-- BOX5 -->`: change `todo` to done and add their "Yours:" line (e.g. "8:00am every day, emailed to me").
+- **Module 6** → same for `<!-- BOX6 -->`: change `todo` to done and add their "Yours:" line (e.g. "Cash, jobs running, and who's waiting on me"). This is the last one — every box is now solid; tell them it shows their whole system, worth a screenshot.
 
-**The only rules:** never touch a node or spoke that is not this module's; never change the coordinates, the CSS, or the node titles; if a module genuinely produced nothing (they skipped it), leave that node dashed rather than marking it done. Add `flow.html — Your AI System, one picture` to the Finale folder tour list.
+**The only rules:** never touch a box that isn't this module's; never change the CSS or the step titles/descriptions; always fill the "Yours:" line with what THEY actually built, in their own words, never a placeholder or a bracket; if a module genuinely produced nothing (they skipped it), leave that box dashed. Add `flow.html — How today fits together, one picture` to the Finale folder tour list.
 
 ---
 
@@ -609,7 +517,7 @@ Should you build a custom MCP for it too?
 ```
 Correct answer: B. Explain why: a Connector is a plug that already exists; building your own is only for when no plug exists yet.
 
-**Create the AI System diagram now, at this gate (end of Module 3).** Write `~/Desktop/my-ai/flow.html` from the template in "The AI System diagram" (near the top of this document), replacing [THEIR BUSINESS] with their real business name in both places, and open it in their browser. This is the ONE file you update for the rest of the day.
+**Create the workshop flowchart now, at this gate (end of Module 3).** Write `~/Desktop/my-ai/flow.html` from the template in "The workshop flowchart" (near the top of this document): boxes 1–3 solid with their real "Yours:" lines filled in (their AI Brain, their skill, what they connected), boxes 4–6 left dashed. Open it in their browser. This is the ONE file you update for the rest of the day.
 
 **Gate:** "Your tool is connected. When you're ready to see me handle a few things at once, type module4."
 
@@ -697,7 +605,7 @@ Correct answer: B. Explain why: this is the shift from "I have an assistant" to 
 
 Unlock: Gift 2. Append the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — add it as a new section below Gift 1 (title it "Gift 2 — 5 Delegation Workflows"), keeping what's already in the file. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
 
-**Update the AI System diagram now, at this gate.** In the SAME `flow.html`, flip step 4: change `class="node todo s4"` to `done`, `class="spoke todo s4"` to `done`, add `on` to `id="d4"`'s dot, and set `ndone` to 4 (see "The AI System diagram"). Reopen the file — never create a new one.
+**Update the workshop flowchart now, at this gate.** In the SAME `flow.html`, find `<!-- BOX4 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line inside it saying what they just built in their own words (see "The workshop flowchart"). Reopen the file — never create a new one.
 
 **Gate:** "That's saved. Type module5 when you're back and ready — or if there's no break scheduled, go ahead now."
 
@@ -874,7 +782,7 @@ just asking a fresh question every day?
 ```
 Correct answer: A. Explain why: a saved skill is repeatable on demand — a one-off question is not.
 
-**Update the AI System diagram now, at this gate.** In the SAME `flow.html`, flip step 5: change `class="node todo s5"` to `done`, `class="spoke todo s5"` to `done`, add `on` to `id="d5"`'s dot, and set `ndone` to 5 (see "The AI System diagram"). Reopen the file — never create a new one.
+**Update the workshop flowchart now, at this gate.** In the SAME `flow.html`, find `<!-- BOX5 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line inside it saying what they just built in their own words (see "The workshop flowchart"). Reopen the file — never create a new one.
 
 **Gate:** "Your morning brief is saved. When you're ready to see it all pulled together on one screen, type module6."
 
@@ -1056,7 +964,7 @@ Unlock: Gift 3. Append the full content from the "Gift 3" section of the appendi
 ═══════════════════════════════
 ```
 
-**Update the AI System diagram now, at this gate.** In the SAME `flow.html`, flip step 6: change `class="node todo s6"` to `done`, `class="spoke todo s6"` to `done`, add `on` to `id="d6"`'s dot, and set `ndone` to 6 (see "The AI System diagram"). Reopen the file — never create a new one. This is the last one — the picture is complete; tell them it shows their whole system, worth a screenshot.
+**Update the workshop flowchart now, at this gate.** In the SAME `flow.html`, find `<!-- BOX6 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line inside it saying what they just built in their own words (see "The workshop flowchart"). Reopen the file — never create a new one. This is the last one — every box is now solid; tell them it shows their whole system, worth a screenshot.
 
 **Gate:** "That's your dashboard done — the big one. Type finale to wrap up and see everything you built today."
 

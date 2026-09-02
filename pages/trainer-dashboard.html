@@ -83,6 +83,8 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
 .pill{font-size:11px;font-weight:600;padding:4px 11px;border-radius:999px;white-space:nowrap;}
 .pill.ready{background:rgba(168,190,153,.5);color:var(--sage-deep);}
 .pill.wait{background:rgba(23,23,15,.06);color:var(--dim);}
+.pill.off{background:rgba(23,23,15,.06);color:var(--dim);}
+.pillset{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;flex:none;}
 
 /* insight grid: separate boxes for each dimension */
 .igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
@@ -138,6 +140,7 @@ h1{color:var(--text);} h1 .accent{color:var(--yellow);}
 .person .pn{color:var(--text);} .person .pm{color:var(--mut);}
 .pill.ready{background:var(--yellow);color:#1a1608;}
 .pill.wait{background:rgba(247,240,218,.09);color:var(--mut);}
+.pill.off{background:rgba(247,240,218,.06);color:var(--mut);}
 .igrid .ibox{background:var(--panel);border:1px solid var(--edge);}
 .ibox .il{color:var(--yellow);} .ibox .isub{color:var(--mut);}
 .brow .bl{color:rgba(247,240,218,.85);}
@@ -286,38 +289,48 @@ footer{color:var(--mut);}
   }
 
   function render(surveys, homework){
-    // match "ready": a survey person who also submitted homework (by phone, else name)
-    const hwPhones = new Set(homework.map(h => digits(g(h,'phone'))).filter(Boolean));
-    const hwNames  = new Set(homework.map(h => g(h,'name').trim().toLowerCase()).filter(Boolean));
-    const isReady = s => hwPhones.has(digits(g(s,'phone'))) || hwNames.has(g(s,'name').trim().toLowerCase());
+    // normalise a phone to its last 8 digits, so a country code (60…) or leading 0 can't cause a false "not done"
+    const normPhone = v => { const d = digits(v); return d ? d.slice(-8) : ''; };
+    const nameKey = v => (v||'').trim().toLowerCase().replace(/[^a-z0-9]/g,'');
 
-    const readyCount = surveys.filter(isReady).length;
-    const stillToSetUp = Math.max(surveys.length - readyCount, 0);
-    const avgSteps = homework.length
-      ? (homework.reduce((a,h)=> a + (parseInt(g(h,'stepsdone'),10)||0), 0) / homework.length).toFixed(1)
-      : '0';
+    // de-duplicate survey rows (same person who submitted twice) by phone, else name
+    const seenS = new Set();
+    surveys = surveys.filter(s => { const k = normPhone(g(s,'phone')) || nameKey(g(s,'name')); if(!k) return true; if(seenS.has(k)) return false; seenS.add(k); return true; });
 
-    // TILES
+    // who submitted the setup HOMEWORK form (matched to a survey person by phone, else name)
+    const hwPhones = new Set(homework.map(h => normPhone(g(h,'phone'))).filter(Boolean));
+    const hwNames  = new Set(homework.map(h => nameKey(g(h,'name'))).filter(Boolean));
+    const didHw = s => hwPhones.has(normPhone(g(s,'phone'))) || hwNames.has(nameKey(g(s,'name')));
+
+    const bothCount  = surveys.filter(didHw).length;              // survey + homework = fully ready
+    const surveyOnly = Math.max(surveys.length - bothCount, 0);   // registered, homework still pending
+
+    // homework rows with no matching survey (did the setup form but never registered)
+    const surveyPhones = new Set(surveys.map(s=>normPhone(g(s,'phone'))).filter(Boolean));
+    const surveyNames  = new Set(surveys.map(s=>nameKey(g(s,'name'))).filter(Boolean));
+    const orphanHw = homework.filter(h => !surveyPhones.has(normPhone(g(h,'phone'))) && !surveyNames.has(nameKey(g(h,'name'))));
+
+    // TILES — survey, homework, both, and pending, so the two things never get confused again
     $('#tiles').innerHTML = `
-      <div class="tile tone-sage"><div class="k">Surveys in</div><div class="v">${surveys.length}</div><div class="d">people registered so far</div></div>
-      <div class="tile tone-butter"><div class="k">Set up / ready</div><div class="v">${readyCount}</div><div class="d">finished their setup homework</div></div>
-      <div class="tile tone-peach"><div class="k">Still to set up</div><div class="v">${stillToSetUp}</div><div class="d">filled survey, not yet ready</div></div>
-      <div class="tile tone-periwinkle"><div class="k">Avg setup steps</div><div class="v">${avgSteps}<small>/8</small></div><div class="d">across those who started</div></div>`;
+      <div class="tile tone-sage"><div class="k">Surveys in</div><div class="v">${surveys.length}</div><div class="d">filled the registration survey</div></div>
+      <div class="tile tone-butter"><div class="k">Homework in</div><div class="v">${homework.length}</div><div class="d">submitted the setup form</div></div>
+      <div class="tile tone-periwinkle"><div class="k">Did both</div><div class="v">${bothCount}</div><div class="d">survey + homework — fully ready</div></div>
+      <div class="tile tone-peach"><div class="k">Homework pending</div><div class="v">${surveyOnly}</div><div class="d">registered, setup not in yet</div></div>`;
 
-    // PEOPLE (surveys, ready first)
-    const sorted = surveys.slice().sort((a,b)=> (isReady(b)?1:0) - (isReady(a)?1:0));
+    // PEOPLE — each person gets TWO badges so you can see survey / homework / both at a glance
+    const badges = (survey, hw) => `<span class="pillset">`
+      + `<span class="pill ${survey?'ready':'off'}">${survey?'✓':'—'} Survey</span>`
+      + `<span class="pill ${hw?'ready':'wait'}">${hw?'✓':'⋯'} Homework</span></span>`;
+    const sorted = surveys.slice().sort((a,b)=> (didHw(b)?1:0) - (didHw(a)?1:0));
     let peopleHtml = sorted.map(s => `<div class="person">
         <div><div class="pn">${esc(g(s,'name')) || '(no name)'}</div>
         <div class="pm">${esc(g(s,'industry')) || '—'} · ${esc(g(s,'teamsize')) || '—'}</div></div>
-        <span class="pill ${isReady(s)?'ready':'wait'}">${isReady(s)?'✓ Ready':'Not yet'}</span>
+        ${badges(true, didHw(s))}
       </div>`).join('');
-    // homework people with no matching survey
-    const surveyKeys = new Set(surveys.map(s=>digits(g(s,'phone'))||g(s,'name').trim().toLowerCase()));
-    const orphanHw = homework.filter(h => !surveyKeys.has(digits(g(h,'phone'))) && !surveyKeys.has(g(h,'name').trim().toLowerCase()));
     if(orphanHw.length){
       peopleHtml += orphanHw.map(h => `<div class="person">
-        <div><div class="pn">${esc(g(h,'name')) || '(no name)'}</div><div class="pm">set up · no survey yet</div></div>
-        <span class="pill ready">✓ Ready</span></div>`).join('');
+        <div><div class="pn">${esc(g(h,'name')) || '(no name)'}</div><div class="pm">did homework · no survey yet</div></div>
+        ${badges(false, true)}</div>`).join('');
     }
     $('#people').innerHTML = (surveys.length || orphanHw.length) ? peopleHtml
       : '<div class="empty">No submissions yet.<br>They will appear here as people fill the survey.</div>';
