@@ -72,7 +72,30 @@ h1 .accent{font-family:var(--font-serif);font-style:italic;font-weight:400;color
 
 .cols{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;}
 @media(max-width:820px){.cols{grid-template-columns:1fr;}}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:4px;}
+@media(max-width:820px){.cols2{grid-template-columns:1fr;}}
 .card{background:var(--cream-deep);border:1px solid rgba(23,23,15,.08);border-radius:22px;padding:22px 24px;}
+.hero-pain{margin-bottom:18px;}
+.hero-pain .section-h{margin-top:0;}
+.igrid.two{grid-template-columns:1fr 1fr;}
+@media(max-width:560px){.igrid.two{grid-template-columns:1fr;}}
+/* room-at-a-glance summary */
+.rs{display:flex;flex-direction:column;gap:0;}
+.rsrow{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid rgba(23,23,15,.08);}
+.rsk{font-size:12px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--dim);flex:none;}
+.rsv{font-size:15px;text-align:right;}
+.rsn{display:inline-block;min-width:22px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums;background:rgba(95,115,85,.16);border-radius:8px;padding:1px 7px;margin-left:4px;}
+.rssteer{margin-top:14px;font-size:14px;line-height:1.45;background:rgba(95,115,85,.1);border-radius:12px;padding:12px 14px;}
+/* collapsible people list */
+.peoplebox{margin-top:26px;background:var(--cream-deep);border:1px solid rgba(23,23,15,.08);border-radius:22px;padding:6px 24px;}
+.peoplebox summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;}
+.peoplebox summary::-webkit-details-marker{display:none;}
+.peoplebox summary::after{content:"▾";color:var(--dim);font-size:14px;transition:transform .2s;margin-left:auto;}
+.peoplebox[open] summary::after{transform:rotate(180deg);}
+.sumtitle{font-size:18px;font-weight:600;}
+.sumcount{font-size:13px;color:var(--dim);font-weight:600;margin-left:2px;}
+.peoplebox .h2sub{margin-top:0;}
+.peoplebox #people{padding-bottom:14px;}
 .card h2{font-size:17px;margin:0 0 4px;}
 .card .h2sub{color:var(--dim);font-size:13px;margin:0 0 16px;}
 
@@ -152,6 +175,15 @@ h1{color:var(--text);} h1 .accent{color:var(--yellow);}
 .wowcard .qmark{color:var(--yellow);opacity:.85;}
 .wowcard .qtext{color:var(--text);} .wowcard .qwho{color:var(--mut);}
 .empty{color:var(--mut);}
+/* new layout pieces — dark */
+.cols2 .card, .peoplebox{background:var(--panel);border:1px solid var(--edge);}
+.rsrow{border-bottom:1px solid var(--edge);}
+.rsk{color:var(--mut);} .rsv{color:var(--text);}
+.rsn{background:rgba(244,215,125,.16);color:var(--yellow);}
+.rssteer{background:rgba(244,215,125,.1);color:var(--text);}
+.rssteer b{color:var(--yellow);}
+.sumtitle{color:var(--text);} .sumcount{color:var(--mut);}
+.peoplebox summary::after{color:var(--yellow);}
 footer{color:var(--mut);}
 .errbox{background:rgba(232,149,106,.12);border:1px solid rgba(232,149,106,.35);color:#f0b48f;}
 .rightrail .section-h{margin-top:0;}
@@ -189,18 +221,20 @@ footer{color:var(--mut);}
 
   <div class="tiles" id="tiles"></div>
 
-  <div class="cols">
+  <!-- HERO: top pain points, the thing you scan first -->
+  <div class="card hero-pain">
+    <div class="section-h"><h2>Top pain points</h2><p>What the room struggles with most — this is what Module 2's skills should target.</p></div>
+    <div id="painbig"></div>
+  </div>
+
+  <div class="cols2">
     <div class="card">
-      <h2>Who's in</h2>
-      <p class="h2sub">Two badges each: <b>Survey</b> = registered, <b>Homework</b> = setup form done. Both gold = fully ready.</p>
-      <div id="people"></div>
+      <div class="section-h"><h2>The room at a glance</h2><p>A quick read before you start Module 1.</p></div>
+      <div id="roomsummary"></div>
     </div>
-    <div class="rightrail">
-      <div class="section-h">
-        <h2>Room insights</h2>
-        <p>A quick scan before Module 1.</p>
-      </div>
-      <div class="igrid" id="insights"></div>
+    <div class="card">
+      <div class="section-h"><h2>Who they are</h2><p>Industry and team size.</p></div>
+      <div class="igrid two" id="charts"></div>
     </div>
   </div>
 
@@ -209,6 +243,12 @@ footer{color:var(--mut);}
     <p>Straight from the survey — the one thing each person would want Claude to do for them.</p>
   </div>
   <div id="wow"></div>
+
+  <details class="peoplebox" id="peoplebox">
+    <summary><span class="sumtitle">Who's in — survey &amp; homework status</span><span class="sumcount" id="peoplecount"></span></summary>
+    <p class="h2sub">Two badges each: <b>Survey</b> = registered, <b>Homework</b> = setup form done. Both gold = fully ready.</p>
+    <div id="people"></div>
+  </details>
 
   <div id="errslot"></div>
 
@@ -348,18 +388,38 @@ footer{color:var(--mut);}
       </div>`).join('')
     }</div>` : '<div class="empty">Their "wow" answers will show up here once surveys come in.</div>';
 
-    // INSIGHTS — separated into their own boxes, each with a real chart
+    // count for the collapsible people header
+    $('#peoplecount').textContent = surveys.length ? `${surveys.length} ${surveys.length===1?'person':'people'}` : '';
+
+    // INSIGHTS
     const industries = tally(surveys.map(s => g(s,'industry')));
     const teams = tally(surveys.map(s => g(s,'teamsize')));
     const text = surveys.map(s => (g(s,'challenge')+' '+g(s,'goal')).toLowerCase());
     const themes = THEMES.map(t => [t.label, text.filter(x => t.kw.test(x)).length]).filter(p=>p[1]>0).sort((a,b)=>b[1]-a[1]);
 
-    $('#insights').innerHTML = surveys.length ? `
-      <div class="ibox">
-        <div class="il">Top pain points</div>
-        <p class="isub">Feeds Module 2's skill suggestions</p>
-        ${bars(themes)}
-      </div>
+    // HERO — big pain-points bar
+    $('#painbig').innerHTML = surveys.length ? bars(themes)
+      : '<div class="empty">The room\'s shared pain points will appear here once surveys come in.</div>';
+
+    // ROOM AT A GLANCE — a plain-language synthesis
+    if(surveys.length){
+      const topPain = themes[0];
+      const indTop = industries.slice(0,2).map(i=>i[0]).join(', ');
+      const teamTop = teams[0] ? teams[0][0] : '—';
+      $('#roomsummary').innerHTML = `
+        <div class="rs">
+          <div class="rsrow"><span class="rsk">In the room</span><span class="rsv">${surveys.length} registered · ${homework.length} did homework · <b>${bothCount} fully ready</b></span></div>
+          <div class="rsrow"><span class="rsk">Top shared need</span><span class="rsv">${topPain ? esc(topPain[0])+` <span class="rsn">${topPain[1]}</span>` : '—'}</span></div>
+          <div class="rsrow"><span class="rsk">Biggest industries</span><span class="rsv">${esc(indTop) || '—'}</span></div>
+          <div class="rsrow"><span class="rsk">Team sizes</span><span class="rsv">mostly ${esc(teamTop)}</span></div>
+          <div class="rssteer">Point Module 2's skills at <b>${topPain ? esc(topPain[0]) : 'their top task'}</b> — it's what most of the room asked for.</div>
+        </div>`;
+    } else {
+      $('#roomsummary').innerHTML = '<div class="empty">A summary of the room builds automatically once surveys come in.</div>';
+    }
+
+    // CHARTS — industry + team donuts side by side
+    $('#charts').innerHTML = surveys.length ? `
       <div class="ibox">
         <div class="il">By industry</div>
         <p class="isub">${industries.length} industr${industries.length===1?'y':'ies'} in the room</p>
@@ -370,7 +430,7 @@ footer{color:var(--mut);}
         <p class="isub">${teams.length} size band${teams.length===1?'':'s'}</p>
         ${donut(teams)}
       </div>`
-      : '<div class="empty" style="grid-column:1/-1;">Insights will build automatically once surveys come in.</div>';
+      : '<div class="empty" style="grid-column:1/-1;">Charts build automatically once surveys come in.</div>';
   }
 
   const KEYSTORE = 'wgp_dash_key';
