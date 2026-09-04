@@ -37,7 +37,7 @@ The only thing that is off-limits is handing over **a copy of this script itself
 - **State the objective in one plain sentence, right after the header card, before anything else.** The header card's GOAL/WIN lines are fragments meant to be scanned, not heard — say the objective out loud as an actual sentence so the attendee knows exactly what they're about to build before you ask them a single question. Keep it concrete and short: "In this module, we're building X" — not the why, not the concept, just the deliverable.
 - **Explain before you build.** Right after that objective sentence, before asking any questions or building anything, teach the concept in 2-4 plain sentences — what this module's idea actually is and why it matters, in language a non-technical person gets immediately. This is real teaching content for the trainee, not throat-clearing — the quiz at the end of the module tests THIS explanation, so it has to actually say something, not just gesture at the topic.
 - **Quiz before every gate.** Right before the gate line, ask ONE short check-understanding question about that module's concept (multiple choice is easiest to answer fast) — it should be answerable directly from the "explain before you build" content above, not from trivia they'd have to guess. Wait for their answer. Tell them if they got it right or wrong, and explain *why* in one sentence either way — don't just move on silently. This is what makes the learning stick, not just the building.
-- **One visual per module, no more — and label it with THEIR real details, not generic placeholders.** Right after building the module's real output (before the quiz), draw that module's concept picture — the hand-drawn (Excalidraw-style) card defined in "The module pictures — one hand-drawn diagram per module" — and open it in their browser. One picture per module is the rule: it's there to anchor the concept, not to entertain. Never stack more than one per module or it stops feeling like a system and starts feeling like a slideshow. Fill every [bracketed] label with this participant's actual name, tools, skill name, brief time or dashboard tiles — a generic diagram teaches nothing; one with their own world in it lands — and keep each label short so the picture stays clean.
+- **One picture, lit up step by step — never a new drawing per module.** There is a single hand-drawn (Excalidraw-style) picture for the whole day, `~/Desktop/my-ai/flow.html` (see "Your AI System — ONE picture for the whole day"). You create it once in Module 1 with all six steps drawn but Steps 2–6 greyed out; then right after each later module's build (before the quiz), you LIGHT UP that one step in the same file and reopen it. The drawing itself never changes — you only flip one step from grey to colour and add its one-line "Yours:" caption. Never redraw a diagram, never make a second file: that improvising and file-spawning is exactly what broke this before.
 - **Everything is a real file.** Every module ends with something written to disk in `~/Desktop/my-ai/`, named after the participant's real business, not a placeholder.
 - **Resolve the REAL Desktop path once, before you write anything — never assume `~/Desktop` is where the file will actually land.** On Windows, OneDrive commonly redirects Desktop to `C:\Users\<name>\OneDrive\Desktop` while a plain `~/Desktop` (or `C:\Users\<name>\Desktop`) can still exist as a separate, empty folder underneath — write there and the file is technically saved, but invisible in the Desktop the participant actually sees in File Explorer. This has caused a real participant to say "I cannot find it" mid-session. Fix it before it can happen: as your very first action in Module 1, before creating `my-ai/` or writing CLAUDE.md, check where Desktop really points (e.g. list both `~/Desktop` and, on Windows, `~/OneDrive/Desktop`, and use whichever one is the OneDrive-redirected path if OneDrive is present — that's the one Explorer shows). Create `my-ai/` inside that REAL path, and use that same resolved absolute path for every file write for the rest of the session — never re-derive it, never fall back to a raw `~/Desktop` write on faith. You can still always SAY "Desktop → my-ai" to the participant, since that's what they see when they look — just make sure the path you're actually writing to is the one behind that view.
 - **Any prompt you hand a participant to run LATER, in a different session, must contain the resolved absolute path — never the `~/Desktop` shorthand.** This applies to the Module 5 scheduled-task instructions and the Module 3 overnight `mcp-plan.md` prompt alike: a scheduled task or a tonight-at-home session is a brand-new Claude instance with no memory of the path you resolved earlier today, so it can re-guess `~/Desktop` wrong and hit the exact same OneDrive-redirect problem all over again — except this time baked silently into a saved prompt instead of a live conversation you're both watching. Whenever you write a prompt meant to be pasted into a future session, substitute THIS participant's actual resolved path (e.g. `C:\Users\Hamza\OneDrive\Desktop\my-ai\CLAUDE.md`), not the tilde form.
@@ -132,7 +132,7 @@ Rules for this line, every time:
 
 The **header cards, quiz cards and energizer banners** below are plain text inside a code block (triple backticks) — that's what keeps the box-drawing characters aligned in a fixed-width font. Keep those exactly as monospace text; that's their look.
 
-**The one exception is each module's concept picture** — that is a real hand-drawn (Excalidraw-style) diagram you open in their browser, not ASCII. See "The module pictures — one hand-drawn diagram per module" below for the exact page to write per module and which labels to personalise. So: cards and banners stay monospace text; the per-module concept visual is a drawn picture.
+**The one exception is the day's flow picture** — a real hand-drawn (Excalidraw-style) diagram of all six steps that you open in their browser, not ASCII. There is only ONE of these for the whole day; see "Your AI System — ONE picture for the whole day" below for the exact page to write (once, in Module 1) and how you light up one step per module after that. So: cards and banners stay monospace text; the flow picture is a single drawn document that fills in as the day goes.
 
 **Open every module with a header card, this shape:**
 ```
@@ -216,89 +216,84 @@ The survey data lives on a spreadsheet facilitators can see, but you (running in
 
 *Note: the day starts at 10:30am (see curriculum.md). The first 15 minutes are welcome, room poll and the Claude tour. Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
 
-### The workshop flowchart — one simple step-by-step picture, filled in all day
+### Your AI System — ONE picture for the whole day (greyed ahead, lit as you go)
 
-**In Module 3 you create ONE file, `~/Desktop/my-ai/flow.html`, and from then on you EDIT that same file after every module — you never create a second one.** It is a clean vertical step-by-step: the six things they build today, stacked in order with an arrow between each, each in its own box. A step that's **done** is a solid box with a **"Yours:"** line filled in with what THEY actually built. A step **still to come** is a dashed, faded box with no "Yours:" line yet. It is the picture that ties the whole day together — by the finale every box is solid and every "Yours:" line is their own.
+**There is ONE picture for the entire workshop: `~/Desktop/my-ai/flow.html`. You create it once in Module 1, and from then on you only ever LIGHT UP one step at a time in that same file — you never draw a new picture, never make a second file, and never change the drawing itself.** It is a hand-drawn (Excalidraw-style) stack of all six steps of the day. Steps not yet reached are **greyed out**; the moment a step is done it turns **full colour** and gains a short **"Yours:"** line about what THIS person built. By the finale all six are lit. The standardisation is the whole point: the picture looks the same for everyone — only which steps are lit, and the six one-line "Yours:" captions, differ from person to person.
 
-**Create it at the END of Module 3** (by then steps 1, 2 and 3 have happened, so those three boxes are solid with their real "Yours:" lines; boxes 4, 5 and 6 are still dashed). Write this file EXACTLY as below — do not redesign it, do not touch the CSS. Only replace the three bracketed **[…]** "Yours:" lines in boxes 1–3 with this participant's real details, and leave boxes 4, 5 and 6 exactly as `class="box todo"` with no "Yours:" line (they fill in later). Then open it in their browser:
-
-```html
-<!doctype html><html><head><meta charset="utf-8"><title>How today fits together</title>
-<style>
-body{margin:0;background:#f8f4ea;color:#17170f;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45;}
-.wrap{max-width:560px;margin:0 auto;padding:32px 20px 70px;}
-h1{font-size:23px;text-align:center;margin:0 0 4px;}
-.sub{text-align:center;color:#6b6b5e;font-size:13px;margin:0 0 26px;}
-.box{border:2px solid #5f7355;border-radius:14px;padding:14px 16px;background:#fff;}
-.box.todo{border-color:#ddd8c8;border-style:dashed;background:#f1ead9;opacity:.65;}
-.row{display:flex;align-items:flex-start;gap:12px;}
-.num{width:30px;height:30px;border-radius:50%;background:#5f7355;color:#fff;font-weight:700;font-size:14px;
-  display:flex;align-items:center;justify-content:center;flex:none;}
-.box.todo .num{background:#c9c3b2;}
-.ttl{font-weight:700;font-size:15.5px;}
-.what{font-size:13px;color:#6b6b5e;margin-top:1px;}
-.mine{font-size:13px;margin-top:7px;padding-top:7px;border-top:1px solid #eee7d8;}
-.mine b{color:#5f7355;}
-.arrow{text-align:center;color:#a3b899;font-size:20px;line-height:1;margin:7px 0;}
-</style></head><body><div class="wrap">
-<h1>How today fits together</h1>
-<p class="sub">Six steps. Each one adds something to the last.</p>
-
-<!-- BOX1 --><div class="box"><div class="row"><div class="num">1</div><div><div class="ttl">Your AI Brain</div><div class="what">Teach it who you are, once.</div><div class="mine"><b>Yours:</b> [THEIR AI BRAIN — their name + what they do, e.g. Aisha, owner of a 6-person renovation firm]</div></div></div></div>
-<div class="arrow">&#8595;</div>
-<!-- BOX2 --><div class="box"><div class="row"><div class="num">2</div><div><div class="ttl">Skills</div><div class="what">Teach it a job you repeat, so it does it the same way every time.</div><div class="mine"><b>Yours:</b> [THEIR SKILL — its name + what it does, e.g. Site Update Writer, turns my voice notes into a clean client update]</div></div></div></div>
-<div class="arrow">&#8595;</div>
-<!-- BOX3 --><div class="box"><div class="row"><div class="num">3</div><div><div class="ttl">Connectors &amp; MCP</div><div class="what">Plug it into your real email, calendar and spreadsheet.</div><div class="mine"><b>Yours:</b> [WHAT THEY CONNECTED, e.g. Outlook + Google Sheets connected]</div></div></div></div>
-<div class="arrow">&#8595;</div>
-<!-- BOX4 --><div class="box todo"><div class="row"><div class="num">4</div><div><div class="ttl">Several jobs at once</div><div class="what">It splits into a small team, works in parallel, hands back one answer.</div></div></div></div>
-<div class="arrow">&#8595;</div>
-<!-- BOX5 --><div class="box todo"><div class="row"><div class="num">5</div><div><div class="ttl">Your morning brief</div><div class="what">It runs on a schedule and emails you, without being asked.</div></div></div></div>
-<div class="arrow">&#8595;</div>
-<!-- BOX6 --><div class="box todo"><div class="row"><div class="num">6</div><div><div class="ttl">Your dashboard</div><div class="what">One screen at the front of all of it.</div></div></div></div>
-
-</div></body></html>
-```
-
-**After that, never rewrite the file and never make a new one. Each later module changes only TWO tiny things in the SAME file, then re-opens it:**
-
-- **Module 4** → find `<!-- BOX4 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line just before that box's closing tags, describing what their parallel job did in their own words (e.g. "Priced 3 suppliers at once, came back as one comparison"). Reopen the file.
-- **Module 5** → same for `<!-- BOX5 -->`: change `todo` to done and add their "Yours:" line (e.g. "8:00am every day, emailed to me").
-- **Module 6** → same for `<!-- BOX6 -->`: change `todo` to done and add their "Yours:" line (e.g. "Cash, jobs running, and who's waiting on me"). This is the last one — every box is now solid; tell them it shows their whole system, worth a screenshot.
-
-**The only rules:** never touch a box that isn't this module's; never change the CSS or the step titles/descriptions; always fill the "Yours:" line with what THEY actually built, in their own words, never a placeholder or a bracket; if a module genuinely produced nothing (they skipped it), leave that box dashed. Add `flow.html — How today fits together, one picture` to the Finale folder tour list.
-
----
-
-### The module pictures — one hand-drawn diagram per module (Excalidraw style)
-
-**At each module's "explain the concept" moment, draw that module's picture and open it — this IS the one visual per module (it replaces the old plain-text sketch).** Each is a small self-contained web page saved to `~/Desktop/my-ai/pictures/`. **Copy the page EXACTLY as given — never change the CSS, the SVG shapes, or the coordinates.** The only things you touch are the short **[BRACKETED]** labels, which you swap for THIS attendee's real details. Keep every replacement SHORT — a name, a tool, one or two words — so the picture stays clean and hand-drawn; that brevity is the whole design. If a detail genuinely doesn't apply (e.g. they connected only two tools), delete that one label's box rather than padding it.
-
-**The page shell is identical for every module.** Save each picture as `~/Desktop/my-ai/pictures/[N]-[shortname].html` using this shell, dropping that module's block (below) where it says `<!--DIAGRAM-->`, then open it in their browser:
+**Create it at the END of Module 1**, right after their AI Brain is saved. Write this file EXACTLY as below — do **NOT** change the CSS, the SVG, the coordinates, or any diagram; the diagrams are fixed and generic on purpose, and redrawing them is exactly what went wrong before. The ONLY thing you personalise is the one-line `Yours:` caption under each lit step. On creation, Step 1 is already lit — fill its `Yours:` line with their name and business — and Steps 2–6 are greyed. Then open it in their browser so they see the whole journey ahead of them:
 
 ```html
-<!doctype html><html><head><meta charset="utf-8"><title>A picture for this step</title>
+<!doctype html><html><head><meta charset="utf-8"><title>Your AI System, step by step</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;}
 body{margin:0;background:#fffef9;color:#1e1e1e;font-family:"Kalam",cursive;}
 .wrap{max-width:720px;margin:0 auto;padding:26px 16px 60px;}
-.hero{text-align:center;margin-bottom:10px;}
+.hero{text-align:center;margin-bottom:6px;}
 .hero h1{font-family:"Caveat",cursive;font-weight:700;font-size:40px;margin:0;}
 .hero p{color:#6b6b5e;font-size:15px;margin:2px 0 0;}
-.mod{border-top:2px dashed #e6e0cf;padding:22px 0 6px;}
+.mod{border-top:2px dashed #e6e0cf;padding:22px 0 8px;}
 .mh{display:flex;align-items:baseline;gap:12px;}
 .ln{font-family:"Kalam",cursive;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#adb5bd;}
 .mh h2{font-family:"Caveat",cursive;font-weight:700;font-size:30px;margin:0;}
 .cap{font-size:15px;color:#495057;margin:2px 0 10px;}
 .dia svg{display:block;width:100%;height:auto;}
+.mine{font-size:14.5px;margin:8px 0 0;padding-top:8px;border-top:1px solid #eee7d8;}
+.mine:empty{display:none;} .mine b{color:#2b8a3e;}
 .lbl{font-family:"Kalam",cursive;font-size:14px;font-weight:700;}
 .bd{font-family:"Kalam",cursive;font-size:15px;font-weight:700;}
 .sm{font-family:"Kalam",cursive;font-size:13px;}
 .tiny{font-family:"Kalam",cursive;font-size:11px;font-style:italic;}
-</style>
-</head><body><div class="wrap">
-<!--DIAGRAM-->
+.chip{font-family:"Kalam",cursive;font-size:11px;font-weight:700;border-radius:12px;padding:2px 10px;margin-left:auto;}
+.chip-soon{background:#f1f3f5;color:#adb5bd;border:1.5px dashed #ced4da;}
+.chip-done{background:#ebfbee;color:#2b8a3e;border:1.5px solid #2b8a3e;display:none;}
+/* GREYED-OUT: modules not reached yet */
+.mod.todo .dia{filter:grayscale(1);opacity:.35;}
+.mod.todo .mh h2{color:#b6b6ab;}
+.mod.todo .cap{color:#c2c2b6;}
+.mod.todo .chip-soon{display:inline-block;}
+/* LIT: modules done */
+.mod.done .chip-soon{display:none;}
+.mod.done .chip-done{display:inline-block;}
+</style></head><body><div class="wrap">
+<div class="hero"><h1>Your AI System, step by step</h1><p>The greyed-out steps are still ahead — each lights up as you build it.</p></div>
+<section class="mod done" id="m1">
+  <div class="mh"><span class="ln">Step 1 of 6</span><h2>Your AI Brain</h2><span class="chip chip-soon">not yet</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Explain yourself once. Every new chat already knows you.</p>
+  <div class="dia"><svg viewBox="0 0 644 160" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="24" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="138" y1="41" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M224.0,90.2 L232,90 L227.5,83.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="70" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="138" y1="87" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M224.9,93.6 L232,90 L225.1,85.9" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="116" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="138" y1="133" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M227.2,96.4 L232,90 L224.0,89.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="232" y="58" width="150" height="66" rx="8" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="2.2"/><line x1="384" y1="90" x2="470" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M463.0,93.8 L470,90 L463.0,86.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="470" y="58" width="150" height="66" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2"/></g><text x="79" y="46" text-anchor="middle" class="sm" fill="#1e1e1e">Mon chat</text><text x="79" y="92" text-anchor="middle" class="sm" fill="#1e1e1e">Tue chat</text><text x="79" y="138" text-anchor="middle" class="sm" fill="#1e1e1e">Wed chat</text><text x="307" y="88" text-anchor="middle" class="bd" fill="#1e1e1e">Your AI Brain</text><text x="307" y="108" text-anchor="middle" class="sm" fill="#2b8a3e">CLAUDE.md</text><text x="545" y="90" text-anchor="middle" class="sm" fill="#1e1e1e">“Hi again —</text><text x="545" y="110" text-anchor="middle" class="sm" fill="#1e1e1e">I know your world.”</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod todo" id="m2">
+  <div class="mh"><span class="ln">Step 2 of 6</span><h2>Skills</h2><span class="chip chip-soon">not yet</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Write a job down once — three parts — it runs the same way every time.</p>
+  <div class="dia"><svg viewBox="0 0 636 182" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="30" y="20" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2"/><rect x="30" y="72" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2"/><rect x="30" y="124" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2"/><line x1="290" y1="96" x2="352" y2="96" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M345.0,99.8 L352,96 L345.0,92.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="352" y="66" width="270" height="64" rx="8" fill="#fff" stroke="#f08c00" stroke-width="2.2"/></g><text x="46" y="47" text-anchor="start" class="bd" fill="#1e1e1e">WHAT IT DOES</text><text x="266" y="47" text-anchor="end" class="sm" fill="#7a6a1e">one line</text><text x="46" y="99" text-anchor="start" class="bd" fill="#1e1e1e">THE STEPS</text><text x="266" y="99" text-anchor="end" class="sm" fill="#7a6a1e">how, in order</text><text x="46" y="151" text-anchor="start" class="bd" fill="#1e1e1e">THE RULES</text><text x="266" y="151" text-anchor="end" class="sm" fill="#7a6a1e">never do X</text><text x="487" y="94" text-anchor="middle" class="bd" fill="#e8590c">Same result,</text><text x="487" y="116" text-anchor="middle" class="sm" fill="#e8590c">every time</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod todo" id="m3">
+  <div class="mh"><span class="ln">Step 3 of 6</span><h2>Connect your tools</h2><span class="chip chip-soon">not yet</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Give Claude its own keys — it reads your inbox, calendar and sheets itself.</p>
+  <div class="dia"><svg viewBox="0 0 644 168" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="54" width="140" height="64" rx="8" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="2.2"/><rect x="470" y="18" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2"/><path d="M164 86 C 300 86, 320 37, 470 37" fill="none" stroke="#1971c2" stroke-width="2.4"/><rect x="470" y="68" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2"/><path d="M164 86 C 300 86, 320 87, 470 87" fill="none" stroke="#1971c2" stroke-width="2.4"/><rect x="470" y="118" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2"/><path d="M164 86 C 300 86, 320 137, 470 137" fill="none" stroke="#1971c2" stroke-width="2.4"/></g><text x="94" y="90" text-anchor="middle" class="bd" fill="#1e1e1e">Claude</text><text x="545" y="42" text-anchor="middle" class="sm" fill="#1971c2">Gmail</text><text x="545" y="92" text-anchor="middle" class="sm" fill="#1971c2">Calendar</text><text x="545" y="142" text-anchor="middle" class="sm" fill="#1971c2">Sheets</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod todo" id="m4">
+  <div class="mh"><span class="ln">Step 4 of 6</span><h2>Several jobs at once</h2><span class="chip chip-soon">not yet</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Hand off three things together — they run in parallel, come back as one.</p>
+  <div class="dia"><svg viewBox="0 0 644 180" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="66" width="120" height="52" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2"/><rect x="250" y="18" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="92" x2="250" y2="39" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M245.4,45.6 L250,39 L242.0,38.7" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="39" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M492.0,92.1 L500,92 L495.6,85.3" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="72" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="92" x2="250" y2="93" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.9,96.8 L250,93 L243.0,89.1" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="93" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M493.0,95.9 L500,92 L492.9,88.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="126" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="92" x2="250" y2="147" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.0,147.2 L250,147 L245.5,140.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="147" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M495.7,98.7 L500,92 L492.0,92.0" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="500" y="66" width="120" height="52" rx="8" fill="#fff" stroke="#7048e8" stroke-width="2.2"/></g><text x="84" y="90" text-anchor="middle" class="bd" fill="#1e1e1e">You:</text><text x="84" y="108" text-anchor="middle" class="sm" fill="#1e1e1e">do these 3</text><text x="325" y="44" text-anchor="middle" class="sm" fill="#5f3dc4">Job 1</text><text x="325" y="98" text-anchor="middle" class="sm" fill="#5f3dc4">Job 2</text><text x="325" y="152" text-anchor="middle" class="sm" fill="#5f3dc4">Job 3</text><text x="560" y="96" text-anchor="middle" class="sm" fill="#5f3dc4">One answer</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod todo" id="m5">
+  <div class="mh"><span class="ln">Step 5 of 6</span><h2>Your morning brief</h2><span class="chip chip-soon">not yet</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">A skill that runs on a schedule and lands in your inbox, unasked.</p>
+  <div class="dia"><svg viewBox="0 0 644 168" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="30" y="44" width="120" height="60" rx="8" fill="#ffd8a8" stroke="#1e1e1e" stroke-width="2.2"/><line x1="150" y1="74" x2="230" y2="74" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M223.0,77.8 L230,74 L223.0,70.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="44" width="150" height="60" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="380" y1="74" x2="460" y2="74" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M453.0,77.8 L460,74 L453.0,70.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="460" y="44" width="150" height="60" rx="8" fill="#fff" stroke="#e8590c" stroke-width="2.2"/><path d="M90 112 C 90 150, 535 150, 535 112" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="1 6"/></g><text x="90" y="72" text-anchor="middle" class="bd" fill="#e8590c">Each day</text><text x="90" y="92" text-anchor="middle" class="sm" fill="#e8590c">same time</text><text x="305" y="72" text-anchor="middle" class="bd" fill="#1e1e1e">brief runs</text><text x="305" y="92" text-anchor="middle" class="sm" fill="#1e1e1e">on its own</text><text x="535" y="72" text-anchor="middle" class="bd" fill="#e8590c">in your</text><text x="535" y="92" text-anchor="middle" class="sm" fill="#e8590c">inbox</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod todo" id="m6">
+  <div class="mh"><span class="ln">Step 6 of 6</span><h2>Your dashboard</h2><span class="chip chip-soon">not yet</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Everything you built today, on one live screen.</p>
+  <div class="dia"><svg viewBox="0 0 644 170" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="22" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="40" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.0,92.4 L250,92 L245.4,85.5" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="70" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="88" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.8,95.6 L250,92 L243.1,87.9" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="118" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="136" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M245.0,98.2 L250,92 L242.0,91.1" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="26" width="370" height="132" rx="8" fill="#fff" stroke="#c2255c" stroke-width="2.2"/><rect x="266" y="42" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/><rect x="446" y="42" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/><rect x="266" y="100" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/><rect x="446" y="100" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/></g><text x="84" y="45" text-anchor="middle" class="sm" fill="#1e1e1e">Email</text><text x="84" y="93" text-anchor="middle" class="sm" fill="#1e1e1e">Your sheet</text><text x="84" y="141" text-anchor="middle" class="sm" fill="#1e1e1e">Skills</text><text x="435" y="16" text-anchor="middle" class="bd" fill="#c2255c">ONE screen</text><text x="348" y="72" text-anchor="middle" class="bd" fill="#a61e4d">Cash</text><text x="528" y="72" text-anchor="middle" class="bd" fill="#a61e4d">Jobs</text><text x="348" y="130" text-anchor="middle" class="bd" fill="#a61e4d">Waiting</text><text x="528" y="130" text-anchor="middle" class="bd" fill="#a61e4d">Today</text></svg></div>
+  <p class="mine"></p>
+</section>
 </div>
 <svg width="0" height="0" style="position:absolute"><defs>
   <filter id="rough" x="-4%" y="-4%" width="108%" height="108%">
@@ -309,61 +304,13 @@ body{margin:0;background:#fffef9;color:#1e1e1e;font-family:"Kalam",cursive;}
 </body></html>
 ```
 
-**Then, per module, the block to drop in (fill only the brackets):**
+**From then on, at the "Picture" beat of each later module (right after they build that module's real thing), LIGHT UP that one step in the SAME file — two tiny edits, nothing else:**
+1. Find that step's `<section class="mod todo" id="mN">` and change `mod todo` to `mod done`.
+2. Fill that same section's empty `<p class="mine"></p>` with `<p class="mine"><b>Yours:</b> …</p>` — one short line about what they just built (e.g. Step 3 → "Outlook + Google Sheets connected"; Step 5 → "8:00am, emailed to me"). A few words only.
 
-**Module 1 — Your AI Brain.** Fill: `[NAME]` → their first name; `[BUSINESS]` → a 1–3 word name for their business.
+Then reopen the file so they watch that step turn from grey to full colour. **Never touch any other step, never edit the SVG or the coordinates, never create a second file.**
 
-```html
-<div class="mh"><span class="ln">Lesson 1 of 6</span><h2>Your AI Brain</h2></div>
-<p class="cap">Explain yourself once. From then on, every new chat already knows you.</p>
-<div class="dia"><svg viewBox="0 0 644 160" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="24" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="138" y1="41" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M224.0,90.2 L232,90 L227.5,83.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="70" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="138" y1="87" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M224.9,93.6 L232,90 L225.1,85.9" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="116" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="138" y1="133" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M227.2,96.4 L232,90 L224.0,89.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="232" y="58" width="150" height="66" rx="8" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="384" y1="90" x2="470" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M463.0,93.8 L470,90 L463.0,86.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="470" y="58" width="150" height="66" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/></g><text x="79" y="46" text-anchor="middle" class="sm" fill="#1e1e1e">Mon chat</text><text x="79" y="92" text-anchor="middle" class="sm" fill="#1e1e1e">Tue chat</text><text x="79" y="138" text-anchor="middle" class="sm" fill="#1e1e1e">Wed chat</text><text x="307" y="88" text-anchor="middle" class="bd" fill="#1e1e1e">Your AI Brain</text><text x="307" y="108" text-anchor="middle" class="sm" fill="#2b8a3e">CLAUDE.md</text><text x="545" y="90" text-anchor="middle" class="sm" fill="#1e1e1e">“Hey [NAME]!</text><text x="545" y="110" text-anchor="middle" class="sm" fill="#1e1e1e">how's [BUSINESS]?”</text></svg></div>
-```
-
-**Module 2 — Skills.** Fill: `[THEIR SKILL]` → the name of the skill they just built in Module 2 (e.g. "Reply Triager").
-
-```html
-<div class="mh"><span class="ln">Lesson 2 of 6</span><h2>Skills</h2></div>
-<p class="cap">Write a job down once — three parts — and it runs the same way every time.</p>
-<div class="dia"><svg viewBox="0 0 636 182" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="30" y="20" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="30" y="72" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="30" y="124" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="290" y1="96" x2="352" y2="96" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M345.0,99.8 L352,96 L345.0,92.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="352" y="66" width="270" height="64" rx="8" fill="#fff" stroke="#f08c00" stroke-width="2.2" opacity="1"/></g><text x="46" y="47" text-anchor="start" class="bd" fill="#1e1e1e">WHAT IT DOES</text><text x="266" y="47" text-anchor="end" class="sm" fill="#7a6a1e">one line</text><text x="46" y="99" text-anchor="start" class="bd" fill="#1e1e1e">THE STEPS</text><text x="266" y="99" text-anchor="end" class="sm" fill="#7a6a1e">how, in order</text><text x="46" y="151" text-anchor="start" class="bd" fill="#1e1e1e">THE RULES</text><text x="266" y="151" text-anchor="end" class="sm" fill="#7a6a1e">never do X</text><text x="487" y="90" text-anchor="middle" class="bd" fill="#e8590c">Same result,</text><text x="487" y="112" text-anchor="middle" class="sm" fill="#e8590c">every time</text><text x="487" y="128" text-anchor="middle" class="tiny" fill="#adb5bd">e.g. [THEIR SKILL]</text></svg></div>
-```
-
-**Module 3 — Connect your tools.** Fill: `[TOOL 1]` `[TOOL 2]` `[TOOL 3]` → the real tools they connected (or would), e.g. Outlook, Calendar, Google Sheets. Use only as many as apply.
-
-```html
-<div class="mh"><span class="ln">Lesson 3 of 6</span><h2>Connect your tools</h2></div>
-<p class="cap">A Connector is a ready-made cable; MCP is the standard plug behind it.</p>
-<div class="dia"><svg viewBox="0 0 644 168" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="54" width="140" height="64" rx="8" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="470" y="18" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2" opacity="1"/><path d="M164 86 C 300 86, 320 37, 470 37" fill="none" stroke="#1971c2" stroke-width="2.4"/><rect x="470" y="68" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2" opacity="1"/><path d="M164 86 C 300 86, 320 87, 470 87" fill="none" stroke="#1971c2" stroke-width="2.4"/><rect x="470" y="118" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2" opacity="1"/><path d="M164 86 C 300 86, 320 137, 470 137" fill="none" stroke="#1971c2" stroke-width="2.4"/></g><text x="94" y="90" text-anchor="middle" class="bd" fill="#1e1e1e">Claude</text><text x="545" y="42" text-anchor="middle" class="sm" fill="#1971c2">[TOOL 1]</text><text x="545" y="92" text-anchor="middle" class="sm" fill="#1971c2">[TOOL 2]</text><text x="545" y="142" text-anchor="middle" class="sm" fill="#1971c2">[TOOL 3]</text></svg></div>
-```
-
-**Module 4 — Several jobs at once.** Fill: `[TASK 1]` `[TASK 2]` `[TASK 3]` → the three real things they ran in parallel this module; `[RESULT]` → 1–2 words for the merged output (e.g. "One comparison").
-
-```html
-<div class="mh"><span class="ln">Lesson 4 of 6</span><h2>Several jobs at once</h2></div>
-<p class="cap">Hand off three things together — they run in parallel and come back as one.</p>
-<div class="dia"><svg viewBox="0 0 644 180" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="66" width="120" height="52" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="250" y="18" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="144" y1="92" x2="250" y2="39" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M245.4,45.6 L250,39 L242.0,38.7" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="39" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M492.0,92.1 L500,92 L495.6,85.3" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="72" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="144" y1="92" x2="250" y2="93" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.9,96.8 L250,93 L243.0,89.1" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="93" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M493.0,95.9 L500,92 L492.9,88.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="126" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="144" y1="92" x2="250" y2="147" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.0,147.2 L250,147 L245.5,140.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="147" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M495.7,98.7 L500,92 L492.0,92.0" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="500" y="66" width="120" height="52" rx="8" fill="#fff" stroke="#7048e8" stroke-width="2.2" opacity="1"/></g><text x="84" y="90" text-anchor="middle" class="bd" fill="#1e1e1e">You:</text><text x="84" y="108" text-anchor="middle" class="sm" fill="#1e1e1e">do these 3</text><text x="325" y="44" text-anchor="middle" class="sm" fill="#5f3dc4">[TASK 1]</text><text x="325" y="98" text-anchor="middle" class="sm" fill="#5f3dc4">[TASK 2]</text><text x="325" y="152" text-anchor="middle" class="sm" fill="#5f3dc4">[TASK 3]</text><text x="560" y="96" text-anchor="middle" class="sm" fill="#5f3dc4">[RESULT]</text></svg></div>
-```
-
-**Module 5 — Your morning brief.** Fill: `[TIME]` → the time they chose for their brief (e.g. 8:00am).
-
-```html
-<div class="mh"><span class="ln">Lesson 5 of 6</span><h2>Your morning brief</h2></div>
-<p class="cap">A skill that runs on a schedule and lands in your inbox without being asked.</p>
-<div class="dia"><svg viewBox="0 0 644 168" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="30" y="44" width="120" height="60" rx="8" fill="#ffd8a8" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="150" y1="74" x2="230" y2="74" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M223.0,77.8 L230,74 L223.0,70.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="44" width="150" height="60" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="380" y1="74" x2="460" y2="74" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M453.0,77.8 L460,74 L453.0,70.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="460" y="44" width="150" height="60" rx="8" fill="#fff" stroke="#e8590c" stroke-width="2.2" opacity="1"/><path d="M90 112 C 90 150, 535 150, 535 112" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="1 6"/></g><text x="90" y="72" text-anchor="middle" class="bd" fill="#e8590c">[TIME]</text><text x="90" y="92" text-anchor="middle" class="sm" fill="#e8590c">every day</text><text x="305" y="72" text-anchor="middle" class="bd" fill="#1e1e1e">brief runs</text><text x="305" y="92" text-anchor="middle" class="sm" fill="#1e1e1e">on its own</text><text x="535" y="72" text-anchor="middle" class="bd" fill="#e8590c">in your</text><text x="535" y="92" text-anchor="middle" class="sm" fill="#e8590c">inbox</text></svg></div>
-```
-
-**Module 6 — Your dashboard.** Fill: `[TILE 1]`…`[TILE 4]` → the four tiles on their dashboard, one word each (e.g. Cash, Jobs, Waiting, Today).
-
-```html
-<div class="mh"><span class="ln">Lesson 6 of 6</span><h2>Your dashboard</h2></div>
-<p class="cap">Everything you built today, pulled onto one live screen.</p>
-<div class="dia"><svg viewBox="0 0 644 170" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="22" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="144" y1="40" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.0,92.4 L250,92 L245.4,85.5" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="70" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="144" y1="88" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.8,95.6 L250,92 L243.1,87.9" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="118" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><line x1="144" y1="136" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M245.0,98.2 L250,92 L242.0,91.1" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="26" width="370" height="132" rx="8" fill="#fff" stroke="#c2255c" stroke-width="2.2" opacity="1"/><rect x="266" y="42" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="446" y="42" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="266" y="100" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/><rect x="446" y="100" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2" opacity="1"/></g><text x="84" y="45" text-anchor="middle" class="sm" fill="#1e1e1e">Email</text><text x="84" y="93" text-anchor="middle" class="sm" fill="#1e1e1e">Your sheet</text><text x="84" y="141" text-anchor="middle" class="sm" fill="#1e1e1e">Skills</text><text x="435" y="16" text-anchor="middle" class="bd" fill="#c2255c">ONE screen</text><text x="348" y="72" text-anchor="middle" class="bd" fill="#a61e4d">[TILE 1]</text><text x="528" y="72" text-anchor="middle" class="bd" fill="#a61e4d">[TILE 2]</text><text x="348" y="130" text-anchor="middle" class="bd" fill="#a61e4d">[TILE 3]</text><text x="528" y="130" text-anchor="middle" class="bd" fill="#a61e4d">[TILE 4]</text></svg></div>
-```
-
-**Never change a `viewBox`, a width/height, or any coordinate** — the box has been sized to fit its contents, and shrinking it or letting a label run long is exactly what makes a box get clipped at the edge or collide with the next thing on the page. If a replacement label is too long to sit inside its box, **shorten the label** (that's why the rule is to keep them to a word or two) — never resize the drawing to fit the words.
-
-**Before you move on, glance at the opened picture and check it's clean:** every box fully inside the frame (nothing cut off at the top or bottom edge), no text spilling out of its box, no line crossing over any words. If anything looks clipped or cramped, it's because a filled-in label was too long — trim it and re-save. A picture only helps if it reads cleanly at a glance.
-
-**One picture per module, no more** — same rule as before. Don't stack them, don't re-open old ones; each module draws its own and moves on. Add `pictures/ — a drawn card for each step` to the Finale folder tour list.
+**The only rules:** the drawing never changes — per module you flip exactly one `todo`→`done` and write exactly one short `Yours:` line; if a module is genuinely skipped, leave its step greyed; keep every `Yours:` line to a few words so it stays clean. This ONE file is the day's picture and it replaces every other diagram. Add `flow.html — your whole AI system, one picture` to the Finale folder tour list.
 
 ---
 
@@ -449,7 +396,7 @@ Then write `~/Desktop/my-ai/CLAUDE.md` containing: their name/role, team structu
 
 Read it back to them out loud. Point out: "this file is why I won't ask you these questions again — next time you open Claude, it already knows this."
 
-**Picture:** Draw Module 1's concept picture now (see "The module pictures — one hand-drawn diagram per module" near the top). Copy that module's block into the shell, fill ONLY the [bracketed] labels with this attendee's real details (keep them short), save to `~/Desktop/my-ai/pictures/1-[shortname].html`, and open it. One picture, then move on.
+**Picture:** Create the day's flow picture now (see "Your AI System — ONE picture for the whole day"). Write `~/Desktop/my-ai/flow.html` EXACTLY from the template, fill Step 1's `Yours:` line with their name and business, and open it. They'll see all six steps — Step 1 in colour, Steps 2–6 greyed out ahead. This is the ONE picture you light up for the rest of the day; never make another.
 
 **Quiz:**
 ```
@@ -508,7 +455,7 @@ Install the skill at `~/.claude/skills/[their-skill-name]/SKILL.md` with those t
 *Beginner:* one skill, fully working, is the whole goal here — do not rush them into a second one even if there's time. Confidence, not coverage.
 *Intermediate stretch (if they finish early):* build a second, smaller skill from a Module 1 answer that didn't get used, or add a "Rules" edge case to the first skill (e.g. "never send without me reviewing first").
 
-**Picture:** Draw Module 2's concept picture now (see "The module pictures — one hand-drawn diagram per module" near the top). Copy that module's block into the shell, fill ONLY the [bracketed] labels with this attendee's real details (keep them short), save to `~/Desktop/my-ai/pictures/2-[shortname].html`, and open it. One picture, then move on.
+**Picture:** Light up Step 2 in the flow picture now (see "Your AI System — ONE picture for the whole day"). In the SAME `~/Desktop/my-ai/flow.html`, change Step 2's `class="mod todo" id="m2"` to `mod done`, fill its `Yours:` line with one short phrase about what they just built, and reopen it so they watch Step 2 turn from grey to colour. Don't touch any other step, don't redraw anything.
 
 **Quiz:**
 ```
@@ -589,7 +536,7 @@ Write `~/Desktop/my-ai/mcp-plan.md`: a short table of every tool they mentioned,
 *Beginner:* one tool connected and proven is enough. Don't open the mcp-plan.md rabbit hole live — hand it over as a take-home file only, one sentence: "for the tools with no ready cable, this file has a prompt you paste in tonight and it builds the connection for you."
 *Intermediate stretch:* connect a second tool live, and walk them through reading the mcp-plan.md table themselves — pick their one trickiest no-connector tool and tailor its overnight prompt with them, so they leave knowing exactly what to run tonight.
 
-**Picture:** Draw Module 3's concept picture now (see "The module pictures — one hand-drawn diagram per module" near the top). Copy that module's block into the shell, fill ONLY the [bracketed] labels with this attendee's real details (keep them short), save to `~/Desktop/my-ai/pictures/3-[shortname].html`, and open it. One picture, then move on.
+**Picture:** Light up Step 3 in the flow picture now (see "Your AI System — ONE picture for the whole day"). In the SAME `~/Desktop/my-ai/flow.html`, change Step 3's `class="mod todo" id="m3"` to `mod done`, fill its `Yours:` line with one short phrase about what they just built, and reopen it so they watch Step 3 turn from grey to colour. Don't touch any other step, don't redraw anything.
 
 **Quiz:**
 ```
@@ -604,8 +551,6 @@ Should you build a custom MCP for it too?
   C) Doesn't matter either way
 ```
 Correct answer: B. Explain why: a Connector is a plug that already exists; building your own is only for when no plug exists yet.
-
-**Create the workshop flowchart now, at this gate (end of Module 3).** Write `~/Desktop/my-ai/flow.html` from the template in "The workshop flowchart" (near the top of this document): boxes 1–3 solid with their real "Yours:" lines filled in (their AI Brain, their skill, what they connected), boxes 4–6 left dashed. Open it in their browser. This is the ONE file you update for the rest of the day.
 
 **Gate:** "Your tool is connected. When you're ready to see me handle a few things at once, type module4."
 
@@ -670,7 +615,7 @@ Turn today's mission into their second reusable skill if there's time — instal
 *Beginner:* keep the parallel batch to 2 sub-tasks, not 3 — the concept ("more than one thing at once") is the win, not the volume.
 *Intermediate stretch:* push to 4-5 parallel sub-tasks and have them try phrasing the request themselves before you write it, so they leave able to do this unassisted.
 
-**Picture:** Draw Module 4's concept picture now (see "The module pictures — one hand-drawn diagram per module" near the top). Copy that module's block into the shell, fill ONLY the [bracketed] labels with this attendee's real details (keep them short), save to `~/Desktop/my-ai/pictures/4-[shortname].html`, and open it. One picture, then move on.
+**Picture:** Light up Step 4 in the flow picture now (see "Your AI System — ONE picture for the whole day"). In the SAME `~/Desktop/my-ai/flow.html`, change Step 4's `class="mod todo" id="m4"` to `mod done`, fill its `Yours:` line with one short phrase about what they just built, and reopen it so they watch Step 4 turn from grey to colour. Don't touch any other step, don't redraw anything.
 
 **Quiz:**
 ```
@@ -687,8 +632,6 @@ things at once instead of one at a time?
 Correct answer: B. Explain why: this is the shift from "I have an assistant" to "I have a small team" — the whole point of Module 4.
 
 Unlock: Gift 2. Append the full content from the "Gift 2" section of the appendix below to `~/Desktop/my-ai/gifts.md` on THIS participant's machine right now — add it as a new section below Gift 1 (title it "Gift 2 — 5 Delegation Workflows"), keeping what's already in the file. Then explain where to find it using the standard "where to find it" line (defined in Persona & rules).
-
-**Update the workshop flowchart now, at this gate.** In the SAME `flow.html`, find `<!-- BOX4 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line inside it saying what they just built in their own words (see "The workshop flowchart"). Reopen the file — never create a new one.
 
 **Gate:** "That's saved. Type module5 when you're back and ready — or if there's no break scheduled, go ahead now."
 
@@ -844,7 +787,7 @@ Three things to say plainly when you set this up:
 
 Don't force the advanced option — match to their comfort level from Module 1. A phone reminder they'll actually use beats an automation they set up once and never trust.
 
-**Picture:** Draw Module 5's concept picture now (see "The module pictures — one hand-drawn diagram per module" near the top). Copy that module's block into the shell, fill ONLY the [bracketed] labels with this attendee's real details (keep them short), save to `~/Desktop/my-ai/pictures/5-[shortname].html`, and open it. One picture, then move on.
+**Picture:** Light up Step 5 in the flow picture now (see "Your AI System — ONE picture for the whole day"). In the SAME `~/Desktop/my-ai/flow.html`, change Step 5's `class="mod todo" id="m5"` to `mod done`, fill its `Yours:` line with one short phrase about what they just built, and reopen it so they watch Step 5 turn from grey to colour. Don't touch any other step, don't redraw anything.
 
 **Quiz:**
 ```
@@ -859,8 +802,6 @@ just asking a fresh question every day?
   C) Because it only works one time
 ```
 Correct answer: A. Explain why: a saved skill is repeatable on demand — a one-off question is not.
-
-**Update the workshop flowchart now, at this gate.** In the SAME `flow.html`, find `<!-- BOX5 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line inside it saying what they just built in their own words (see "The workshop flowchart"). Reopen the file — never create a new one.
 
 **Gate:** "Your morning brief is saved. When you're ready to see it all pulled together on one screen, type module6."
 
@@ -1008,7 +949,7 @@ Three things must be true or it fails silently when it fires, so check each one 
 *Beginner:* stay on whichever branch fits them closest and skip the live slider — it invites a rabbit hole of "can it also do X" that eats the clock. Still hit the full quality bar below (5-6 visual elements, 2 chart types); a thin dashboard is a failure state even for a beginner.
 *Intermediate stretch:* add the interactive control (a slider or filter that really recalculates), and have them describe a tweak themselves (e.g. "make this tile red if it drops below X") so they leave able to change it without you.
 
-**Picture:** Draw Module 6's concept picture now (see "The module pictures — one hand-drawn diagram per module" near the top). Copy that module's block into the shell, fill ONLY the [bracketed] labels with this attendee's real details (keep them short), save to `~/Desktop/my-ai/pictures/6-[shortname].html`, and open it. One picture, then move on.
+**Picture:** Light up Step 6 in the flow picture now (see "Your AI System — ONE picture for the whole day"). In the SAME `~/Desktop/my-ai/flow.html`, change Step 6's `class="mod todo" id="m6"` to `mod done`, fill its `Yours:` line with one short phrase about what they just built, and reopen it so they watch Step 6 turn from grey to colour. Don't touch any other step, don't redraw anything.
 
 **Quiz:**
 ```
@@ -1035,8 +976,6 @@ Unlock: Gift 3. Append the full content from the "Gift 3" section of the appendi
    First 3 posts win a gift!
 ═══════════════════════════════
 ```
-
-**Update the workshop flowchart now, at this gate.** In the SAME `flow.html`, find `<!-- BOX6 -->`, change its `class="box todo"` to `class="box"`, and add a `<div class="mine"><b>Yours:</b> …</div>` line inside it saying what they just built in their own words (see "The workshop flowchart"). Reopen the file — never create a new one. This is the last one — every box is now solid; tell them it shows their whole system, worth a screenshot.
 
 **Gate:** "That's your dashboard done — the big one. Type finale to wrap up and see everything you built today."
 
