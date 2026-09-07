@@ -595,111 +595,109 @@ Install the skill at `~/.claude/skills/daily-brief/SKILL.md`, with the readable 
 
 Run it live so they see a real brief with real numbers.
 
-Offer scheduling matched to their comfort and to what their app actually supports — **walk them through it, don't just name the tiers.** First land the win out loud: "The brief works. Now let's make it turn up on its own, so you don't even have to ask."
+Now make it turn up on its own. Land the win out loud first: "The brief works. Now let's make it turn up on its own, so you don't even have to ask." Then offer the two tiers, matched to their comfort and to what their app actually supports — **walk them through it, don't just name the tiers.**
 
-- **Easiest (works for everyone, zero setup):** a phone reminder to open Claude each morning and type "run my morning brief" — plain words, no leading slash.
-- **Best — true automation, if their app supports it (the brief appears on its own, no reminder).**
+**Tier 1 — Easiest (works for everyone, zero setup):** a phone reminder to open Claude each morning and type "run my morning brief" — plain words, no leading slash.
 
-  **HARD RULE — do NOT create the scheduled task yourself. Never call any "create routine", "scheduled task" or scheduler tool, even if one is available to you and even if it looks faster.** In testing the skill kept auto-firing a "create routine (scheduled-tasks)" tool, which pops a scary permission dialog full of raw JSON and takes the learning away from the attendee. This module is them learning to set up automation with their own hands, in the app's own dialog. Your job is only to (a) hand them ONE finished block of instructions to paste, and (b) tell them, in plain words, exactly what to click. They do the clicking. If you ever find yourself about to call a scheduler/routine tool, stop — write the paste-in block and the click-by-click instead.
+**Tier 2 — Real automation: a SCHEDULED TASK (the brief appears on its own, no reminder).** This is the one to aim for.
 
-  A scheduled task runs later as a brand-new Claude session with no memory of this conversation, so it needs to be self-contained and correct on its own. Hand them the exact paste-in text and walk them through the dialog field by field, in your own words, matching this shape:
-  1. **Open Scheduled tasks and click New task.** In the Claude app, find **Scheduled tasks** (sidebar or menu) and click **New task** in the top right. A dialog headed **Create scheduled task** opens. If they don't have this at all, don't force it and never promise automation the app doesn't show: stay on the phone-reminder tier and say plainly they can switch it on later.
-  2. **Write the prompt around whatever they actually connected back in Module 3 — don't revisit connecting here.** If Gmail is connected, the prompt says Gmail; if Outlook is, it says Outlook; if nothing is, it asks them for their numbers instead. You already know which from Module 3, so don't re-ask and above all don't send them off to the connector browser now — that's Module 3's job and doing it here derails an 8-minute module. The one hard rule: **never write a tool name into a saved task that they haven't actually connected.** A scheduled task cannot ask for clarification when it fires — it fails silently every morning, and they'll conclude the whole thing is broken.
+> **HARD RULE — you do NOT create the scheduled task. Never call a "create routine", "scheduled task" or any scheduler tool, even if one is available to you and even if it looks faster.** In testing the skill kept auto-firing a routine-creation tool, which throws a permission dialog full of raw JSON at the attendee and takes the learning away from them. This module is them setting up automation **with their own hands**, in the app's own dialog. Your only two jobs are: **(a)** hand them ONE finished block of text to paste, and **(b)** tell them, in plain words, exactly what to click. They do the clicking. If you ever catch yourself about to call a scheduler tool — stop, and write the paste-in block and the click-by-click instead.
 
-  3. **Fill the dialog in this exact order.** The fields are Name, Instructions, then a row inside the instructions box, then Frequency, Permissions, and one toggle at the bottom that matters more than all of them:
-     - **Name** — something short like `Daily briefing`.
-     - **Instructions** — give them ONE finished block to copy and paste, never a template to fill in themselves, **built from THEIR Q1/Q2 answers, not a generic one.** Fill this shape with their real signals:
-       ```
-       Read my AI Brain at [THEIR RESOLVED my-ai PATH FROM MODULE 1 — the real, absolute path, e.g. C:\Users\Hamza\OneDrive\Desktop\my-ai\CLAUDE.md — never the ~/Desktop shorthand], then run my morning brief.
+A scheduled task fires tomorrow as a brand-new Claude session with no memory of this conversation, so the text they paste has to be self-contained and correct on its own. Walk them through it in this order:
 
-       [Their Q2 checklist, one line each — e.g. check Gmail for new [their lead type] in the last 24h; check Calendar for calls/meetings today and tomorrow; flag anyone waiting 2+ days on a reply from me; pipeline snapshot: new leads, overdue follow-ups, calls booked this week.]
-       Give me ONE specific action to take before [their time, e.g. 10am].
+**Step 1 — Open the dialog.** In the Claude app, find **Scheduled tasks** (sidebar or menu) and click **New task** (top right). A dialog headed **Create scheduled task** opens. If they don't have this at all, don't force it and never promise automation the app doesn't show — stay on Tier 1 and say plainly they can switch it on later.
 
-       Then email this brief to me at [THEIR OWN EMAIL ADDRESS], subject: Your morning brief.
+**Step 2 — Write THEIR instructions block, then hand it over to paste.** Build it from their Q1/Q2/Q3 answers and from whatever they actually connected in Module 3 — if Gmail is connected it says Gmail, if Outlook is it says Outlook, if nothing is it asks them for their numbers instead. **Never write a tool name into a saved task they haven't actually connected**: a scheduled task can't ask for clarification when it fires, so it fails silently every morning and they conclude the whole thing is broken. Don't re-open the connector browser here — that was Module 3's job and doing it now derails an 8-minute module.
 
-       Rules:
-       - Lead with the single most important thing
-       - Maximum 5 bullets, shortest first
-       - Notes, not sentences. No intro, no sign-off, no "here is your brief" preamble
-       - If a bullet needs more than ~12 words, it is two bullets or it is cut
-       - Flag anything needing my decision with ⚠️
-       - End with: "Your one thing today: ___"
-       ```
-       **This is one of THREE places in the day where the tilde shorthand (`~/Desktop/...`) is never safe — the others are the `mcp-plan.md` overnight prompt in Module 3 and the `update-dashboard` skill steps in Module 6. In all three — a scheduled task is a fresh session that may re-resolve `~` on its own and hit the exact same OneDrive-redirect problem the persona rules exist to prevent. Always substitute the literal absolute path you already resolved for THIS participant in Module 1, never the shorthand.**
-
-**Have the brief EMAILED to them, not just left on screen — this is the version people actually keep using.** A brief sitting in a Claude window is one they have to remember to go and look at. A brief sitting in their inbox at 8am is one they read with their coffee. If their email is connected from Module 3, add this as the last line of the task instructions:
+Give them ONE finished block, never a template to fill in — **no `[brackets]` left in what they paste.** This is the complete shape, including the email line and the late-run guardrail, so nothing has to be added afterwards:
 
 ```
-Then email this brief to me at [THEIR OWN EMAIL ADDRESS], subject line: Your morning brief — [today's date].
+Read my AI Brain at [THEIR RESOLVED ABSOLUTE PATH FROM MODULE 1 — e.g. C:\Users\Hamza\OneDrive\Desktop\my-ai\CLAUDE.md — never the ~/Desktop shorthand], then run my morning brief.
+
+[Their Q2 checklist, one line each — e.g. check Gmail for new [their word for leads] in the last 24h; check Calendar for calls/meetings today and tomorrow; flag anyone waiting 2+ days on a reply from me.]
+Give me ONE specific action to take before [their time, e.g. 10am].
+
+Then email this brief to me at [THEIR OWN EMAIL ADDRESS], subject: Your morning brief.
+
+Rules:
+- Lead with the single most important thing
+- Maximum 5 bullets, shortest first
+- Notes, not sentences. No intro, no sign-off, no "here is your brief" preamble
+- If a bullet needs more than ~12 words, it is two bullets or it is cut
+- Flag anything needing my decision with ⚠️
+- If it is past 2pm when you run this, say so at the top and only include what still matters today
+- End with: "Your one thing today: ___"
 ```
 
-Three things to say plainly when you set this up:
-- **It only ever emails them, never anyone else.** Write their own address into the task and say so out loud — nobody should wonder whether this thing can mail their clients.
-- **It needs permission to send.** This is the one place today where "send" permission is genuinely worth granting, because the only recipient is themselves. When they hit **Run now**, the send step will ask; that is the moment to choose always-allow.
-- **If their email is not connected**, skip the email line entirely rather than writing a task that fails every morning. The on-screen brief still works.
+**The absolute path is not optional here.** This is one of THREE places in the day where the `~/Desktop/...` shorthand is never safe (the others are Module 3's `mcp-plan.md` prompt and Module 6's `update-dashboard` skill). A scheduled task is a fresh session that will re-resolve `~` on its own and hit the OneDrive-redirect problem. Always substitute the literal path you resolved in Module 1.
 
-**Keep the brief SHORT — notes, not an essay.** The single most common way a daily brief dies is that it turns into three paragraphs nobody reads by Wednesday. The rules in the template are not decoration, they are the whole design. Write them as hard constraints, and if their answers suggest a long brief, push back and cut it with them. Aim for something they can read standing up, holding a coffee, in under twenty seconds.
+**About the email line, say these three things plainly:**
+- **It only ever emails them, never anyone else.** Their own address goes in the task — nobody should wonder if this can mail their clients.
+- **It needs permission to send**, which they'll grant on the first Run now (Step 4).
+- **If their email isn't connected, delete that line** rather than saving a task that fails every morning. The on-screen brief still works.
 
-**Auto-drafted replies — a standard part of this module, not an optional extra. Tell EVERYONE about it whose email is connected, and offer to build it.** After the morning brief lands, say it in plain words: "There's a second thing your connected email unlocks, and it's the one people love most — I can read your inbox and write a suggested reply to every message that needs one, sitting ready in your Drafts folder. You open your inbox and the replies are already written — you just read, tweak, and hit send." Then build the skill: it reads their inbox and drafts a reply to each message that needs one, **saved as a draft in their email, never sent**. Say that constraint out loud twice — drafts only, never sent — it is the difference between a tool people trust and one they turn off. The drafts sound like them because the skill reads their AI Brain (Module 1) and, ideally, a couple of their own past replies for tone.
+**Step 3 — Fill the dialog, field by field.** In this exact order:
+- **Name** — something short, e.g. `Daily briefing`.
+- **Instructions** — they paste the block from Step 2. They paste it; they never type it.
+- **Work in a project or folder** (the dropdown inside the instructions box) — point it at their `my-ai` folder, so the task can find everything they built today.
+- **Default model** (same row) — leave as is.
+- **Frequency** — starts on **Manual**, which means it never runs on its own. Change it to **Daily**, at the time they gave you in Q3.
+- **Permissions** — starts on **Manually approve**. Leave it; Step 4 is where they teach it what to always allow.
+- **"Require this computer"** (the toggle at the bottom — on Windows it reads *"Require this computer (Claude Desktop (Windows))"*) — **OFF by default, and it is the one that decides whether any of this works. Turn it ON.** The app says why right under it: *"Only runs while your computer is awake. Gives Claude access to the folders you've allowed on this computer and to Claude in Chrome."* Their AI Brain is a local file, so with this OFF the task runs in the cloud, finds nothing, and fails silently every morning while looking perfectly healthy. If they change nothing else on this form, they change this. *(It used to be called "Only on this computer" — same toggle, new name.)*
+- **Save.**
 
-- **If their email is connected, everyone gets offered this** — it's not a finish-early bonus, it's the second half of what Module 5 is for. Only skip it for someone whose email genuinely couldn't be connected in Module 3.
-- **If they want it automatic**, it folds into the same daily scheduled task as the brief (the drafts are waiting when they wake up). If they'd rather run it on demand, the same skill works when they ask — install it at `~/.claude/skills/reply-drafter/SKILL.md` with the readable copy in `~/Desktop/my-ai/skills/reply-drafter/SKILL.md`.
-- **Prove it live**: have it draft a reply to one real email in their inbox right now, then have them open their Drafts folder and see it there. Seeing the finished draft sitting in their own email is the moment this lands.
-- **Outlook note**: this needs draft-creation permission on their connector; if IT has that locked down, the personal-Gmail fallback from Module 3 lets them see it work today.
-     - **Name** — short, e.g. `Daily briefing`.
-     - **Instructions** — hand them ONE finished block to paste, built from their real answers, with the absolute path to their AI Brain written out in full. They paste it, they never type it. Do not leave a single `[bracket]` in what they paste.
-     - **Work in a project or folder** (the dropdown inside the instructions box) — point it at their `my-ai` folder, so the task can find everything they built today.
-     - **Default model** (same row) — leave as is.
-     - **Frequency** — it starts on **Manual**, which means it never runs on its own. Change it to **Daily** and set the time they gave you in Q3.
-     - **Permissions** — starts on **Manually approve**. Leave it there for now; step 4 is where they teach it what to always allow.
-     - **"Require this computer"** (the toggle at the bottom — on Windows it reads *"Require this computer (Claude Desktop (Windows))"*) — **it is OFF by default and it is the one that decides whether any of this works.** Turn it **ON**. The app says why right under it: *"Only runs while your computer is awake. Gives Claude access to the folders you've allowed on this computer and to Claude in Chrome."* Their AI Brain and their dashboard are local files, so with this OFF the task runs in the cloud, finds nothing, and fails silently every single morning while looking perfectly healthy. If they change nothing else on this form, they must change this. **(This toggle used to be called "Only on this computer" — same thing, new name.)**
-     - **Save.**
-  4. **Now click Run now and stay with them while it runs — do not skip this step.** It is the one that decides whether their automation actually works. On this first run Claude asks permission for each tool it needs: tell them to choose **"always allow"** every time. Future runs then approve those same tools by themselves. Skip this and the task stalls silently every morning waiting for a click nobody gives, and they will quietly decide the whole thing is broken.
-  5. **Be honest about sleep, then guard against it.** These tasks only run while the app is open and the computer is awake; a run scheduled while the laptop is shut is skipped. On wake, Claude does ONE catch-up run for the most recent missed time — so a 7am brief on a laptop opened at 9am simply arrives at 9am. Say that plainly rather than letting them expect 7am sharp and quietly get nothing. If they want it closer to on time, point them at **Settings → Desktop app → General → Keep computer awake** (closing the lid still sleeps it). Because of catch-up, add one guardrail line to the end of their Instructions so a missed brief never turns up at 11pm pretending it is morning:
-     ```
-     If it is past 2pm when you run this, say so at the top and only include what still matters today.
-     ```
-  6. **Then tell them what to expect:** "Tomorrow morning it runs on its own — the brief’s waiting for you before you even sit down." That anticipation is the moment automation clicks.
+**Step 4 — Click Run now, and stay with them while it runs. Do not skip this.** It's the step that decides whether the automation actually works. On this first run Claude asks permission for each tool it needs — tell them to choose **"always allow"** every time, including for the email send. Future runs then approve themselves. Skip this and the task stalls silently every morning waiting for a click nobody gives.
 
-  **The email brief, as a simple sequence to say out loud** — this is the whole thing in five plain steps, so you can talk them through it without them feeling lost:
-  1. In the task Instructions, the last line already says *email this brief to me at [their address]* — so the task both writes the brief AND sends it. Confirm their address is spelled right; it only ever goes to them.
-  2. Set Frequency to **Daily** at their time.
-  3. Turn **"Require this computer" ON** (the bottom toggle, formerly "Only on this computer" — this is the normal version, it runs on their laptop).
-  4. **Save, then Run now.** On this first run it asks permission to send an email — choose **always allow**. That one approval is what lets every future morning send itself.
-  5. Check their inbox. The brief should be sitting there. That is the proof it works.
+**Step 5 — Then check their inbox.** The brief should be sitting there. That is the proof it works, and it's the moment the module lands.
 
-  **"Can it send even when my laptop is shut?" — yes, by moving it to the cloud, with one real trade-off. Offer this to anyone who asks, and to anyone who travels or closes their laptop at night.** The normal task above runs on their computer, so a shut laptop means it waits until they open it. There is a cloud version that runs on Anthropic's servers instead and fires on time no matter what their laptop is doing. The catch is simple and worth stating plainly: **the cloud version cannot open files on their computer**, so it cannot read their AI Brain file the way the normal one does. It CAN still read their connected email and calendar and send the brief, because those are connections, not files.
+**Step 6 — Be honest about sleep.** These tasks run only while the app is open and the computer is awake; a run scheduled while the laptop is shut is skipped. On wake, Claude does ONE catch-up run for the most recent missed time — so a 7am brief on a laptop opened at 9am simply arrives at 9am. Say that plainly rather than letting them expect 7am sharp and get nothing. If they want it closer to on time, point them at **Settings → Desktop app → General → Keep computer awake** (closing the lid still sleeps it). The guardrail line already in their instructions is what stops a missed brief turning up at 11pm pretending it's morning.
 
-  So the fix is one change to the Instructions: instead of *"Read my AI Brain at C:\...\CLAUDE.md"*, paste the few lines of context the brief actually needs straight into the task — their name, what their business does, and their tone — then the same checklist. Everything the brief reads live (inbox, calendar) keeps working; the only thing you swap out is the file it can't reach.
+**Then set the expectation:** "Tomorrow morning it runs on its own — the brief's waiting for you before you even sit down." That anticipation is the moment automation clicks.
 
-  To turn a task into the cloud version: **turn "Require this computer" OFF** (the bottom toggle, formerly "Only on this computer"), and make sure the Instructions carry their context inline rather than pointing at a file. Say the trade-off in one honest line: "this one runs even with your laptop shut, but it works off what we type into it plus your connected email and calendar, not the full brain file on your desktop." For most people the on-laptop version is the right default and the catch-up run covers the shut-lid case; reach for the cloud version when someone specifically needs it to land at a fixed time every day regardless of their machine.
+**"Can it send even when my laptop is shut?" — yes, by moving it to the cloud, with one real trade-off.** Offer this to anyone who asks, and to anyone who travels or closes their laptop at night. The normal task runs on their computer, so a shut laptop means it waits. A cloud version runs on Anthropic's servers and fires on time regardless. The catch, stated plainly: **the cloud version cannot open files on their computer**, so it can't read their AI Brain file. It CAN still read their connected email and calendar and send the brief, because those are connections, not files. To switch: **turn "Require this computer" OFF**, and paste the few lines of context the brief needs (their name, what the business does, their tone) directly into the Instructions instead of pointing at the file. One honest line: "this one runs even with your laptop shut, but it works off what we type into it plus your connected email and calendar, not the full brain file on your desktop." For most people the on-laptop version is the right default.
 
-  **Worked example — what a good filled-in prompt actually looks like.** This is for an Outlook user running a 6-person renovation firm who said their morning question was "are we on track this week and is anyone stuck." Note that every line traces back to something they told you, and the tool names match what they actually connected:
+**Worked example — what a good filled-in block actually looks like.** An Outlook user running a 6-person renovation firm whose morning question was "are we on track this week and is anyone stuck." Every line traces back to something they told you, and the tool names match what they actually connected:
 
-  ```
-  Read my AI Brain at C:\Users\Aisha\OneDrive\Desktop\my-ai\CLAUDE.md, then run my morning brief.
+```
+Read my AI Brain at C:\Users\Aisha\OneDrive\Desktop\my-ai\CLAUDE.md, then run my morning brief.
 
-  Check Outlook for emails from clients or suppliers in the last 24 hours that I haven't replied to.
-  Check my Outlook calendar for site visits and client meetings today and tomorrow.
-  Flag any job where the client has been waiting more than 2 days on an answer from me.
-  Remind me which of my 4 active jobs has a deadline inside the next 7 days.
-  Give me ONE specific thing to deal with before 10am.
+Check Outlook for emails from clients or suppliers in the last 24 hours that I haven't replied to.
+Check my Outlook calendar for site visits and client meetings today and tomorrow.
+Flag any job where the client has been waiting more than 2 days on an answer from me.
+Remind me which of my 4 active jobs has a deadline inside the next 7 days.
+Give me ONE specific thing to deal with before 10am.
 
-  Rules:
-  - Lead with the single most important thing
-  - Maximum 5 bullets, shortest first
-       - Notes, not sentences. No intro, no sign-off, no "here is your brief" preamble
-       - If a bullet needs more than ~12 words, it is two bullets or it is cut
-  - Flag anything needing my decision with ⚠️
-  - Keep it short enough to read standing up with a coffee
-  - End with: "Your one thing today: ___"
-  ```
+Then email this brief to me at aisha@example.com, subject: Your morning brief.
 
-  **That example is Windows.** On a Mac the first line instead reads `Read my AI Brain at /Users/aisha/Desktop/my-ai/CLAUDE.md, then run my morning brief.` Use only THEIR machine's shape in the text they actually paste — never show both forms in the prompt itself, and never leave a note like this inside what they copy.
+Rules:
+- Lead with the single most important thing
+- Maximum 5 bullets, shortest first
+- Notes, not sentences. No intro, no sign-off, no "here is your brief" preamble
+- If a bullet needs more than ~12 words, it is two bullets or it is cut
+- Flag anything needing my decision with ⚠️
+- If it is past 2pm when you run this, say so at the top and only include what still matters today
+- End with: "Your one thing today: ___"
+```
 
-  Show them a filled-in version like this built from THEIR answers, not the shape with brackets in it — people can't picture the bracketed template, but they immediately recognise their own business in a finished one. Then let them edit a line before saving; making one small change of their own is what turns it from your prompt into theirs.
+**That example is Windows.** On a Mac the first line reads `Read my AI Brain at /Users/aisha/Desktop/my-ai/CLAUDE.md, then run my morning brief.` Use only THEIR machine's path shape in what they actually paste — never show both forms, and never leave an explanatory note inside the text they copy.
 
-Don't force the advanced option — match to their comfort level from Module 1. A phone reminder they'll actually use beats an automation they set up once and never trust.
+Always show them a **filled-in** version like this, never the bracketed shape — people can't picture a template, but they instantly recognise their own business in a finished one. Then let them edit one line before saving; making one small change of their own is what turns it from your prompt into theirs.
+
+**Keep the brief SHORT — notes, not an essay.** The most common way a daily brief dies is turning into three paragraphs nobody reads by Wednesday. The rules in the block are the whole design, not decoration. If their answers suggest a long brief, push back and cut it with them. Aim for something they can read standing up, holding a coffee, in under twenty seconds.
+
+**Don't force the advanced tier** — match it to their comfort from Module 1. A phone reminder they'll actually use beats an automation they set up once and never trust.
+
+---
+
+**Auto-drafted replies — the second half of this module, once the brief is scheduled.** This is a standard part of Module 5, not a finish-early bonus: **tell everyone whose email is connected about it, and offer to build it.** Say it in plain words: "There's a second thing your connected email unlocks, and it's the one people love most — I can read your inbox and write a suggested reply to every message that needs one, sitting ready in your Drafts folder. You open your inbox and the replies are already written — you just read, tweak, and hit send."
+
+Then build it: a skill that reads their inbox and drafts a reply to each message that needs one, **saved as a draft in their email, never sent**. Say that constraint out loud twice — drafts only, never sent — it's the difference between a tool people trust and one they turn off. The drafts sound like them because the skill reads their AI Brain and, ideally, a couple of their own past replies for tone.
+
+- **Install it** at `~/.claude/skills/reply-drafter/SKILL.md`, readable copy at `~/Desktop/my-ai/skills/reply-drafter/SKILL.md`.
+- **Prove it live**: have it draft a reply to one real email in their inbox right now, then have them open their Drafts folder and see it sitting there. That's the moment it lands.
+- **If they want it automatic**, it folds into the same daily scheduled task as the brief, so the drafts are waiting when they wake up. On demand works too — they just ask for it by name.
+- **Outlook note**: this needs draft-creation permission on their connector; if IT has it locked down, the personal-Gmail fallback from Module 3 lets them see it work today.
+- Only skip this for someone whose email genuinely couldn't be connected in Module 3.
 
 **Picture:** Open the updated flow picture now (see "Your AI System — ONE hosted picture"). Open the same hosted link with `?step=5` plus the `y1`…`y5` captions gathered so far (URL-encoded), so Step 5 lights up and the rest stay greyed. Just open the link — never write, save, or redraw anything.
 
