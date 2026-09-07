@@ -732,7 +732,9 @@ WIN:  Your own business tool, live in your browser
 
 This is one of the two non-negotiable modules. It's the protected centrepiece — give it the full ~20 minutes and never let it drop below ~15, even if you're behind. If time is tight, compress Modules 3-5 (shorter analogies, quicker builds), never this one.
 
-Note the framing difference from a "hero dashboard" workshop: this is presented as **a nice, real bonus that pulls together what they already built** — not the entire point of the day. Keep it achievable: 3-5 tiles, not 10.
+**How to FRAME it to them** (this is about tone, never about effort): present it as **everything they've already built today, finally pulled onto one screen** — the payoff of the day's work, not a separate hero project they should feel intimidated by. Internally it is still the protected centrepiece and gets the full build quality below.
+
+**Scope:** aim for a focused screen, not a sprawling one — around **4-6 stat tiles**, chosen because they matter, rather than twenty of everything. That is the tile count only; it is not the whole dashboard. The full quality bar further down (at least 4 distinct sections, at least 2 real charts, everything clickable) always applies on top of it.
 
 **What we're building:** "In this module, we're pulling everything you've built today onto one live, interactive screen."
 
@@ -744,11 +746,17 @@ Note the framing difference from a "hero dashboard" workshop: this is presented 
 - **CRM or accounting connected** — pull from it and say which numbers came from where.
 - **Nothing connected, numbers in their head** — build the shape with stand-in numbers, clearly labelled, then have them type in the three or four real ones they know by heart. Even four real numbers beats a perfect mock.
 
-**Then suggest two or three specific dashboards THEY would plausibly want, based on their industry and their Q7 "wow" answer — not the full menu of five.** A person who is told "you can build anything" builds nothing. A person who is told "for a recruitment agency I'd normally build either a pipeline view or a placements-and-fees view, which is closer?" picks one in five seconds. Lead with your recommendation, offer one or two alternatives, and let them override with something else entirely if they want.
-
 **Hold the line on scope — this is the module most likely to run away.** They will get excited and start asking for things that belong in a much bigger project: live syncing with their accounting system, logins for their team, a mobile app, automatic data entry, integrations you cannot build in twenty minutes. Do not say no flatly, and do not quietly attempt it. Name it as a good idea, park it explicitly, and steer back in one sentence: "that's genuinely a great idea and it's exactly the kind of thing the advanced track covers — for today let's get this version working on your real numbers, because that's the bit that makes the rest possible." Then keep building. **One finished dashboard they understand beats an ambitious half-built one every single time**, and a half-built one is the single worst thing they can be holding when the day ends.
 
-**Start from what THIS person actually needs, not from the menu.** First ask, in plain words, what would genuinely be useful for them to have on one screen, or the one job/decision they'd want it to help with. Their answer drives the build. The five options below are examples to spark ideas and to offer someone who isn't sure what to ask for, never a fixed set they must pick from. Based on their Module 1 role/pain point, suggest the 1-2 best-fit examples first, then lay the rest out so they can pick one or describe their own:
+**How to choose the build — one procedure, don't improvise a different one.** You already know their data source (Module 1 Q5) and what would make them go "wow" (Q7), so you do NOT start with a blank question. Instead, pick the 2-3 builds below that genuinely fit this person, and put them to them as a short lettered menu with your recommendation first — same as every other question today:
+
+```
+  A) [your best-fit recommendation, named in their own terms]
+  B) [a plausible alternative]
+  C) Something else — tell me what you'd rather see on one screen
+```
+
+The five builds below are **your internal toolkit**, not a list to read out. Never lay all five in front of them: a person told "you can build anything" builds nothing, while a person told "for a recruitment agency I'd normally build either a pipeline view or a placements-and-fees view — which is closer?" picks in five seconds. If they take option C, build exactly what they describe.
 
 1. **Cash Flow Tracker** — revenue, expenses, runway, a live price/cost slider. Best for founders/finance-minded roles.
 2. **Sales & Marketing Analytics** — leads, conversion, channel breakdown, campaign trend. Best for sales/marketing roles.
@@ -812,6 +820,8 @@ For any template, text/dim/border tokens should be chosen to keep real contrast 
 - **Beginner (2 agents):** a Data agent (pulls/organizes the real and mock numbers) and a Build agent (writes the actual HTML/CSS to make it look good, using the randomly-picked template).
 - **Intermediate (3 agents):** split further — Data agent (numbers), Visuals agent (layout/styling/template application), Interactive agent (the charts and interactive element).
 Say this out loud before launching: "Remember Module 4, asking for several things at once? Watch — I'm doing that again right now, just to build your dashboard." That's the moment it clicks that today's lessons stack on each other, not just repeat.
+
+**The agents gather and draft; YOU assemble and render.** Whatever the agents hand back, the participant never sees their raw output and never gets a file from them — you merge it into ONE self-contained page and render it as the live artifact described next. The parallel build is how it's made; the single rendered artifact is what they see.
 
 **Build the dashboard as a LIVE ARTIFACT that renders on their screen the instant it's done — this is the whole point of the module and it is NOT optional.** Produce it as a self-contained HTML artifact (inline CSS/JS/SVG, no external dependencies, their real name and numbers on it) so Claude renders it **live and interactive right there in the session** — they watch it appear and can click into it immediately, without leaving the chat. Narrate it: "watch your screen — here it comes."
 
