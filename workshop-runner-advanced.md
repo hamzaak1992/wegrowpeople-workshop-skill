@@ -122,31 +122,31 @@ Times are BUILD time, not slot length. Someone who took 25 minutes because they 
 
 | Time | Module | Ends with |
 |---|---|---|
-| 10:30 | **Welcome** | The frame, and the WhatsApp pre-empt |
-| 10:50 | **1 · Ready check** | Brain file found or built, project folder created |
-| 11:25 | **2 · Your plan** | Their brief in, plan agreed, `PLAN.md` written |
-| 12:15 | Lunch | |
-| 1:00 | **3 · Building** | The tool working, code safe on GitHub |
-| 2:30 | **4 · Live on the internet** | **Their link, opening on their phone** |
-| 3:45 | Break | |
-| 4:00 | **5 · Their own data** | Real jobs and customers, not Test 1 |
-| 4:30 | **6 · Handover** | `DAY2-HANDOVER.md` written, bot says hello |
-| 5:00 | Close | |
+| 9:00 | **Welcome** | The frame, and the WhatsApp pre-empt |
+| 9:20 | **1 · Ready check** | Brain file found or built, project folder created |
+| 10:00 | **2 · Your plan** | Their brief in, plan agreed, `PLAN.md` written |
+| 11:00 | **3 · Building** | The tool working, code safe on GitHub |
+| 12:45 | Lunch (60 min) | |
+| 1:45 | **4 · Live on the internet** | **Their link, opening on their phone** |
+| 3:15 | Break (15 min) | |
+| 3:30 | **5 · Their own data** | Real jobs and customers, not Test 1 |
+| 4:15 | **6 · Handover** | `DAY2-HANDOVER.md` written, bot says hello |
+| 5:15 | Close | |
 
 ### Day 2 — Your software gets an assistant
 
 | Time | Module | Ends with |
 |---|---|---|
-| 10:30 | **Welcome** | Short — the room knows each other |
-| 10:45 | **7 · Where are we, and your key** | Progress confirmed, key working |
-| 11:30 | **8 · The assistant, in your software** | It answers from real data — and admits when it can't |
-| 12:30 | Lunch | |
-| 1:15 | **9 · The assistant, on your phone** | Telegram, plus the morning brief |
-| 2:15 | **10 · You write the guardrails** | **Their own rules, in their words, tested** |
-| 3:00 | Break | |
+| 9:00 | **Welcome** | Short — the room knows each other |
+| 9:15 | **7 · Where are we, and your key** | Progress confirmed, key working |
+| 10:00 | **8 · The assistant, in your software** | It answers from real data — and admits when it can't |
+| 11:45 | **9 · The assistant, on your phone** | Telegram, plus the morning brief |
+| 12:45 | Lunch (60 min) | |
+| 1:45 | **10 · You write the guardrails** | **Their own rules, in their words, tested** |
+| 3:00 | Break (15 min) | |
 | 3:15 | **11 · What it costs, what you own** | Own key, spend cap, no surprise bills |
-| 3:45 | **12 · Teach it by text, and what's next** | They can keep going without us |
-| 4:45 | Close | |
+| 4:00 | **12 · Teach it by text, and what’s next** | They can keep going without us |
+| 5:15 | Close | |
 
 **If someone arrives on Day 2 having missed part of Day 1**, you have every Day 1 module right here. Find out what's missing in Module 7, run the short version of the module they need, and fold them back in. Never tell them they can't catch up.
 
@@ -188,7 +188,7 @@ Gate: ask them to type `module1`.
 
 ---
 
-## MODULE 1 — READY CHECK (~35 min)
+## MODULE 1 — READY CHECK (~40 min)
 
 ```
 DAY 1 · LESSON 1 · READY CHECK
@@ -287,7 +287,7 @@ B. Answer, tell them why in one sentence, then gate on `module2`.
 
 ---
 
-## MODULE 2 — YOUR PLAN (~50 min)
+## MODULE 2 — YOUR PLAN (~60 min)
 
 ```
 DAY 1 · LESSON 2 · YOUR PLAN
@@ -366,11 +366,10 @@ before building anything?
 
 B. Then gate on `module3`.
 
-**LUNCH after this module.** Tell them the time to be back, and tell them the afternoon is the building. Nobody should be doing homework over lunch.
 
 ---
 
-## MODULE 3 — BUILDING (~90 min)
+## MODULE 3 — BUILDING (~105 min)
 
 ```
 DAY 1 · LESSON 3 · BUILDING
@@ -454,9 +453,11 @@ B — and take the extra sentence to make the distinction land, because it matte
 
 Gate on `module4`.
 
+**LUNCH after this module — a full hour.** Tell them the time to be back, and tell them the afternoon is when it goes live. Nobody should be doing homework over lunch.
+
 ---
 
-## MODULE 4 — LIVE ON THE INTERNET (~75 min)
+## MODULE 4 — LIVE ON THE INTERNET (~90 min)
 
 ```
 DAY 1 · LESSON 4 · LIVE
@@ -537,7 +538,7 @@ B. Then gate on `module5`.
 
 ---
 
-## MODULE 5 — YOUR OWN DATA (~30 min)
+## MODULE 5 — YOUR OWN DATA (~45 min)
 
 ```
 DAY 1 · LESSON 5 · YOUR OWN DATA
@@ -596,7 +597,7 @@ Gate on `module6`.
 
 ---
 
-## MODULE 6 — HANDOVER (~30 min)
+## MODULE 6 — HANDOVER (~60 min)
 
 ```
 DAY 1 · LESSON 6 · HANDOVER
@@ -801,7 +802,7 @@ B. Gate on `module8`.
 
 ---
 
-## MODULE 8 — THE ASSISTANT, IN YOUR SOFTWARE (~60 min)
+## MODULE 8 — THE ASSISTANT, IN YOUR SOFTWARE (~105 min)
 
 ```
 DAY 2 · LESSON 2 · THE ASSISTANT
@@ -872,7 +873,7 @@ isn't in your data. What should it do?
 
 B — and reinforce why in one sentence: a confident guess is far more dangerous than an honest "I don't know," because you'd act on it.
 
-Gate on `module9`. **Lunch after this.**
+Gate on `module9`.
 
 ---
 
@@ -936,11 +937,11 @@ Why did we lock the bot to your ID?
   C) So it only works on your phone
 ```
 
-B. Gate on `module10`.
+B. Gate on `module10`. **LUNCH after this module — a full hour.**
 
 ---
 
-## MODULE 10 — YOU WRITE THE GUARDRAILS (~45 min)
+## MODULE 10 — YOU WRITE THE GUARDRAILS (~75 min)
 
 ```
 DAY 2 · LESSON 4 · YOUR RULES
@@ -1027,7 +1028,7 @@ B. Gate on `module11`. **Break after this.**
 
 ---
 
-## MODULE 11 — WHAT IT COSTS, WHAT YOU OWN (~30 min)
+## MODULE 11 — WHAT IT COSTS, WHAT YOU OWN (~45 min)
 
 ```
 DAY 2 · LESSON 5 · YOURS TO RUN
@@ -1090,7 +1091,7 @@ B. Gate on `module12`.
 
 ---
 
-## MODULE 12 — TEACH IT BY TEXT, AND WHAT'S NEXT (~60 min)
+## MODULE 12 — TEACH IT BY TEXT, AND WHAT'S NEXT (~75 min)
 
 ```
 DAY 2 · LESSON 6 · KEEP GOING
