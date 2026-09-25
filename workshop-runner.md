@@ -53,8 +53,8 @@ calibration → Module 1 → Module 2 → Module 3 → Module 4 → Module 5 →
 - **State the objective in one plain sentence, right after the header card, before anything else.** The header card's GOAL/WIN lines are fragments meant to be scanned, not heard — say the objective out loud as an actual sentence so the attendee knows exactly what they're about to build before you ask them a single question. Keep it concrete and short: "In this module, we're building X" — not the why, not the concept, just the deliverable.
 - **Explain before you build.** Right after that objective sentence, before asking any questions or building anything, teach the concept in 2-4 plain sentences — what this module's idea actually is and why it matters, in language a non-technical person gets immediately. This is real teaching content for the trainee, not throat-clearing — the quiz at the end of the module tests THIS explanation, so it has to actually say something, not just gesture at the topic.
 - **Quiz before every gate.** Right before the gate line, ask ONE short check-understanding question about that module's concept (multiple choice is easiest to answer fast) — it should be answerable directly from the "explain before you build" content above, not from trivia they'd have to guess. Wait for their answer. Tell them if they got it right or wrong, and explain *why* in one sentence either way — don't just move on silently. This is what makes the learning stick, not just the building.
-- **One picture, lit up step by step — you OPEN A LINK, you never draw or save anything.** There is a single hand-drawn (Excalidraw-style) picture for the whole day, hosted online (see "Your AI System — ONE hosted picture for the whole day"). Right after each module's build (before the quiz), you open that link with this module's `step` number, which lights up one more step and greys the rest; captions come from the link too. The drawing itself never changes and looks identical for everyone — that's the point. Never write it as a file, never redraw it, never make a second one: that improvising and file-spawning is exactly what broke this before.
-- **Everything they BUILD is a real file.** Every module ends with something written to disk in `~/Desktop/my-ai/`, named after the participant's real business, not a placeholder. (The one deliberate exception is the day's flow picture, which is a hosted link you open — see the rule above. That is the only thing you don't save.)
+- **One picture, shown once as an ARTIFACT after Module 3 — no greying, no per-module updates.** At the end of Module 3 you create a single hand-drawn (Excalidraw-style) recap that renders in the side panel of their screen: Steps 1–3 (what they've just built, with their details) plus Steps 4–6 (what's still coming). It appears for EVERYONE automatically the moment Module 3 finishes — never wait to be asked. You never save it as a file for them to hunt for and never make them open a link; you build it from the fixed HTML in "Your AI System recap" and change ONLY the three caption placeholders. Never redraw it. See that section for the exact build.
+- **Everything they BUILD is a real file.** Every module ends with something written to disk in `~/Desktop/my-ai/`, named after the participant's real business, not a placeholder. (The one deliberate exception is the Module 3 recap picture, which you render as an artifact on the side, not a saved file — see the rule above. That is the only thing you don't save to disk.)
 - **Resolve the REAL Desktop path once, before you write anything — never assume `~/Desktop` is where the file will actually land.** On Windows, OneDrive commonly redirects Desktop to `C:\Users\<name>\OneDrive\Desktop` while a plain `~/Desktop` (or `C:\Users\<name>\Desktop`) can still exist as a separate, empty folder underneath — write there and the file is technically saved, but invisible in the Desktop the participant actually sees in File Explorer. This has caused a real participant to say "I cannot find it" mid-session. Fix it before it can happen: as your very first action in Module 1, before creating `my-ai/` or writing CLAUDE.md, check where Desktop really points (e.g. list both `~/Desktop` and, on Windows, `~/OneDrive/Desktop`, and use whichever one is the OneDrive-redirected path if OneDrive is present — that's the one Explorer shows). Create `my-ai/` inside that REAL path, and use that same resolved absolute path for every file write for the rest of the session — never re-derive it, never fall back to a raw `~/Desktop` write on faith. You can still always SAY "Desktop → my-ai" to the participant, since that's what they see when they look — just make sure the path you're actually writing to is the one behind that view.
 - **Any prompt you hand a participant to run LATER, in a different session, must contain the resolved absolute path — never the `~/Desktop` shorthand.** This applies to the Module 5 scheduled-task instructions and the Module 3 overnight `mcp-plan.md` prompt alike: a scheduled task or a tonight-at-home session is a brand-new Claude instance with no memory of the path you resolved earlier today, so it can re-guess `~/Desktop` wrong and hit the exact same OneDrive-redirect problem all over again — except this time baked silently into a saved prompt instead of a live conversation you're both watching. Whenever you write a prompt meant to be pasted into a future session, substitute THIS participant's actual resolved path (e.g. `C:\Users\Hamza\OneDrive\Desktop\my-ai\CLAUDE.md`), not the tilde form.
 - **If they can't find a file, paste the content into chat FIRST — don't try to open it for them as your first move.** Common real cause: OneDrive or iCloud silently redirects "Desktop" to a synced folder, so what they see in Finder/Explorer doesn't match where the file actually landed — repeating "check Desktop → my-ai" a second time won't fix that. Trying to open the file yourself (a terminal command, launching their default app) has its own failure modes — wrong shell, permissions, app associations — that are just as likely to fail and just as hard to debug live, tested and confirmed during rehearsal. Pasting the actual content directly into the chat always works, no matter what's wrong with the file system, so do that immediately rather than as a last resort. Attempting to also open the file is fine as a bonus after the content is already visible, never before. Escalate to a human facilitator if the underlying file location issue persists — this is a known category of hiccup, not something to loop on.
@@ -125,7 +125,7 @@ Never tell them a skill "works from now on" without teaching them how to call it
 
 The **header cards, quiz cards and energizer banners** below are plain text inside a code block (triple backticks) — that's what keeps the box-drawing characters aligned in a fixed-width font. Keep those exactly as monospace text; that's their look.
 
-**The one exception is the day's flow picture** — a real hand-drawn (Excalidraw-style) diagram of all six steps that you open in their browser, not ASCII. There is only ONE of these for the whole day and it is a hosted web page you simply OPEN with a link (never a file you write); see "Your AI System — ONE hosted picture for the whole day" below for the link and how the `step` number lights up one step per module. So: cards and banners stay monospace text; the flow picture is one hosted link that fills in as the day goes.
+**The one exception is the Module 3 recap picture** — a real hand-drawn (Excalidraw-style) diagram of all six steps that you render as an ARTIFACT on the side of their screen, not ASCII and not a saved file. There is only ONE of these, made once at the end of Module 3; see "Your AI System recap — the artifact you put in front of them after Module 3" below for the exact HTML and the three captions to fill. So: cards and banners stay monospace text; the recap is a single drawn artifact.
 
 **Open every module with a header card, this shape:**
 ```
@@ -209,22 +209,105 @@ The survey data lives on a spreadsheet facilitators can see, but you (running in
 
 *Note: the day starts at 10:30am (see curriculum.md). The first 15 minutes are welcome, room poll and the Claude tour. Participants open laptops only after the lead facilitator's spoken 10:00-10:20 welcome ("why this matters," no tech). This skill starts at the 10:20 mark.*
 
-### Your AI System — ONE hosted picture for the whole day (greyed ahead, lit as you go)
+### Your AI System recap — the artifact you put in front of them after Module 3
 
-**There is ONE picture for the entire workshop, and it is already built and hosted online — you never write it, draw it, or save a file for it. You just OPEN A LINK, and a number in the link decides how much of it is lit up.** The page is a hand-drawn (Excalidraw-style) stack of all six steps of the day: steps not yet reached are **greyed out**, steps done are in **full colour** with a short **"Yours:"** caption. Because it is one fixed hosted page, **it looks exactly the same for every attendee** — the only things that change are how many steps are lit and the six short captions. This is deliberate: it ended the problem of the picture coming out different each time.
+**At the END of Module 3 (right after their tools are connected), you create ONE artifact and it renders on the side of their screen — a hand-drawn (Excalidraw-style) recap of what they've built so far, plus the steps still to come.** This happens for EVERYONE automatically at that point: do not wait to be asked, and do not skip it. In testing, several attendees never saw it because it was only made when they asked for it — that must not happen again. The moment Module 3 is done, make the artifact.
 
-The page lives at this exact link (never a file on their computer):
-`https://hamzaak1992.github.io/wegrowpeople-workshop-skill/pages/flow.html`
+**Say one plain line as you make it**, for example: "I'm making you an artifact now — a quick picture to recap what you've built and show your next steps." Then create it.
 
-**Two things you put in the link:**
-- `?step=N` — lights up Steps 1 through N and greys the rest. Module 1 → `step=1`, Module 2 → `step=2`, … Module 6 → `step=6`.
-- `&y1=…` through `&y6=…` — optional one-line "Yours:" captions for each lit step, a few words each, **URL-encoded** (space = `%20`, `+` = `%2B`, `,` = `%2C`). Fill each with what THIS person built at that step: Step 1 = their name + business, Step 2 = their skill's name, Step 3 = what they connected, Step 4 = their parallel job, Step 5 = their brief time, Step 6 = their dashboard.
+**It must be a real ARTIFACT that renders in the side panel — never a file saved to their Desktop for them to hunt for in Explorer, and never just a link to open in a browser.** Build it EXACTLY from the HTML below (this is the fixed WeGrowPeople design — do not redraw it, do not change the layout, the CSS or the SVGs). The ONLY things you change are the three **[bracketed]** "Yours:" captions on Steps 1–3, filled with what THIS person actually built:
+- Step 1 → their name + business
+- Step 2 → the name of the skill they built in Module 2
+- Step 3 → the tools they just connected
 
-**So at each module's "Picture" beat you simply open the link with this module's step number and the captions gathered so far**, and show it to them (open it in their browser, or hand them the link). Worked example after Module 3 for a renovation firm:
-`https://hamzaak1992.github.io/wegrowpeople-workshop-skill/pages/flow.html?step=3&y1=Aisha%2C%20reno%20firm&y2=Site%20Update%20Writer&y3=Outlook%20%2B%20Sheets`
+Leave Steps 4–6 exactly as written — those are the "next" steps they haven't reached yet. Keep every caption to a few words. **There is no greying and no per-module updating anymore: this picture appears once, after Module 3, and that's it.**
 
-**Rules:** never write, save, or recreate this page as a file; never redraw it; never change the link's host or path — only change the `step` number and the `y1…y6` captions, and keep each caption to a few words. If a module is skipped, just don't raise the `step` past it. Add `Your AI System picture — https://hamzaak1992.github.io/wegrowpeople-workshop-skill/pages/flow.html` (the link, not a file) to the Finale folder tour list.
+```html
+<!doctype html><html><head><meta charset="utf-8"><title>Your AI System So Far</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;background:#fffef9;color:#1e1e1e;font-family:"Kalam",cursive;}
+.wrap{max-width:720px;margin:0 auto;padding:26px 16px 60px;}
+.hero{text-align:center;margin-bottom:6px;}
+.hero h1{font-family:"Caveat",cursive;font-weight:700;font-size:40px;margin:0;}
+.hero p{color:#6b6b5e;font-size:15px;margin:2px 0 0;}
+.mod{border-top:2px dashed #e6e0cf;padding:22px 0 8px;}
+.mh{display:flex;align-items:baseline;gap:12px;}
+.ln{font-family:"Kalam",cursive;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#adb5bd;}
+.mh h2{font-family:"Caveat",cursive;font-weight:700;font-size:30px;margin:0;}
+.cap{font-size:15px;color:#495057;margin:2px 0 10px;}
+.dia svg{display:block;width:100%;height:auto;}
+.mine{font-size:14.5px;margin:8px 0 0;padding-top:8px;border-top:1px solid #eee7d8;}
+.mine:empty{display:none;} .mine b{color:#2b8a3e;}
+.lbl{font-family:"Kalam",cursive;font-size:14px;font-weight:700;}
+.bd{font-family:"Kalam",cursive;font-size:15px;font-weight:700;}
+.sm{font-family:"Kalam",cursive;font-size:13px;}
+.tiny{font-family:"Kalam",cursive;font-size:11px;font-style:italic;}
+.chip{font-family:"Kalam",cursive;font-size:11px;font-weight:700;border-radius:12px;padding:2px 10px;margin-left:auto;}
+.chip-soon{background:#f1f3f5;color:#adb5bd;border:1.5px dashed #ced4da;}
+.chip-done{background:#ebfbee;color:#2b8a3e;border:1.5px solid #2b8a3e;display:none;}
+/* GREYED-OUT: modules not reached yet */
+.mod.todo .dia{filter:grayscale(1);opacity:.35;}
+.mod.todo .mh h2{color:#b6b6ab;}
+.mod.todo .cap{color:#c2c2b6;}
+.mod.todo .chip-soon{display:inline-block;}
+/* LIT: modules done */
+.mod.done .chip-soon{display:none;}
+.mod.done .chip-done{display:inline-block;}
+.mod.done .chip-done{display:inline-block;} .mod.done .chip-soon{display:none;}
+.mod.next .chip-soon{display:inline-block;background:rgba(224,173,99,.16);color:#b07d2e;border:1px solid rgba(224,173,99,.5);}
+</style></head><body><div class="wrap">
+<div class="hero"><h1>Your AI System, step by step</h1><p>The three steps you've just built, and the three coming next this afternoon.</p></div>
+<section class="mod done" id="m1">
+  <div class="mh"><span class="ln">Step 1 of 6</span><h2>Your AI Brain</h2><span class="chip chip-soon">next</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Explain yourself once. Every new chat already knows you.</p>
+  <div class="dia"><svg viewBox="0 0 644 160" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="24" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="138" y1="41" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M224.0,90.2 L232,90 L227.5,83.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="70" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="138" y1="87" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M224.9,93.6 L232,90 L225.1,85.9" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="116" width="110" height="34" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="138" y1="133" x2="232" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M227.2,96.4 L232,90 L224.0,89.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="232" y="58" width="150" height="66" rx="8" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="2.2"/><line x1="384" y1="90" x2="470" y2="90" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M463.0,93.8 L470,90 L463.0,86.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="470" y="58" width="150" height="66" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2"/></g><text x="79" y="46" text-anchor="middle" class="sm" fill="#1e1e1e">Mon chat</text><text x="79" y="92" text-anchor="middle" class="sm" fill="#1e1e1e">Tue chat</text><text x="79" y="138" text-anchor="middle" class="sm" fill="#1e1e1e">Wed chat</text><text x="307" y="88" text-anchor="middle" class="bd" fill="#1e1e1e">Your AI Brain</text><text x="307" y="108" text-anchor="middle" class="sm" fill="#2b8a3e">CLAUDE.md</text><text x="545" y="90" text-anchor="middle" class="sm" fill="#1e1e1e">“Hi again —</text><text x="545" y="110" text-anchor="middle" class="sm" fill="#1e1e1e">I know your world.”</text></svg></div>
+  <p class="mine"><b>Yours:</b> [THEIR NAME + BUSINESS — e.g. Aisha, renovation firm]</p>
+</section>
+<section class="mod done" id="m2">
+  <div class="mh"><span class="ln">Step 2 of 6</span><h2>Skills</h2><span class="chip chip-soon">next</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Write a job down once — three parts — it runs the same way every time.</p>
+  <div class="dia"><svg viewBox="0 0 636 182" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="30" y="20" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2"/><rect x="30" y="72" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2"/><rect x="30" y="124" width="250" height="42" rx="8" fill="#ffec99" stroke="#1e1e1e" stroke-width="2.2"/><line x1="290" y1="96" x2="352" y2="96" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M345.0,99.8 L352,96 L345.0,92.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="352" y="66" width="270" height="64" rx="8" fill="#fff" stroke="#f08c00" stroke-width="2.2"/></g><text x="46" y="47" text-anchor="start" class="bd" fill="#1e1e1e">WHAT IT DOES</text><text x="266" y="47" text-anchor="end" class="sm" fill="#7a6a1e">one line</text><text x="46" y="99" text-anchor="start" class="bd" fill="#1e1e1e">THE STEPS</text><text x="266" y="99" text-anchor="end" class="sm" fill="#7a6a1e">how, in order</text><text x="46" y="151" text-anchor="start" class="bd" fill="#1e1e1e">THE RULES</text><text x="266" y="151" text-anchor="end" class="sm" fill="#7a6a1e">never do X</text><text x="487" y="94" text-anchor="middle" class="bd" fill="#e8590c">Same result,</text><text x="487" y="116" text-anchor="middle" class="sm" fill="#e8590c">every time</text></svg></div>
+  <p class="mine"><b>Yours:</b> [THEIR SKILL — e.g. Site Update Writer]</p>
+</section>
+<section class="mod done" id="m3">
+  <div class="mh"><span class="ln">Step 3 of 6</span><h2>Connect your tools</h2><span class="chip chip-soon">next</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Give Claude its own keys — it reads your inbox, calendar and sheets itself.</p>
+  <div class="dia"><svg viewBox="0 0 644 168" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="54" width="140" height="64" rx="8" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="2.2"/><rect x="470" y="18" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2"/><path d="M164 86 C 300 86, 320 37, 470 37" fill="none" stroke="#1971c2" stroke-width="2.4"/><rect x="470" y="68" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2"/><path d="M164 86 C 300 86, 320 87, 470 87" fill="none" stroke="#1971c2" stroke-width="2.4"/><rect x="470" y="118" width="150" height="38" rx="8" fill="#fff" stroke="#1971c2" stroke-width="2.2"/><path d="M164 86 C 300 86, 320 137, 470 137" fill="none" stroke="#1971c2" stroke-width="2.4"/></g><text x="94" y="90" text-anchor="middle" class="bd" fill="#1e1e1e">Claude</text><text x="545" y="42" text-anchor="middle" class="sm" fill="#1971c2">Gmail</text><text x="545" y="92" text-anchor="middle" class="sm" fill="#1971c2">Calendar</text><text x="545" y="142" text-anchor="middle" class="sm" fill="#1971c2">Sheets</text></svg></div>
+  <p class="mine"><b>Yours:</b> [WHAT THEY CONNECTED — e.g. Outlook + Google Sheets]</p>
+</section>
+<section class="mod next" id="m4">
+  <div class="mh"><span class="ln">Step 4 of 6</span><h2>Several jobs at once</h2><span class="chip chip-soon">next</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Hand off three things together — they run in parallel, come back as one.</p>
+  <div class="dia"><svg viewBox="0 0 644 180" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="66" width="120" height="52" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2"/><rect x="250" y="18" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="92" x2="250" y2="39" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M245.4,45.6 L250,39 L242.0,38.7" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="39" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M492.0,92.1 L500,92 L495.6,85.3" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="72" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="92" x2="250" y2="93" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.9,96.8 L250,93 L243.0,89.1" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="93" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M493.0,95.9 L500,92 L492.9,88.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="126" width="150" height="42" rx="8" fill="#d0bfff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="92" x2="250" y2="147" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.0,147.2 L250,147 L245.5,140.4" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="400" y1="147" x2="500" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M495.7,98.7 L500,92 L492.0,92.0" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="500" y="66" width="120" height="52" rx="8" fill="#fff" stroke="#7048e8" stroke-width="2.2"/></g><text x="84" y="90" text-anchor="middle" class="bd" fill="#1e1e1e">You:</text><text x="84" y="108" text-anchor="middle" class="sm" fill="#1e1e1e">do these 3</text><text x="325" y="44" text-anchor="middle" class="sm" fill="#5f3dc4">Job 1</text><text x="325" y="98" text-anchor="middle" class="sm" fill="#5f3dc4">Job 2</text><text x="325" y="152" text-anchor="middle" class="sm" fill="#5f3dc4">Job 3</text><text x="560" y="96" text-anchor="middle" class="sm" fill="#5f3dc4">One answer</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod next" id="m5">
+  <div class="mh"><span class="ln">Step 5 of 6</span><h2>Your morning brief</h2><span class="chip chip-soon">next</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">A skill that runs on a schedule and lands in your inbox, unasked.</p>
+  <div class="dia"><svg viewBox="0 0 644 168" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="30" y="44" width="120" height="60" rx="8" fill="#ffd8a8" stroke="#1e1e1e" stroke-width="2.2"/><line x1="150" y1="74" x2="230" y2="74" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M223.0,77.8 L230,74 L223.0,70.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="44" width="150" height="60" rx="8" fill="#fff" stroke="#1e1e1e" stroke-width="2.2"/><line x1="380" y1="74" x2="460" y2="74" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M453.0,77.8 L460,74 L453.0,70.2" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="460" y="44" width="150" height="60" rx="8" fill="#fff" stroke="#e8590c" stroke-width="2.2"/><path d="M90 112 C 90 150, 535 150, 535 112" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="1 6"/></g><text x="90" y="72" text-anchor="middle" class="bd" fill="#e8590c">Each day</text><text x="90" y="92" text-anchor="middle" class="sm" fill="#e8590c">same time</text><text x="305" y="72" text-anchor="middle" class="bd" fill="#1e1e1e">brief runs</text><text x="305" y="92" text-anchor="middle" class="sm" fill="#1e1e1e">on its own</text><text x="535" y="72" text-anchor="middle" class="bd" fill="#e8590c">in your</text><text x="535" y="92" text-anchor="middle" class="sm" fill="#e8590c">inbox</text></svg></div>
+  <p class="mine"></p>
+</section>
+<section class="mod next" id="m6">
+  <div class="mh"><span class="ln">Step 6 of 6</span><h2>Your dashboard</h2><span class="chip chip-soon">next</span><span class="chip chip-done">✓ done</span></div>
+  <p class="cap">Everything you built today, on one live screen.</p>
+  <div class="dia"><svg viewBox="0 0 644 170" xmlns="http://www.w3.org/2000/svg"><g filter="url(#rough)"><rect x="24" y="22" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="40" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.0,92.4 L250,92 L245.4,85.5" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="70" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="88" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M242.8,95.6 L250,92 L243.1,87.9" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="24" y="118" width="120" height="36" rx="8" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2.2"/><line x1="144" y1="136" x2="250" y2="92" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round"/><path d="M245.0,98.2 L250,92 L242.0,91.1" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="26" width="370" height="132" rx="8" fill="#fff" stroke="#c2255c" stroke-width="2.2"/><rect x="266" y="42" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/><rect x="446" y="42" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/><rect x="266" y="100" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/><rect x="446" y="100" width="164" height="48" rx="6" fill="#fcc2d7" stroke="#1e1e1e" stroke-width="2.2"/></g><text x="84" y="45" text-anchor="middle" class="sm" fill="#1e1e1e">Email</text><text x="84" y="93" text-anchor="middle" class="sm" fill="#1e1e1e">Your sheet</text><text x="84" y="141" text-anchor="middle" class="sm" fill="#1e1e1e">Skills</text><text x="435" y="16" text-anchor="middle" class="bd" fill="#c2255c">ONE screen</text><text x="348" y="72" text-anchor="middle" class="bd" fill="#a61e4d">Cash</text><text x="528" y="72" text-anchor="middle" class="bd" fill="#a61e4d">Jobs</text><text x="348" y="130" text-anchor="middle" class="bd" fill="#a61e4d">Waiting</text><text x="528" y="130" text-anchor="middle" class="bd" fill="#a61e4d">Today</text></svg></div>
+  <p class="mine"></p>
+</section>
+</div>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough" x="-4%" y="-4%" width="108%" height="108%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.8" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
 
+</body></html>
+```
+
+**Rules:** make it once, after Module 3, as an artifact that renders on the side; never redraw the picture or change anything but the three caption placeholders; if they somehow reached Module 3 without one of Steps 1–3 done, leave that caption generic rather than inventing detail. Add `Your AI System recap (the artifact from Module 3)` to the Finale folder tour list.
 ---
 
 ## Module 1 — Your AI Brain (`CLAUDE.md`) — 10 min
@@ -309,7 +392,6 @@ Then write `~/Desktop/my-ai/CLAUDE.md` containing: their name/role, team structu
 
 Read it back to them out loud. Point out: "this file is why I won't ask you these questions again — next time you open Claude, it already knows this."
 
-**Picture:** Open the day's flow picture now (see "Your AI System — ONE hosted picture"). Open `https://hamzaak1992.github.io/wegrowpeople-workshop-skill/pages/flow.html?step=1&y1=<their name + business, URL-encoded>` in their browser — Step 1 lit, Steps 2–6 greyed out ahead. You are only opening a link; you never write or draw a file.
 
 **Quiz:**
 ```
@@ -368,7 +450,6 @@ Install the skill at `~/.claude/skills/[their-skill-name]/SKILL.md` with those t
 *Beginner:* one skill, fully working, is the whole goal here — do not rush them into a second one even if there's time. Confidence, not coverage.
 *Intermediate stretch (if they finish early):* build a second, smaller skill from a Module 1 answer that didn't get used, or add a "Rules" edge case to the first skill (e.g. "never send without me reviewing first").
 
-**Picture:** Open the updated flow picture now (see "Your AI System — ONE hosted picture"). Open the same hosted link with `?step=2` plus the `y1`…`y2` captions gathered so far (URL-encoded), so Step 2 lights up and the rest stay greyed. Just open the link — never write, save, or redraw anything.
 
 **Quiz:**
 ```
@@ -447,7 +528,7 @@ Write `~/Desktop/my-ai/mcp-plan.md`: a short table of every tool they mentioned,
 *Beginner:* one tool connected and proven is enough. Don't open the mcp-plan.md rabbit hole live — hand it over as a take-home file only, one sentence: "for the tools with no ready cable, this file has a prompt you paste in tonight and it builds the connection for you."
 *Intermediate stretch:* connect a second tool live, and walk them through reading the mcp-plan.md table themselves — pick their one trickiest no-connector tool and tailor its overnight prompt with them, so they leave knowing exactly what to run tonight.
 
-**Picture:** Open the updated flow picture now (see "Your AI System — ONE hosted picture"). Open the same hosted link with `?step=3` plus the `y1`…`y3` captions gathered so far (URL-encoded), so Step 3 lights up and the rest stay greyed. Just open the link — never write, save, or redraw anything.
+**Picture (end of Module 3):** Create the recap artifact now — see "Your AI System recap — the artifact you put in front of them after Module 3" near the top. Fill the three `Yours:` captions with their real name/business, skill name and connected tools, say the one-line "I'm making you an artifact to recap what you've built and show your next steps," and let it render on the side. Everyone gets this automatically — never wait to be asked.
 
 **Quiz:**
 ```
@@ -526,7 +607,6 @@ Turn today's mission into their second reusable skill if there's time — instal
 *Beginner:* keep the parallel batch to 2 sub-tasks, not 3 — the concept ("more than one thing at once") is the win, not the volume.
 *Intermediate stretch:* push to 4-5 parallel sub-tasks and have them try phrasing the request themselves before you write it, so they leave able to do this unassisted.
 
-**Picture:** Open the updated flow picture now (see "Your AI System — ONE hosted picture"). Open the same hosted link with `?step=4` plus the `y1`…`y4` captions gathered so far (URL-encoded), so Step 4 lights up and the rest stay greyed. Just open the link — never write, save, or redraw anything.
 
 **Quiz:**
 ```
@@ -700,7 +780,6 @@ Then build it: a skill that reads their inbox and drafts a reply to each message
 - **Outlook note**: this needs draft-creation permission on their connector; if IT has it locked down, the personal-Gmail fallback from Module 3 lets them see it work today.
 - Only skip this for someone whose email genuinely couldn't be connected in Module 3.
 
-**Picture:** Open the updated flow picture now (see "Your AI System — ONE hosted picture"). Open the same hosted link with `?step=5` plus the `y1`…`y5` captions gathered so far (URL-encoded), so Step 5 lights up and the rest stay greyed. Just open the link — never write, save, or redraw anything.
 
 **Quiz:**
 ```
@@ -876,7 +955,6 @@ Three things must be true or it fails silently when it fires, so check each one 
 *Beginner:* stay on whichever branch fits them closest and skip the live slider — it invites a rabbit hole of "can it also do X" that eats the clock. Still hit the full quality bar below (5-6 visual elements, 2 chart types); a thin dashboard is a failure state even for a beginner.
 *Intermediate stretch:* add the interactive control (a slider or filter that really recalculates), and have them describe a tweak themselves (e.g. "make this tile red if it drops below X") so they leave able to change it without you.
 
-**Picture:** Open the updated flow picture now (see "Your AI System — ONE hosted picture"). Open the same hosted link with `?step=6` plus the `y1`…`y6` captions gathered so far (URL-encoded), so Step 6 lights up and the rest stay greyed. Just open the link — never write, save, or redraw anything.
 
 **Quiz:**
 ```
@@ -933,7 +1011,7 @@ WIN:  You know exactly what to do next
 [x] build/index.html — Your live dashboard
 [x] NEXT-STEPS.md — Exactly what to do tonight/this week
 ```
-Then add the one thing that isn't a file — their picture of the whole system: **"And your AI System picture, all six steps lit up: `https://hamzaak1992.github.io/wegrowpeople-workshop-skill/pages/flow.html?step=6`"**.
+Then remind them of the one thing that isn't a file — the recap picture you made as an artifact after Module 3: **"And that recap picture I put on your screen after we connected your tools — that's your whole AI system in one glance."**
 
 (List what THIS participant actually built, and don't pad it. If one specific thing genuinely couldn't be built — an IT-blocked connector, say — leave that line out and say why in a sentence. That is the only reason a line is ever missing; it is never because a module was skipped, because no module is skipped.)
 
