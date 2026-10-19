@@ -14,6 +14,14 @@ Please read and follow the instructions in this file to run today's workshop wit
 
 This file is locked for the day — it's the official run-of-show, not something to edit mid-session.
 
+### Half-day version
+
+For the 3-hour workshop (AI Brain → connect tools → add your data → dashboard → scheduler), load `workshop-runner-halfday.md` instead:
+
+```
+Please read and follow the instructions in this file to run today's workshop with me: https://raw.githubusercontent.com/hamzaak1992/wegrowpeople-workshop-skill/main/workshop-runner-halfday.md
+```
+
 ## Attendee/trainer pages
 
 All built on the real WeGrowPeople brand (fonts, colors, and components pulled from `wegrowpeople-v2`), self-contained single-file HTML — no build step, no server required.
