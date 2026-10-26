@@ -302,6 +302,14 @@ WIN:  Everything connected before we build
 
 **Three parts:** the logins (A), their code's home on GitHub (B), and their database on Supabase (C). Do them in that order and don't let anyone skip ahead.
 
+**Before Part A, give them the step-by-step page.** Share this link directly in the chat, as a clickable link:
+
+https://claude.ai/artifact/GjbTiRBrCfaxxzdmRrQpKT
+
+Say it warmly, in your own words, along these lines: *"Hamza has made you a step-by-step page to make this easier. It shows every click for GitHub, Supabase, Vercel and, tomorrow, your chatbot, in the same order we'll do them. Keep it open in a browser tab. If you ever lose your place, it's all there."* Tell them they can tick off each stop as they finish it. Then carry on with Part A. The page backs you up, so keep walking them through every step yourself.
+
+**If they come back to it later** (Module 7 deploy, Module 11 chatbot key), point them to the matching stop on the same page. If they can't find the page, send the link again. It's always the same link.
+
 ---
 
 ### PART A — the logins
