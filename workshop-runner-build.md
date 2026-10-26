@@ -804,6 +804,18 @@ A Telegram bot is for them and their team, not customers. Say so plainly, then:
 
 **Whatever they pick — door and audience — say it back and write both into their notes**, because every rule in Module 12 depends on them.
 
+### Connect the AI — the key that lets it think
+
+Both doors need this, and so does anyone who later asks you how to set up a chatbot. Do it before you build. Point them to the **Your chatbot** stop on Hamza's step-by-step page from Module 4, and send the link again if they can't find it: https://claude.ai/artifact/GjbTiRBrCfaxxzdmRrQpKT
+
+"Your chatbot needs a key from an AI company. It's what lets it read a question and write an answer. You pay per use, and for one small business that's usually a small amount each month."
+
+1. **Pick one: the Claude API or the OpenAI API.** The page compares them side by side, and the prices are the same at both levels. Let them choose. If they have no preference, either works, so don't spend more than two minutes on it.
+2. **Sign up and add a small credit.** Claude: **console.anthropic.com**. OpenAI: **platform.openai.com**. US$5 covers the course and weeks after. **On OpenAI, turn auto-recharge off**, because it's on by default. Credit expires after a year on both.
+3. **Create the key and paste it into their notes straight away.** It's shown once. Claude Console asks how long the key should last. Pick no expiry if it's offered, otherwise the longest option, so it doesn't stop working after the course.
+4. **You put it in the local settings file, never the chat.** Name it `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`, letter for letter.
+5. **Then Vercel:** **Settings → Environment Variables**, same name, the key as the value, marked **Secret**. Then **Deployments → … → Redeploy** with **Use existing Build Cache** unticked. Without the redeploy the live chatbot can't see the key.
+
 ### Build it
 
 Add the chat into their own software, connected to their own data, mobile-friendly.
@@ -820,6 +832,14 @@ Add the chat into their own software, connected to their own data, mobile-friend
 - Never confirm stock or availability as fact
 - Always offer a way to reach a human
 - Never claim to be a person
+
+**Give the owner a settings screen for its instructions.** Build a small **Assistant settings** page, only for the owner and never visible to staff without permission or to customers. It has one large text box for their own rules, a **Save** button, and a line showing when the rules were last changed and by whom.
+
+- Keep the rules in a one-row table in their database, not in the code. Add it to the SQL file they run, with row-level security so only the owner can change it.
+- The chatbot reads that row **every time someone asks it something**, so a saved change works on the very next question. No laptop, no GitHub, no redeploy.
+- The honesty rules above stay fixed in the code and always come first. The box adds to them and can't switch them off. Say so in one line: "The safety rules are locked in. This box is for your own rules on top."
+- A Telegram bot reads the same row, so one screen controls both doors.
+- Leave the box empty for now. They fill it in Module 12.
 
 ### The first real question
 
@@ -848,7 +868,7 @@ WIN:  You can change what it does, any time
 
 **Explain it first, because this is the thing nobody tells them:**
 
-"Here's something worth knowing. A rule for your chatbot isn't code and it isn't a setting. It's a sentence in plain English. If you can tell a new staff member what not to do, you can do this — and it means you can change how this thing behaves forever, without me and without anyone else."
+"Here's something worth knowing. A rule for your chatbot isn't code. It's a sentence in plain English, typed into a box on your own settings screen. If you can tell a new staff member what not to do, you can do this — and it means you can change how this thing behaves forever, without me and without anyone else."
 
 ### The five questions
 
@@ -874,6 +894,8 @@ Then go through it one at a time: what this rule does, why it's there, and **"wo
 
 Explain each suggestion in one line so they're choosing, not nodding.
 
+**Then they put the rules in themselves.** Open the **Assistant settings** screen on the live site, have them paste the agreed rules into the box and press **Save**. Don't do this step for them. Doing it once with you beside them is what makes them confident to do it alone later.
+
 ### Then test it together, step by step
 
 Make this a game and enjoy it with them. Show them exactly what to type:
@@ -885,15 +907,15 @@ Make this a game and enjoy it with them. Show them exactly what to type:
 
 **When it holds:** point it out. "That's your rule working. You wrote that."
 
-**When it leaks — and something will:** this is the best moment of the module. Show them *why* it leaked, usually because the wording was vaguer than it sounded. Rewrite it tighter **with** them, then test again together.
+**When it leaks — and something will:** this is the best moment of the module. Show them *why* it leaked, usually because the wording was vaguer than it sounded. Rewrite it tighter **with** them, save it on the settings screen, then test again together. The change works straight away.
 
 "That loop — write it, try to break it, tighten it — is the whole job. Every AI tool you ever use, that's how you make it safe."
 
 ### Save the pattern where they'll find it
 
-Write their five rules into their project folder, and the five questions into their notes as something reusable.
+Their rules live on the settings screen. Also write a copy into their project folder as a backup, and the five questions into their notes as something reusable.
 
-"Whenever you want to change how it behaves, you're editing this page of plain English. You never need me for it."
+"Whenever you want to change how it behaves, open Assistant settings, change the words and press Save. It works on the next question. You never need me for it."
 
 ---
 
@@ -915,7 +937,7 @@ Remind them of the choice they made in Module 11, and that the other way in is s
 Say it as three concrete abilities, not a summary:
 
 1. **Add information** — through their own screen, any time
-2. **Change the rules** — the five questions, plain English, they've already done it once
+2. **Change the rules** — the five questions, plain English, on their Assistant settings screen. They've already done it once
 3. **Change the software** — open Claude on the laptop and ask, the same way they did here
 
 "That's everything. There isn't a fourth thing we're holding back."
