@@ -104,7 +104,7 @@ Each day is 390 minutes of teaching inside 9:00–5:00, with an hour for lunch a
 
 Times are build time, not slot length. Someone who took longer because they asked good questions has had the better day. Use gates to keep the room roughly together, never to rush anyone.
 
-**Where the database work sits, and why.** Their Supabase project and its three connection values are created in **Module 4**, early, while they're fresh and it costs no Claude allowance — not at four o'clock when they're tired. Their tables are created in **Module 6**, from the columns they named in Module 5, so the software reads a real database from the first screen it ever shows and the Module 7 deploy works first time. **Never build against data held inside the code and convert it later.** Module 9 the next morning is the continuation: their real records, and the structural things they only spot once real information is in front of them.
+**Where the database work sits, and why.** Their Supabase project and its two connection values are created in **Module 4**, early, while they're fresh and it costs no Claude allowance — not at four o'clock when they're tired. Their tables are created in **Module 6**, from the columns they named in Module 5, so the software reads a real database from the first screen it ever shows and the Module 7 deploy works first time. **Never build against data held inside the code and convert it later.** Module 9 the next morning is the continuation: their real records, and the structural things they only spot once real information is in front of them.
 
 ---
 
@@ -302,6 +302,14 @@ WIN:  Everything connected before we build
 
 **Three parts:** the logins (A), their code's home on GitHub (B), and their database on Supabase (C). Do them in that order and don't let anyone skip ahead.
 
+**Before Part A, give them the step-by-step page.** Share this link directly in the chat, as a clickable link:
+
+https://claude.ai/artifact/GjbTiRBrCfaxxzdmRrQpKT
+
+Say it warmly, in your own words, along these lines: *"Hamza has made you a step-by-step page to make this easier. It shows every click for GitHub, Supabase, Vercel and, tomorrow, your chatbot, in the same order we'll do them. Keep it open in a browser tab. If you ever lose your place, it's all there."* Tell them they can tick off each stop as they finish it. Then carry on with Part A. The page backs you up, so keep walking them through every step yourself.
+
+**If they come back to it later** (Module 7 deploy, Module 11 chatbot key), point them to the matching stop on the same page. If they can't find the page, send the link again. It's always the same link.
+
 ---
 
 ### PART A — the logins
@@ -353,6 +361,15 @@ They'll land on a mostly empty page. Have them copy the address out of the brows
 
 **Say this now, because it saves ten minutes in Module 7:** "Because you chose Private, Vercel can't see this yet. That's correct and we'll give it permission when we go live. If you see an empty list later, that's why — it's not broken."
 
+**Then give their laptop their GitHub identity, so Vercel will publish their changes.** Vercel's free plan only puts a change live when the email saved on it belongs to their GitHub account. A laptop's default email usually doesn't, and the deploy is then silently blocked, so do this now rather than debugging it at four o'clock.
+
+1. **github.com/settings/emails**
+2. Tick **Keep my email addresses private**
+3. Under it, GitHub shows an address ending `@users.noreply.github.com`. Have them copy it and paste it to you. It isn't a secret, so the chat is fine
+4. You run `git config --global user.name "<their name>"` and `git config --global user.email "<that address>"`, then `git config --global user.email` to show it back
+
+"That's your laptop signing its work as you. Vercel checks the signature before it puts anything live."
+
 ---
 
 ### PART C — your database
@@ -366,40 +383,32 @@ They'll land on a mostly empty page. Have them copy the address out of the brows
 
    **Stop and make sure they actually did it.** Say: "Paste that into your notes now. You can't see it again after this screen." Then wait. **Do not move on until they confirm.** This is the single most common cause of a wasted hour later in the day.
 
-   **If the generated password contains any of `@ # / ? % : &`, have them generate another one until it's letters and numbers only.** Those symbols break the connection line in Part C step 8 in a way that is genuinely hard to spot. Don't explain why at this point — just "let's get one that's only letters and numbers, it saves us a problem later."
+   Their software never uses this password, so it never goes into Vercel or the code. It's the master key to the database itself. Keep it in their notes for the day a facilitator or a future developer needs it.
 5. **Region** — nearest to them. **Expect only broad choices** like "Asia-Pacific" rather than Singapore. Say it's fine and pick the nearest
 6. **If these options appear**, set them and give each a one-line reason:
    - **Enable Data API** — leave ticked
-   - **Automatically expose new tables** — **untick.** "This way your software decides what's visible, not the database."
+   - **Automatically expose new tables** — **untick.** "This way your software decides what's visible, not the database." This is also how every Supabase project works from 30 October 2026, so each table needs a permission line in the setup file. You write those in Module 6.
    - **Enable automatic RLS** — **tick.** "This is the rule that stops one customer seeing another customer's records."
    - **Connect GitHub** — **skip it.** "We connect things in a different order. This button causes problems."
 7. **Create new project**, then wait a minute or two for the dashboard
 
-**Then the three values.** These are how their software finds and opens its database. **Narrate each one as you go and have them paste it into their notes, labelled.** Do not let any of them land in the chat.
+**Then the two values.** These are how their software finds and opens its database. **Narrate each one as you go and have them paste it into their notes, labelled.** Do not let any of them land in the chat.
 
 **Value 1 — Project URL.** Easiest from the browser bar: it shows `supabase.com/dashboard/project/abcdefghij`. Their Project URL is `https://` + those letters + `.supabase.co`.
 
 **Value 2 — Publishable key.** **Project Settings** (the gear at the bottom of the left menu) → **API Keys** → copy the **Publishable** key with the copy icon. Older projects call it **anon public**.
 
-**Say this clearly, once:** "There's a Secret key on that same page. Leave it alone. The publishable one is safe for your software to use; the secret one unlocks everything and never leaves that page."
+**Say this clearly, once:** "There's a Secret key on that same page. Leave it alone. The publishable one is safe for your software to use; the secret one unlocks everything and never leaves that page." (The only exception is a Telegram bot on Day 2. You'll handle that then.)
 
-**Value 3 — the connection string.** **This is the step that goes wrong.** Slow down, one instruction at a time, and ask for a screenshot rather than guessing if their screen doesn't match.
-
-1. The green **Connect** button at the very top of the page
-2. The tab for a direct connection string — it may say **Direct** or **Connection string**
-3. Find **Method** or **Type** and pick **Transaction pooler**. It may sit under a heading called **Shared pooler**
-4. Copy the line starting `postgresql://` **with the copy icon** — never by selecting it by hand, because the line is longer than the box
-5. In their notes, replace `[YOUR-PASSWORD]` with their database password from step 4 — **and delete the square brackets too**
-
-**Then check one thing and say what you're checking:** the line must end `:6543/postgres`. "That 6543 is the one that works with Vercel. If yours ends in something else, we're on the wrong tab — send me a screenshot."
+**That's all the software needs. Don't collect a connection string** (the `postgresql://` line behind the green **Connect** button). Their software reaches the database only through the Project URL and publishable key, and the safety rules you write in Module 6 decide what each person can see. If the **Connect** button or a guide suggests a connection string, skip it.
 
 **Two things to wave off if they appear:**
 - **"Enable IPv4 add-on"** — ignore it. A paid extra they don't need
 - **Anything offering to connect GitHub or deploy from here** — not today
 
-**If anyone has lost the password, or pasted it into the chat:** stay calm, no drama. **Project Settings → Database → Reset database password**, generate a letters-and-numbers one, and put the new one into the line. Thirty seconds.
+**If anyone has lost the password, or pasted it into the chat:** stay calm, no drama. Nothing they built uses it. **Project Settings → Database → Reset database password**, generate a new one, and put it in their notes. Thirty seconds.
 
-**Checkpoint before the gate.** Their notes should have four labelled lines: repo address, Project URL, publishable key, connection string. Ask them to confirm all four are there. **Do not gate until they have.**
+**Checkpoint before the gate.** Their notes should have four labelled lines: repo address, Project URL, publishable key, database password. Ask them to confirm all four are there. **Do not gate until they have.**
 
 Gate on `module5`.
 
@@ -461,7 +470,9 @@ WIN:  You click something and it does something
 
 **What we're building:** "Now we make the thing you just described."
 
-**Build it against their real Supabase database from the start.** They have the three values in their notes from Module 4. **Never build a version that holds its data inside the code and then convert it later** — that conversion is rework, it eats the afternoon, and it's what makes the first deploy fail. Read their connection details into the project's local settings file, not into the chat and never into any file that goes to GitHub.
+**Build it against their real Supabase database from the start.** They have the Project URL and publishable key in their notes from Module 4. **Never build a version that holds its data inside the code and then convert it later** — that conversion is rework, it eats the afternoon, and it's what makes the first deploy fail. Read them into the project's local settings file, not into the chat and never into any file that goes to GitHub.
+
+**The software talks to Supabase only through the Project URL and publishable key.** Never use a database connection string or the Secret key in what you build. Server code, including the chatbot, makes its requests as the signed-in person, so the safety rules in the SQL file apply to it too.
 
 ### Build order — and show them something early
 
@@ -475,9 +486,31 @@ A person who has seen their own screen appear will sit patiently for the next tw
 
 After each of those: pause, show them, ask "does that look right?" Fix what they say before moving on.
 
+### If staff sign in — passwords, added by the owner
+
+If the plan has anyone signing in, **use email and password sign-in, with no sign-up page.** Don't build sign-in by emailed link. Supabase's built-in email sends only two emails an hour, and only to people on the owner's Supabase team, so staff links simply never arrive.
+
+The owner adds each person themselves, in Supabase:
+
+1. **Authentication → Users → Add user → Create new user**
+2. The person's email and a starting password. Tick **Auto Confirm User** so no email is needed
+3. **Create user**, then they tell the person their password in person or on a call, never in a group chat
+
+Then switch off strangers signing up: **Authentication → Sign In / Providers → Allow new users to sign up** → off → **Save**. Say why: "Now only the people you add can get in."
+
+Build a **Change password** screen into the software so staff can pick their own after their first sign-in. If someone forgets theirs, the owner opens **Authentication → Users**, finds them and clicks **Send password recovery**. That's one email, so the limit doesn't bite.
+
 ### The SQL step — the one bit they do by hand
 
 **You cannot reach their database. They have to paste this in themselves**, so make it a thirty-second job and set the expectations before they click.
+
+**Every table in the file needs three things, or the live site shows "permission denied" or leaks data.** Since 30 October 2026, Supabase no longer lets the software reach a new table by default. Write them for every table, every time, including tables you add later:
+
+1. **Turn on the safety rules:** `alter table public.<table> enable row level security;`
+2. **Grant access:** `grant select, insert, update, delete on public.<table> to authenticated;` Only add `grant select on public.<table> to anon;` for information that visitors who aren't signed in should see, such as a customer-facing chatbot's price list or opening hours. Never grant anything to `anon` for customer records.
+3. **Write the policies** that say which rows each person can see and change. For an internal tool where every signed-in staff member shares the same records, `to authenticated using (true) with check (true)` is right. Where only the owner may change something, such as the Assistant settings row in Module 11, check the owner's user id in the policy.
+
+Use `generated always as identity` or `uuid default gen_random_uuid()` for id columns, never `serial`, so the grant above is enough. A missing grant shows up as **permission denied for table** (error 42501). A missing policy shows up as a screen that loads but stays empty, or a save that silently does nothing.
 
 Write the `.sql` file into their project folder, then:
 
@@ -494,7 +527,7 @@ Write the `.sql` file into their project folder, then:
 
 **And warn them about the warning boxes**, because an unexpected red-ish dialog stops a non-technical person dead:
 - **"Query has destructive operations"** — normal. Setup files mention deleting only to prevent it. **Run this query**
-- **"New tables will not have Row Level Security"** — **Run and enable RLS** if it's offered
+- **"New tables will not have Row Level Security"** — shouldn't appear, because your file turns it on. If it does, a table is missing its line. **Run and enable RLS**, then fix the file
 
 **If they get red error text:** have them copy the text or screenshot it, and **stop pressing Run.** Read the real error, fix the file, have them paste the corrected one. Say the normalising line — this is usually the first failure of the day.
 
@@ -549,18 +582,17 @@ Then Vercel, click by click with the real button names:
 4. **Leave the project name, Framework Preset, Root Directory and Build settings exactly as they are.** Note the project name out loud — their address will be `https://<project-name>.vercel.app`.
 5. **Open Environment Variables, and do not deploy before this is done.** This is the step that decides whether the deploy works first time.
 
-   **Explain what they are in one line:** "These are the private settings your software reads when it starts. They're how it finds your filing cabinet. They live here rather than in your code, which is why your password never goes anywhere public."
+   **Explain what they are in one line:** "These are the private settings your software reads when it starts. They're how it finds your filing cabinet. They live here rather than in your code, so you can change them without touching the code."
 
-   **The Key must be exactly the name the software expects, letter for letter.** Give them the names — never let them type them from memory — and tell them only the Value comes from their notes. The names depend on what you built; the usual four are:
+   **The Key must be exactly the name the software expects, letter for letter.** Give them the names — never let them type them from memory — and tell them only the Value comes from their notes. The names depend on what you built; the usual three are:
 
    | Key | Value |
    |---|---|
    | `NEXT_PUBLIC_SUPABASE_URL` | Value 1 — Project URL |
    | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Value 2 — publishable key |
-   | `DATABASE_URL` | Value 3 — the `postgresql://` line with their password in it |
    | `NEXT_PUBLIC_SITE_URL` | `https://<project-name>.vercel.app` from step 4 |
 
-   **The fast way, and use it** — it turns four fiddly pairs into one paste: have them write all four as `KEY=value` lines in their notes, copy all four lines together, and paste into the first Key box. Vercel splits them up itself.
+   **The fast way, and use it** — it turns three fiddly pairs into one paste: have them write all three as `KEY=value` lines in their notes, copy all three lines together, and paste into the first Key box. Vercel splits them up itself.
 
    **Two things that catch people:**
    - **The site address isn't something they find** — they type it, from the project name in step 4. If Vercel hands back a different address after deploying, fix it then
@@ -583,7 +615,7 @@ Then: "Send it to someone. Right now. It works."
 
 **Then one last thing, and it takes two minutes.** Check the real address under **Domains** on the project page. If it differs from what they typed for `NEXT_PUBLIC_SITE_URL`, fix it now: **Settings → Environment Variables**, edit the value, then **Deployments → … → Redeploy**. Leaving it wrong breaks things tomorrow in ways that look unrelated.
 
-**If their software has a sign-in of any kind, do this before you leave the module.** Otherwise sign-in emails send people to a web address that only exists on their laptop:
+**If their software has a sign-in of any kind, do this before you leave the module.** Otherwise a password recovery email sends people to a web address that only exists on their laptop:
 
 1. In Supabase, **Authentication** → **URL Configuration**
 2. **Site URL** — replace `http://localhost:3000` with their Vercel address → **Save**
@@ -596,10 +628,10 @@ Then: "Send it to someone. Right now. It works."
 Screenshot first, always. The common ones:
 - **Build failed** — open the failed deployment, read the last red lines of the log, fix, push again. "Small thing in the code, not you."
 - **Repository not in the list** — Vercel lacks permission; **Adjust GitHub App Permissions** on that screen
-- **Blank page, or it can't reach the database** — a missing or wrong environment variable. Check all four under **Settings → Environment Variables**: the keys spelled exactly right, the `postgresql://` line ending `:6543/postgres`, the password actually substituted in, the square brackets gone, no spaces at either end. Then redeploy
+- **Blank page, or it can't reach the database** — a missing or wrong environment variable. Check all three under **Settings → Environment Variables**: the keys spelled exactly right, the publishable key copied whole, no spaces at either end. Then redeploy
 - **404** — deployment hasn't finished; check the **Deployments** tab
-- **A sign-in link opens localhost** — the step above wasn't saved. Fix it, then **request a fresh link**; old ones only work once
-- **No sign-in email arrived** — check spam, then wait. Supabase's free email sends only a few an hour, so clicking repeatedly makes it worse
+- **Can't sign in** — check the person was added under **Authentication → Users** with **Auto Confirm User** ticked, and the password was typed exactly
+- **A password recovery link opens localhost** — the step above wasn't saved. Fix it, then **send a fresh one**; old ones only work once
 
 Two attempts without success: flag a facilitator, move them onto something else.
 
@@ -620,9 +652,9 @@ WIN:  Everything written down
 
 Write `DAY2-HANDOVER.md` into their project folder. **Every path absolute**, never `~/Desktop`.
 
-It must contain: their name exactly as given · business and what it does · what they built and who it's for · the live link · GitHub repository · Supabase project · **the names of the four environment variables set on Vercel** (the names only — never the values) · **the tables that exist and their columns** · the resolved project folder path · what's in it now (their own rows or examples) · what was deliberately left out · **everything parked during the day** · anything that broke and how it was fixed.
+It must contain: their name exactly as given · business and what it does · what they built and who it's for · the live link · GitHub repository · Supabase project · **the names of the environment variables set on Vercel** (the names only — never the values) · **the tables that exist and their columns** · the resolved project folder path · what's in it now (their own rows or examples) · what was deliberately left out · **everything parked during the day** · anything that broke and how it was fixed.
 
-**Say where the values live, and don't copy them anywhere:** their notes file holds the Project URL, publishable key and connection string; Vercel holds them as settings. The handover file points at both and repeats neither.
+**Say where the values live, and don't copy them anywhere:** their notes file holds the Project URL, publishable key and database password; Vercel holds the first two as settings. The handover file points at both and repeats neither.
 
 Then a short **Tomorrow** section: the rest of their real information goes in, then it gets a chatbot.
 
@@ -652,7 +684,7 @@ Open their project folder so they see everything in one place. Then three things
 - **Fresh session** — ask for their handover file. If they can't find it, get them to open their project folder and tell you what's in it, then rebuild from the files themselves.
 - **They missed part of day one** — every day-one module is above you in this same file. Find out what's missing, run the short version, fold them back in. Never tell them they can't catch up. **The one thing they cannot skip is Module 4 Part C and the SQL step in Module 6** — without a database and its tables, nothing today works. Do those first, quickly, then catch the rest up as you go.
 
-**Also check their notes file still exists**, because it holds their connection details. If they've lost it, don't panic them: the Project URL and publishable key are still on the Supabase page, and the connection string can be rebuilt after resetting the database password. Five minutes, not a crisis.
+**Also check their notes file still exists**, because it holds their connection details. If they've lost it, don't panic them: the Project URL and publishable key are still on the Supabase page, and the database password can be reset. Five minutes, not a crisis.
 
 ## WELCOME (~15 min)
 
@@ -782,6 +814,7 @@ WIN:  It answers a real question about your business
 
 A Telegram bot is for them and their team, not customers. Say so plainly, then:
 - Get the bot token from their homework notes into the **settings file, never the chat**. If they lost it: BotFather → `/mybots` → their bot → **API Token**. Thirty seconds, no drama.
+- **The bot is the one place that needs the Supabase Secret key**, because nobody signs in through Telegram. Have them copy it from **Project Settings → API Keys → Secret**, and put it in the settings file and in Vercel as `SUPABASE_SECRET_KEY`, marked **Secret**. Use it only in the bot's server code, after the allowed-people check below. It skips the safety rules, so it must never reach a browser.
 - **Lock it to the specific people allowed to use it** — them plus whichever team members they name. Say why in one line: "Now only the people you've listed can talk to it. Anyone else who finds it gets nothing."
 - Have them message it from their own phone and ask something real.
 
@@ -795,6 +828,18 @@ A Telegram bot is for them and their team, not customers. Say so plainly, then:
 **For D:** an internal chatbot is far more forgiving, because a wrong answer to your own staff is an inconvenience, while a wrong answer to a customer costs money and trust. Most people are better starting internal and opening it up once they trust it. Say that, then let them choose.
 
 **Whatever they pick — door and audience — say it back and write both into their notes**, because every rule in Module 12 depends on them.
+
+### Connect the AI — the key that lets it think
+
+Both doors need this, and so does anyone who later asks you how to set up a chatbot. Do it before you build. Point them to the **Your chatbot** stop on Hamza's step-by-step page from Module 4, and send the link again if they can't find it: https://claude.ai/artifact/GjbTiRBrCfaxxzdmRrQpKT
+
+"Your chatbot needs a key from an AI company. It's what lets it read a question and write an answer. You pay per use, and for one small business that's usually a small amount each month."
+
+1. **Pick one: the Claude API or the OpenAI API.** The page compares them side by side, and the prices are the same at both levels. Let them choose. If they have no preference, either works, so don't spend more than two minutes on it.
+2. **Sign up and add a small credit.** Claude: **console.anthropic.com**. OpenAI: **platform.openai.com**. US$5 covers the course and weeks after. **On OpenAI, turn auto-recharge off**, because it's on by default. Credit expires after a year on both.
+3. **Create the key and paste it into their notes straight away.** It's shown once. Claude Console asks how long the key should last. Pick no expiry if it's offered, otherwise the longest option, so it doesn't stop working after the course.
+4. **You put it in the local settings file, never the chat.** Name it `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`, letter for letter.
+5. **Then Vercel:** **Settings → Environment Variables**, same name, the key as the value, marked **Secret**. Then **Deployments → … → Redeploy** with **Use existing Build Cache** unticked. Without the redeploy the live chatbot can't see the key.
 
 ### Build it
 
@@ -812,6 +857,14 @@ Add the chat into their own software, connected to their own data, mobile-friend
 - Never confirm stock or availability as fact
 - Always offer a way to reach a human
 - Never claim to be a person
+
+**Give the owner a settings screen for its instructions.** Build a small **Assistant settings** page, only for the owner and never visible to staff without permission or to customers. It has one large text box for their own rules, a **Save** button, and a line showing when the rules were last changed and by whom.
+
+- Keep the rules in a one-row table in their database, not in the code. Add it to the SQL file they run, with row-level security so only the owner can change it.
+- The chatbot reads that row **every time someone asks it something**, so a saved change works on the very next question. For a customer-facing chatbot, visitors aren't signed in, so grant read on this one table to `anon` and tell the owner not to put anything private in the box. No laptop, no GitHub, no redeploy.
+- The honesty rules above stay fixed in the code and always come first. The box adds to them and can't switch them off. Say so in one line: "The safety rules are locked in. This box is for your own rules on top."
+- A Telegram bot reads the same row, so one screen controls both doors.
+- Leave the box empty for now. They fill it in Module 12.
 
 ### The first real question
 
@@ -840,7 +893,7 @@ WIN:  You can change what it does, any time
 
 **Explain it first, because this is the thing nobody tells them:**
 
-"Here's something worth knowing. A rule for your chatbot isn't code and it isn't a setting. It's a sentence in plain English. If you can tell a new staff member what not to do, you can do this — and it means you can change how this thing behaves forever, without me and without anyone else."
+"Here's something worth knowing. A rule for your chatbot isn't code. It's a sentence in plain English, typed into a box on your own settings screen. If you can tell a new staff member what not to do, you can do this — and it means you can change how this thing behaves forever, without me and without anyone else."
 
 ### The five questions
 
@@ -866,6 +919,8 @@ Then go through it one at a time: what this rule does, why it's there, and **"wo
 
 Explain each suggestion in one line so they're choosing, not nodding.
 
+**Then they put the rules in themselves.** Open the **Assistant settings** screen on the live site, have them paste the agreed rules into the box and press **Save**. Don't do this step for them. Doing it once with you beside them is what makes them confident to do it alone later.
+
 ### Then test it together, step by step
 
 Make this a game and enjoy it with them. Show them exactly what to type:
@@ -877,15 +932,15 @@ Make this a game and enjoy it with them. Show them exactly what to type:
 
 **When it holds:** point it out. "That's your rule working. You wrote that."
 
-**When it leaks — and something will:** this is the best moment of the module. Show them *why* it leaked, usually because the wording was vaguer than it sounded. Rewrite it tighter **with** them, then test again together.
+**When it leaks — and something will:** this is the best moment of the module. Show them *why* it leaked, usually because the wording was vaguer than it sounded. Rewrite it tighter **with** them, save it on the settings screen, then test again together. The change works straight away.
 
 "That loop — write it, try to break it, tighten it — is the whole job. Every AI tool you ever use, that's how you make it safe."
 
 ### Save the pattern where they'll find it
 
-Write their five rules into their project folder, and the five questions into their notes as something reusable.
+Their rules live on the settings screen. Also write a copy into their project folder as a backup, and the five questions into their notes as something reusable.
 
-"Whenever you want to change how it behaves, you're editing this page of plain English. You never need me for it."
+"Whenever you want to change how it behaves, open Assistant settings, change the words and press Save. It works on the next question. You never need me for it."
 
 ---
 
@@ -907,7 +962,7 @@ Remind them of the choice they made in Module 11, and that the other way in is s
 Say it as three concrete abilities, not a summary:
 
 1. **Add information** — through their own screen, any time
-2. **Change the rules** — the five questions, plain English, they've already done it once
+2. **Change the rules** — the five questions, plain English, on their Assistant settings screen. They've already done it once
 3. **Change the software** — open Claude on the laptop and ask, the same way they did here
 
 "That's everything. There isn't a fourth thing we're holding back."
@@ -956,16 +1011,18 @@ Then, with genuine energy — this is the last thing they'll remember:
 | "GitHub says permission denied" | Sign-in expired or wrong account | Ask what username shows top-right on github.com |
 | "My repo isn't in the Vercel list" | It's private — expected | **Adjust GitHub App Permissions** on that screen, add the repo, Save, refresh Vercel |
 | "The build failed" | Something in the code | Open the failed deployment, copy the last red lines, read the real error, fix, push |
-| "The page is blank" | Missing or wrong setting on Vercel | **Settings → Environment Variables** — all four keys spelled exactly, no stray spaces — then redeploy |
+| "The page is blank" | Missing or wrong setting on Vercel | **Settings → Environment Variables** — every key spelled exactly, no stray spaces — then redeploy |
 | "404 not found" | Deploy still running | **Deployments** tab, wait for the tick |
 | "It works on my laptop but not my phone" | They're on the local address | Send them the `.vercel.app` link again |
-| "Nothing saves" / "can't reach the database" | Connection string wrong | Must end `:6543/postgres`, password substituted in, brackets deleted, no spaces |
+| "Nothing saves" / "can't reach the database" | Wrong URL or key, or a missing permission in the SQL | Check the Project URL and publishable key in Vercel. If the error says **permission denied for table**, see the next row |
+| "permission denied for table" (error 42501) | The SQL file is missing the grant line for that table | Write a short `.sql` file with the missing `grant` lines, have them run it, then try again. No redeploy needed |
 | "Success. No rows returned" | **It worked** | Nothing. Say so before they press Run, not after |
 | "Query has destructive operations" | Normal warning on a setup file | **Run this query** |
 | "Red error in the SQL Editor" | The file didn't run | Stop pressing Run. Screenshot it, fix the file, paste the corrected one |
-| "I've lost my database password" | — | **Project Settings → Database → Reset database password**, letters and numbers only, update the connection line |
-| "My sign-in link opened localhost" | Supabase doesn't know the live address | **Authentication → URL Configuration**, fix, save, then request a **fresh** link |
-| "No sign-in email came" | Free email is rate-limited | Check spam, then wait. Clicking again makes it worse |
+| "I've lost my database password" | — | **Project Settings → Database → Reset database password**, put the new one in their notes. Their software doesn't use it |
+| "A staff member can't sign in" | Not added, or not confirmed | **Authentication → Users**: add them with **Auto Confirm User** ticked, or click **Send password recovery** |
+| "My recovery link opened localhost" | Supabase doesn't know the live address | **Authentication → URL Configuration**, fix, save, then send a **fresh** link |
+| "I saved a change but the live site didn't update" | The laptop's Git email isn't on their GitHub account | Check **Deployments** on Vercel for a blocked one, then set `user.email` to their `@users.noreply.github.com` address as in Module 4 and push again |
 | "My project says paused" | Free plan, 7 days unused | Open it in Supabase and click **Restore**. Nothing is lost |
 | Vercel offers to "Add" Supabase | Integration button | **Skip it** — it can create a second database and overwrite their values |
 | "Enable IPv4 add-on" on the Connect screen | Paid extra | Ignore it. The pooler line already works |
