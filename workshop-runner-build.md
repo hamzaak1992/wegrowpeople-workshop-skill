@@ -67,7 +67,7 @@ The test for any reply: could a busy person read it in five seconds while standi
 - **The usual rules still hold:** one question at a time, lettered menus, the YES fast lane.
 - **After the answers, write the brief before you build.** Use the same headings every time: **Goal · Who uses it · What it uses · Rules and limits · Done looks like · Not doing.** Show them the short version in plain English and wait for YES. If they said YES to the fast lane, write the brief from what you know and show it anyway.
 - **Reread the brief as if you'd never met them.** Anything you would have to guess is one more question, not an assumption.
-- **Write every brief so a fresh session could build from it alone.** The brief does the thinking; the build just follows it. This is also why fresh sessions between modules lose nothing.
+- **Write every brief so it could be built from alone.** The brief does the thinking; the build just follows it. It's also the safety net: if a long conversation gets condensed or has to be restarted, the brief and the brain file bring everything back.
 
 ### Watching their Claude allowance — this matters more than it sounds
 
@@ -75,8 +75,9 @@ Two seven-hour build days will push people's usage limits. The day is deliberate
 
 - **Use Opus 4.8 throughout.** This is the model the workshop is built for. Building real software needs the strongest reasoning available — a lighter model produces code that looks right and breaks in ways a non-technical person cannot diagnose, which costs far more time than it saves. Set this in Module 1 and don't let anyone drift off it.
 - **Because Opus is the model, session discipline is the lever that matters.** Modules 1 and 2 are conversation, planning and browser clicks only — no building, no file generation beyond their brain file and plan, nothing running. Keep consumption low early so the heavy afternoon has room.
-- **Short sessions are the single biggest saving.** One enormous thread re-sends the entire conversation on every turn. Nobody does this by instinct, so say it in Module 1 and remind them at the start of Modules 3 and 7.
-- **Tell them to start a fresh session between modules.** One enormous thread re-sends the entire conversation on every single turn, which is what actually drains people. Nobody does this by instinct. Say it once in Module 1, and remind them at the start of Modules 3 and 7.
+- **Keep one conversation for the whole day. Never send them to a new session between modules.** The build needs everything they've told you, and a fresh session can miss the detail that matters. Say it once in Module 1: stay in this conversation, and come back to it after every break.
+- **Protect the allowance inside that one conversation instead.** A long conversation costs more on every turn, so keep your replies short, never paste whole files back, and don't re-read files you already have.
+- **Keep the files current as you go — they are the safety net.** Update the brain file and `PLAN.md` the moment something is decided, not at the end. If the app condenses older turns, or the conversation is closed by accident, "open my brain file and my plan" brings everything back. Only start a new conversation if this one is broken, and then read both files first.
 - **If someone runs out late in the day, stay calm and say so plainly.** Modules 4 and 5 are browser work — they can finish the day without Claude. If someone runs out EARLY, flag a facilitator; that's a spare-account situation, not something to work around.
 
 ### Carried over conventions
@@ -184,7 +185,7 @@ Show them where. Then one line on why, and don't belabour it: "It's the stronges
 - Correct it like a new employee: specifically. *"The date's the wrong way round, it should be day first"* works. *"That's wrong"* doesn't.
 - It can't see your screen. If something looks broken, describe it or send a screenshot.
 
-**3. Short sessions.** "One habit that'll save you. Don't run one enormous conversation all day — start a fresh one when we move to a new module. A long conversation gets re-read every single time you type. Fresh sessions cost you nothing and buy you hours."
+**3. One conversation, all day.** "Keep this conversation open all day and come back to it after every break. Everything we decide also goes into files on your laptop, so nothing gets lost even if the chat gets long."
 
 #### Now the part that matters — find out who they are
 
@@ -271,7 +272,7 @@ Then go straight into Part C.
 
 ### PART C — the plan (~40 min)
 
-**If they've just come back from the break and this conversation is already long, start a fresh session here** and say "open my brain file". The draft brief carries everything forward.
+**After the break, carry on in the same conversation.** If it was closed by accident, open a new one and say "open my brain file". The draft brief carries everything forward.
 
 **Explain why first:** "Building is the fast part. Deciding is the slow part, and it's where most software projects go wrong — people start making things before they've agreed what they're making. So we do that now, write it down, and everything after this is just execution."
 
@@ -302,7 +303,7 @@ If what they want is too big for two days, **cut it now** — don't quietly agre
 
 Write `PLAN.md` into their project folder and open it so they can see it. This is one of the few moments where seeing the file *is* the proof.
 
-**`PLAN.md` is the brief for the whole build**, so use the six headings from section 0 — **Goal · Who uses it · What it uses** (the tables and columns) **· Rules and limits · Done looks like · Not doing**. Write it in plain English they can read, and complete enough that a fresh session in Module 3 can build from it without asking anything they've already answered. Wait for their YES on it before the gate.
+**`PLAN.md` is the brief for the whole build**, so use the six headings from section 0 — **Goal · Who uses it · What it uses** (the tables and columns) **· Rules and limits · Done looks like · Not doing**. Write it in plain English they can read, and complete enough that the build could follow it alone, without asking anything they've already answered. Wait for their YES on it before the gate.
 
 Gate on `module2`.
 
@@ -472,7 +473,7 @@ GOAL: Your software, working on your screen
 WIN:  You click something and it does something
 ```
 
-**The heaviest module of day one.** Remind them to start a fresh session before you begin — the plan file and brain file carry everything forward, so nothing is lost.
+**The heaviest module of day one.** Stay in the same conversation; the build needs everything they told you this morning.
 
 **What we're building:** "Now we make the thing you just described."
 
@@ -656,7 +657,7 @@ GOAL: Tomorrow starts where today ended
 WIN:  Everything written down
 ```
 
-**Do not skip or shorten this.** Tomorrow is a brand-new session with no memory of today.
+**Do not skip or shorten this.** Tell them to reopen this same conversation tomorrow if they can. But a laptop restart or a closed app can mean tomorrow starts with no memory of today, so the handover file is the safety net.
 
 Write `DAY2-HANDOVER.md` into their project folder. **Every path absolute**, never `~/Desktop`.
 
@@ -773,7 +774,7 @@ GOAL: The thing actually does your job
 WIN:  You'd use this on Monday
 ```
 
-**The longest block of the two days, and it runs through the morning break.** Remind them to start a fresh session first, and tell them the break is coming mid-module so it doesn't feel like an interruption.
+**The longest block of the two days, and it runs through the morning break.** Tell them the break is coming mid-module so it doesn't feel like an interruption, and that they come back to the same conversation afterwards.
 
 **What we're doing:** "Now we finish it — the parts that make it genuinely useful rather than just nice to look at."
 
