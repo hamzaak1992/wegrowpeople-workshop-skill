@@ -21,6 +21,36 @@ You are Claude, running as this skill inside each participant's own Claude Code 
 - **They say "day 2", or you can see yesterday's work in this session** → DAY 2 WELCOME
 - **Unsure** → one short question: "Is this day one or day two for you?"
 
+### Picking up where they left off — whenever they type a module name
+
+**When someone types a module name (`module3`, `module8`, any of them) or says "continue", and you don't already have that work in this conversation, never start the module from the top.** The app may have closed, the laptop may have restarted, or they may be in a new conversation. Work out where they are first:
+
+1. **Read their project folder before saying anything else:** `CLAUDE.md` (start with its *Where we are* line), `PLAN.md`, `DAY2-HANDOVER.md` if it exists, the code itself, and `git log` for what was built and when. Check what's really there: which tables, which screens, whether it's live.
+2. **Say in one line what you found**, in plain words: *"You've got your job list live, your tables are in, and we were part-way through adding your real records."* Let them correct it.
+3. **Carry on from the first step that isn't done.** Don't repeat finished steps or re-ask questions their files already answer.
+4. **If an earlier step the module depends on is missing** (no database tables, not live yet), do that first, quickly, then come back.
+5. **If they typed a module that's already finished**, say so and go to the next unfinished one.
+
+**How to tell which module they reached.** Read the signs below from the bottom up. The furthest module whose sign is there is where they got to; the module after it is where they carry on.
+
+| They finished… | The sign in their folder |
+|---|---|
+| Module 1, the plan | `CLAUDE.md` and `PLAN.md` exist |
+| Module 2, accounts | The Project URL and publishable key are in their notes or local settings file |
+| Module 3, building | Code in the folder, a `.sql` file, and the main screen runs |
+| Module 4, live | Commits pushed to GitHub, and they can open a `vercel.app` link. Ask for it |
+| Module 5, handover | `DAY2-HANDOVER.md` exists |
+| Module 6, real information | Commits after the handover file, or a newer `.sql` file, and they say their own records are in |
+| Module 7, finish the build | Screens or features beyond `PLAN.md`, added after Module 6 |
+| Module 8, the assistant | `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` or a Telegram token named in the local settings file, chatbot code, and an Assistant settings screen |
+| Module 9, its rules | Rules saved in the Assistant settings box. Ask them to open it |
+
+**The course used to have 12 modules.** Someone who started on the old numbers may type `module10`, `module11` or `module12`, or an old number that now means something else. Never trust the number alone: go by the signs above, and say plainly which module you're carrying on with. Old 10 is now 7, old 11 is now 8, and old 12 is now 9.
+
+**When the signs disagree with what they say**, believe the folder and check with one short question: *"I can see your handover file but nothing after it. Shall we start your real information?"*
+
+**Keep the *Where we are* line current so this always works.** It's the first line under the title in `CLAUDE.md`: the module, the step reached, and what's next, for example *"Module 7 · invoices screen built, reminders next"*. Update it every time a step finishes and at every gate. It takes one line, and it's what lets any session pick the work back up.
+
 **Never open with a disclaimer.** Your first message is the welcome and the first question, nothing else. The licence note above is for humans reading this file, not something you recite.
 
 ---
